@@ -1,0 +1,1527 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Biochemia Białek i Peptydów – Kompendium Akademickie</title>
+  
+  <!-- MathJax do renderowania wzorów chemicznych i matematycznych LaTeX -->
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+  <style>
+    :root {
+      --primary: #1e3a8a;
+      --primary-light: #3b82f6;
+      --primary-dark: #172554;
+      --accent: #0284c7;
+      --bg: #f8fafc;
+      --card-bg: #ffffff;
+      --text-main: #0f172a;
+      --text-muted: #475569;
+      --border: #e2e8f0;
+      
+      --analogy-bg: #eff6ff;
+      --analogy-border: #93c5fd;
+      --analogy-text: #1e40af;
+      
+      --warning-bg: #fef2f2;
+      --warning-border: #fca5a5;
+      --warning-text: #991b1b;
+      
+      --success-bg: #f0fdf4;
+      --success-border: #86efac;
+      --success-text: #166534;
+
+      --flow-bg: #f1f5f9;
+      --flow-border: #cbd5e1;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      background-color: var(--bg);
+      color: var(--text-main);
+      line-height: 1.65;
+      padding: 0;
+    }
+
+    /* Układ dwukolumnowy: Nawigacja boczna + Treść główna */
+    .dashboard-container {
+      display: flex;
+      min-height: 100vh;
+    }
+
+    /* Pasek boczny nawigacji */
+    .sidebar {
+      width: 320px;
+      background-color: var(--card-bg);
+      border-right: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow-y: auto;
+      padding: 24px 16px;
+      flex-shrink: 0;
+    }
+
+    .sidebar h2 {
+      font-size: 1.1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--primary);
+      margin-bottom: 16px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid var(--primary-light);
+    }
+
+    .sidebar-nav {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .sidebar-nav a {
+      display: block;
+      padding: 8px 12px;
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 500;
+      border-radius: 6px;
+      transition: all 0.15s ease-in-out;
+    }
+
+    .sidebar-nav a:hover {
+      background-color: var(--analogy-bg);
+      color: var(--primary);
+      transform: translateX(4px);
+    }
+
+    /* Główna zawartość */
+    .main-content {
+      flex: 1;
+      padding: 40px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    /* Nagłówek główny */
+    .hero-header {
+      background: linear-gradient(135deg, #1e3a8a 0%, #0369a1 100%);
+      color: #ffffff;
+      padding: 36px 32px;
+      border-radius: 16px;
+      margin-bottom: 40px;
+      box-shadow: 0 10px 25px -5px rgba(30, 58, 138, 0.2);
+    }
+
+    .hero-header h1 {
+      font-size: 2.2rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: 10px;
+    }
+
+    .hero-header p {
+      font-size: 1.05rem;
+      opacity: 0.9;
+      max-width: 800px;
+    }
+
+    /* Karty zagadnień (.card) */
+    .card {
+      background-color: var(--card-bg);
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+      padding: 32px;
+      margin-bottom: 40px;
+      scroll-margin-top: 30px;
+      transition: box-shadow 0.2s ease;
+    }
+
+    .card:hover {
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.08);
+    }
+
+    .card-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 24px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .card-badge {
+      background: var(--primary);
+      color: #ffffff;
+      font-weight: 700;
+      font-size: 0.85rem;
+      padding: 4px 10px;
+      border-radius: 9999px;
+    }
+
+    .card-title {
+      font-size: 1.45rem;
+      color: var(--primary-dark);
+      font-weight: 700;
+      letter-spacing: -0.01em;
+    }
+
+    /* Sekcje wewnątrz karty */
+    .section-subtitle {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--text-main);
+      margin: 20px 0 10px 0;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* Ramki analogii (.callout-analogy) */
+    .callout-analogy {
+      background-color: var(--analogy-bg);
+      border-left: 4px solid var(--analogy-border);
+      color: var(--analogy-text);
+      padding: 16px 20px;
+      border-radius: 0 10px 10px 0;
+      margin: 18px 0;
+      font-size: 0.95rem;
+    }
+
+    .callout-analogy strong {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 1rem;
+      color: #1d4ed8;
+    }
+
+    /* Ramki ostrzegawcze / pułapki (.callout-warning) */
+    .callout-warning {
+      background-color: var(--warning-bg);
+      border-left: 4px solid var(--warning-border);
+      color: var(--warning-text);
+      padding: 16px 20px;
+      border-radius: 0 10px 10px 0;
+      margin: 18px 0;
+      font-size: 0.95rem;
+    }
+
+    .callout-warning strong {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 1rem;
+      color: #b91c1c;
+    }
+
+    /* Wizualne schematy procesów (.process-flow) */
+    .process-flow {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 12px;
+      background-color: var(--flow-bg);
+      padding: 18px;
+      border-radius: 10px;
+      border: 1px solid var(--flow-border);
+      margin: 18px 0;
+    }
+
+    .flow-step {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      padding: 10px 14px;
+      border-radius: 8px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--primary-dark);
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+      flex: 1 1 180px;
+      text-align: center;
+    }
+
+    .flow-arrow {
+      color: var(--accent);
+      font-size: 1.25rem;
+      font-weight: 800;
+      user-select: none;
+    }
+
+    /* Tabele syntetyczne (.comparison-table) */
+    .comparison-table-wrapper {
+      overflow-x: auto;
+      margin: 20px 0;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+    }
+
+    .comparison-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.9rem;
+      text-align: left;
+    }
+
+    .comparison-table th {
+      background-color: #f1f5f9;
+      color: var(--primary-dark);
+      font-weight: 700;
+      padding: 12px 16px;
+      border-bottom: 2px solid var(--border);
+    }
+
+    .comparison-table td {
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--border);
+      color: var(--text-muted);
+    }
+
+    .comparison-table tr:nth-child(even) td {
+      background-color: #f8fafc;
+    }
+
+    .comparison-table tr:hover td {
+      background-color: #f0fdf4;
+    }
+
+    /* Interaktywne sekcje sprawdzające (<details><summary>) */
+    .quiz-container {
+      margin-top: 28px;
+      padding-top: 20px;
+      border-top: 1px dashed var(--border);
+    }
+
+    details.quiz-box {
+      background-color: #fafaf9;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      margin-bottom: 12px;
+      overflow: hidden;
+      transition: background-color 0.15s ease;
+    }
+
+    details.quiz-box[open] {
+      background-color: #ffffff;
+      border-color: var(--primary-light);
+    }
+
+    summary.quiz-question {
+      padding: 14px 18px;
+      font-weight: 600;
+      font-size: 0.92rem;
+      cursor: pointer;
+      user-select: none;
+      color: var(--primary-dark);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    summary.quiz-question::after {
+      content: '＋';
+      font-size: 1.1rem;
+      font-weight: bold;
+      color: var(--accent);
+      transition: transform 0.2s ease;
+    }
+
+    details[open] summary.quiz-question::after {
+      content: '–';
+    }
+
+    .quiz-answer {
+      padding: 14px 18px;
+      border-top: 1px solid var(--border);
+      background-color: var(--success-bg);
+      color: var(--success-text);
+      font-size: 0.88rem;
+      line-height: 1.55;
+    }
+
+    .quiz-answer strong {
+      color: #14532d;
+    }
+
+    /* Listy */
+    ul, ol {
+      margin-left: 24px;
+      margin-bottom: 16px;
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+
+    li {
+      margin-bottom: 6px;
+    }
+
+    /* Responsywność */
+    @media (max-width: 900px) {
+      .dashboard-container {
+        flex-direction: column;
+      }
+      .sidebar {
+        width: 100%;
+        height: auto;
+        position: relative;
+        border-right: none;
+        border-bottom: 1px solid var(--border);
+      }
+      .main-content {
+        padding: 20px;
+      }
+      .process-flow {
+        flex-direction: column;
+      }
+      .flow-arrow {
+        transform: rotate(90deg);
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="dashboard-container">
+  
+  <!-- NAWIGACJA BOCZNA -->
+  <aside class="sidebar">
+    <h2>Spis Zagadnień</h2>
+    <ul class="sidebar-nav">
+      <li><a href="#t1">1. Aminokwasy – Właściwości i rola</a></li>
+      <li><a href="#t2">2. Peptydy i wiązanie peptydowe</a></li>
+      <li><a href="#t3">3. Peptydy biologiczne (GSH, Glukagon)</a></li>
+      <li><a href="#t4">4. Białka – Definicja i budowa</a></li>
+      <li><a href="#t5">5. Zasady nazewnictwa białek</a></li>
+      <li><a href="#t6">6. Klasyfikacja białek</a></li>
+      <li><a href="#t7">7. Właściwości fizykochemiczne białek</a></li>
+      <li><a href="#t8">8. Biologiczna rola białek</a></li>
+      <li><a href="#t9">9. Organizacja architektury białkowej</a></li>
+      <li><a href="#t10">10. Wiązania stabilizujące strukturę</a></li>
+      <li><a href="#t11">11. Struktura I-rzędowa białek</a></li>
+      <li><a href="#t12">12. Struktura II-rzędowa białek</a></li>
+      <li><a href="#t13">13. Struktura III-rzędowa i domeny</a></li>
+      <li><a href="#t14">14. Struktura IV-rzędowa i metale</a></li>
+      <li><a href="#t15">15. Hemoglobina – Architektura oligomeru</a></li>
+      <li><a href="#t16">16. Hemoglobinopatie (HbS, MetHb, Talasemie)</a></li>
+      <li><a href="#t17">17. Kolageny – Synteza i budowa</a></li>
+      <li><a href="#t18">18. Kolageny – Typy i występowanie</a></li>
+      <li><a href="#t19">19. Insulina – Dojrzewanie i funkcja</a></li>
+      <li><a href="#t20">20. Mioglobina – Magazyn tlenu</a></li>
+      <li><a href="#t21">21. Białka opiekuńcze (Chaperony)</a></li>
+      <li><a href="#t22">22. Metody izolacji i oczyszczania</a></li>
+      <li><a href="#t23">23. Denaturacja białek</a></li>
+    </ul>
+  </aside>
+
+  <!-- TREŚĆ GŁÓWNA -->
+  <main class="main-content">
+    
+    <header class="hero-header">
+      <h1>Biochemia Białek: Repetytorium Lekarskie</h1>
+      <p>Nowoczesny podręcznik akademicki zorientowany na zrozumienie mechanistyczne, logikę kliniczną oraz bezwzględne pułapki egzaminacyjne. Zgodny z kanonem Harper's Illustrated Biochemistry.</p>
+    </header>
+
+    <!-- 1. AMINOKWASY -->
+    <section class="card" id="t1">
+      <div class="card-header">
+        <span class="card-badge">01</span>
+        <h2 class="card-title">Aminokwasy. Właściwości i znaczenie biomedyczne</h2>
+      </div>
+
+      <div class="callout-analogy">
+        <strong>💡 Intuicyjna analogia</strong>
+        Wyobraź sobie uniwersalny klocek z czterema różnymi zaczepami: z jednej strony hak kwasowy ($-COOH$), z drugiej gniazdo zasadowe ($-NH_2$), od góry pojedynczy pin ($-H$), a od dołu zmienna końcówka ($-R$). Niezależnie od tego, czy końcówką jest gumowy zderzak (niepolarna walina), magnes (naładowana lizyna) czy gąbka chłonąca wodę (polarna seryna), szkielet klocka zawsze pozwala na wpięcie w ten sam łańcuch.
+      </div>
+
+      <h3 class="section-subtitle">⚙️ Mechanizm kwasowo-zasadowy (Jony obojnacze i pI)</h3>
+      <div class="process-flow">
+        <div class="flow-step">Środowisko skrajnie kwaśne ($pH < pK_{a1}$)<br><strong>Forma kationowa ($+1$)</strong><br>$-NH_3^+$, $-COOH$</div>
+        <div class="flow-arrow">➔</div>
+        <div class="flow-step">Punkt izoelektryczny ($pH = pI$)<br><strong>Jon obojnaczy (zwitterion, ładunek $0$)</strong><br>$-NH_3^+$, $-COO^-$</div>
+        <div class="flow-arrow">➔</div>
+        <div class="flow-step">Środowisko skrajnie zasadowe ($pH > pK_{a2}$)<br><strong>Forma anionowa ($-1$)</strong><br>$-NH_2$, $-COO^-$</div>
+      </div>
+
+      <h3 class="section-subtitle">📖 Ścisła definicja akademicka</h3>
+      <p>Aminokwasy białkowe to $\alpha$-aminokwasy o konfiguracji $L$ (z wyjątkiem achiralnej glicyny, która nie posiada asymetrycznego atomu węgla $C_\alpha$). W roztworach wodnych przy fizjologicznym $pH \approx 7,4$ występują jako jony obojnacze (zwitteriony), posiadające jednocześnie zjonizowaną grupę karboksylową ($-COO^-$) oraz sprotonowaną grupę aminową ($-NH_3^+$).</p>
+
+      <div class="comparison-table-wrapper">
+        <table class="comparison-table">
+          <thead>
+            <tr>
+              <th>Grupa aminokwasów</th>
+              <th>Przedstawiciele</th>
+              <th>Właściwości chemiczne</th>
+              <th>Kluczowe znaczenie kliniczne</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Hydrofobowe alifatyczne</strong></td>
+              <td>Ala, Val, Leu, Ile, Pro</td>
+              <td>Niepolarne łańcuchy boczne, chowane do wnętrza białka</td>
+              <td>Choroba syropu klonowego (blok dehydrogenazy rozgałęzionych $\alpha$-ketokwasów)</td>
+            </tr>
+            <tr>
+              <td><strong>Aromatyczne</strong></td>
+              <td>Phe, Tyr, Trp</td>
+              <td>Pochłaniają światło UV przy $\lambda = 280\text{ nm}$</td>
+              <td>Fenyloketonuria (niedobór hydroksylazy fenyloalaninowej); prekursory katecholamin i serotoniny</td>
+            </tr>
+            <tr>
+              <td><strong>Zawierające siarkę</strong></td>
+              <td>Cys, Met</td>
+              <td>Cysteina tworzy mostki disiarczkowe ($-S-S-$); Met dostarcza grup metylowych</td>
+              <td>Metionina jest prekursorem S-adenozylometioniny (SAM); homocysteina jako marker naczyniowy</td>
+            </tr>
+            <tr>
+              <td><strong>Zasadowe (kationowe w pH 7)</strong></td>
+              <td>Lys, Arg, His</td>
+              <td>Dodatni ładunek w $pH$ fizjologicznym (Histydyna ma $pK_R \approx 6.0$, buforuje krew)</td>
+              <td>Histony (bogate w Lys i Arg) wiążą ujemnie naładowany szkielet DNA; His w centrum hemu</td>
+            </tr>
+            <tr>
+              <td><strong>Kwasowe (anionowe w pH 7)</strong></td>
+              <td>Asp, Glu</td>
+              <td>Ujemny ładunek w $pH$ fizjologicznym ($-COO^-$)</td>
+              <td>Neuroprzekaźnictwo pobudzające (glutaminian); wiązanie jonów wapnia $Ca^{2+}$</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="callout-warning">
+        <strong>⚠️ Złota reguła i pułapka egzaminacyjna</strong>
+        Egzaminatorzy nagminnie pytają o <strong>glicynę</strong> i <strong>selenocysteinę</strong>! Zapamiętaj:
+        1. Glicyna jako <em>jedyny</em> aminokwas białkowy <strong>nie posiada atomu węgla asymetrycznego</strong> (jest optycznie nieczynna).
+        2. Selenocysteina (Sec, U) jest nazywana 21. aminokwasem – jest kodowana <strong>kotranslacyjnie</strong> przez kodon STOP ($UGA$) dzięki specjalnej strukturze spinki do włosów na mRNA (element SECIS), a nie powstaje w drodze modyfikacji potranslacyjnej!
+      </div>
+
+      <div class="quiz-container">
+        <details class="quiz-box">
+          <summary class="quiz-question">Pytanie 1: Dlaczego histydyna jest najważniejszym aminokwasem buforującym w krwinkach czerwonych przy fizjologicznym pH?</summary>
+          <div class="quiz-answer">
+            <strong>Odpowiedź:</strong> Ponieważ jej pierścień imidazolowy posiada $pK_a$ łańcucha bocznego równe około $6,0$ (a w środowisku hemoglobiny nawet $6,5-7,0$). Jest to jedyna grupa boczna aminokwasów, której wartość $pK_a$ leży w pobliżu fizjologicznego $pH$ krwi ($7,35-7,45$), dzięki czemu może łatwo przyłączać i oddawać protony.
+          </div>
+        </details>
+        <details class="quiz-box">
+          <summary class="quiz-question">Pytanie 2: W punkcie izoelektrycznym (pI) alaniny, jaki jest jej ładunek wypadkowy i jak zachowa się w polu elektrycznym?</summary>
+          <div class="quiz-answer">
+            <strong>Odpowiedź:</strong> Ładunek wypadkowy wynosi dokładnie $0$ (stężenie kationów równa się stężeniu anionów). W polu elektrycznym cząsteczka alaniny nie przemieszcza się ani w stronę anody, ani katody.
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <!-- 2. WIĄZANIE PEPTYDOWE -->
+    <section class="card" id="t2">
+      <div class="card-header">
+        <span class="card-badge">02</span>
+        <h2 class="card-title">Peptydy: powstawanie i cechy wiązania peptydowego</h2>
+      </div>
+
+      <div class="callout-analogy">
+        <strong>💡 Intuicyjna analogia</strong>
+        Wyobraź sobie zawias drzwiowy zespawany pod kątem – nie możesz go obracać, jest sztywną, płaską płytą. Obrót całego mechanizmu jest możliwy wyłącznie na prętach wchodzących do zawiasu z góry i z dołu, ale sama płytka zawiasu jest nienaruszalna. Tak działa wiązanie peptydowe.
+      </div>
+
+      <h3 class="section-subtitle">⚙️ Mechanizm powstawania (Kondensacja)</h3>
+      <div class="process-flow">
+        <div class="flow-step">Grupa $\alpha$-karboksylowa ($R_1-COO^-$)</div>
+        <div class="flow-arrow">+</div>
+        <div class="flow-step">Grupa $\alpha$-aminowa ($R_2-NH_3^+$)</div>
+        <div class="flow-arrow">➔ [Odprowadzenie $H_2O$] ➔</div>
+        <div class="flow-step">Wiązanie amidowe (peptydowe)<br>$-C(=O)-NH-$</div>
+      </div>
+
+      <h3 class="section-subtitle">📖 Ścisła charakterystyka fizykochemiczna wiązania</h3>
+      <ul>
+        <li><strong>Charakter częściowo podwójnego wiązania:</strong> Ze względu na delokalizację pary elektronowej atomu azotu między wiązanie $C-N$ a grupę karbonylową $C=O$ (rezonans), wiązanie $C-N$ wykazuje około 40% charakteru wiązania podwójnego. Długość wiązania wynosi $0,132\text{ nm}$ (pośrednia między pojedynczym $0,147\text{ nm}$ a podwójnym $0,128\text{ nm}$).</li>
+        <li><strong>Koplanarność (płaska struktura):</strong> Sześć atomów leży w jednej płaszczyźnie: atom węgla $C_\alpha$ pierwszego aminokwasu, węgiel karbonylowy $C$, tlen karbonylowy $O$, azot amidowy $N$, wodór amidowy $H$ oraz atom węgla $C_\alpha$ drugiego aminokwasu.</li>
+        <li><strong>Brak swobodnego obrotu wokół osi C-N:</strong> Rotacja jest zablokowana. Rotacja w szkielecie polipeptydowym jest możliwa jedynie wokół wiązań sąsiadujących z węglem $C_\alpha$: kąt $\phi$ (phi, wokół $N-C_\alpha$) oraz kąt $\psi$ (psi, wokół $C_\alpha-C$).</li>
+        <li><strong>Konfiguracja trans:</strong> Zdecydowana większość wiązań peptydowych występuje w konfiguracji <em>trans</em> (atomy tlenu i wodoru leżą po przeciwnych stronach wiązania), co minimalizuje zawadę steryczną między łańcuchami bocznymi (wyjątek: prolina, gdzie forma <em>cis</em> stanowi ok. 10%).</li>
+      </ul>
+
+      <div class="callout-warning">
+        <strong>⚠️ Złota reguła i pułapka egzaminacyjna</strong>
+        Pamiętaj: wiązanie peptydowe jest <strong>nienaładowane</strong> w fizjologicznym zakresie $pH$! Grupa amidowa nie dysocjuje protonu ani go nie przyłącza w $pH\ 1-13$. Posiada jednak wyraźny <strong>moment dipolowy</strong> (tlen jest donorem ładunku cząstkowego ujemnego $\delta^-$, azot dodatniego $\delta^+$), co umożliwia mu tworzenie stabilnych wiązań wodorowych kluczowych dla struktur drugorzędowych.
+      </div>
+
+      <div class="quiz-container">
+        <details class="quiz-box">
+          <summary class="quiz-question">Pytanie 1: Ile wynosi liczba atomów leżących sztywno w jednej płaszczyźnie w obrębie pojedynczego wiązania peptydowego?</summary>
+          <div class="quiz-answer">
+            <strong>Odpowiedź:</strong> Dokładnie 6 atomów: $C_{\alpha 1}, C, O, N, H, C_{\alpha 2}$.
+          </div>
+        </details>
+        <details class="quiz-box">
+          <summary class="quiz-question">Pytanie 2: Który aminokwas najczęściej przyjmuje nietypową konfigurację cis wiązania peptydowego?</summary>
+          <div class="quiz-answer">
+            <strong>Odpowiedź:</strong> Prolina. Ze względu na jej unikalną pierścieniową strukturę pirolidynową, różnica energii sterycznej między formą <em>trans</em> a <em>cis</em> jest niewielka, co umożliwia występowanie formy <em>cis</em> stabilizowanej przez izomerazy peptydylo-prolilowe (PPIazy).
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <!-- 3. PEPTYDY O ZNACZENIU BIOLOGICZNYM -->
+    <section class="card" id="t3">
+      <div class="card-header">
+        <span class="card-badge">03</span>
+        <h2 class="card-title">Peptydy o znaczeniu biologicznym: Glutation i Glukagon</h2>
+      </div>
+
+      <div class="callout-analogy">
+        <strong>💡 Intuicyjna analogia</strong>
+        <strong>Glutation</strong> to komórkowy "saper z tarczą antyrakietową". Gdy w komórce pojawia się niebezpieczny nadtlenek wodoru grożący rozerwaniem błon, glutation poświęca własny proton, łącząc się z drugim glutationem w parę, neutralizując zagrożenie w ułamku sekundy.<br>
+        <strong>Glukagon</strong> to "radiotelegrafista alarmujący o głodzie". Gdy we krwi brakuje glukozy, wysyła głośny sygnał do magazynów w wątrobie: "Wypuśćcie zapasy, mózg nie ma paliwa!".
+      </div>
+
+      <h3 class="section-subtitle">🔬 Glutation (GSH) – Architektura i Funkcja</h3>
+      <p>Glutation jest tripeptydem o strukturze: <strong>$\gamma$-L-glutamylo-L-cysteinyloglicyna</strong>.</p>
+      <ul>
+        <li><strong>Nietypowe wiązanie izopeptydowe:</strong> Grupa aminowa cysteiny jest połączona nie z grupą $\alpha$-karboksylową kwasu glutaminowego, lecz z jego grupą <strong>$\gamma$-karboksylową</strong>! Chroni to glutation przed natychmiastowym rozkładem przez wewnątrzkomórkowe peptydazy.</li>
+        <li><strong>Rola antyoksydacyjna:</strong> Grupa sulfhydrylowa ($-SH$) cysteiny służy jako dawca elektronów. Reakcja katalizowana przez <em>peroksydazę glutationową</em>:
+        $$2\text{ GSH} + H_2O_2 \longrightarrow \text{GSSG} + 2\text{ H}_2O$$
+        Regeneracja GSH z formy utlenionej (GSSG) wymaga <em>reduktazy glutationowej</em> oraz <strong>NADPH</strong> dostarczanego głównie przez szlak pentozofosforanowy.</li>
+        <li><strong>Detoksykacja ksenobiotyków:</strong> S-transferaza glutationowa (GST) sprzęga ksenobiotyki z GSH, prowadząc ostatecznie do wydalenia ich jako kwasów merkapturowych.</li>
+      </ul>
+
+      <h3 class="section-subtitle">🔬 Glukagon – Hormon kataboliczny</h3>
+      <p>Peptyd złożony z <strong>29 aminokwasów</strong>, syntetyzowany przez komórki $\alpha$ wysp trzustkowych w odpowiedzi na hipoglikemię.</p>
+      <div class="process-flow">
+        <div class="flow-step">Spadek stężenia glukozy we krwi</div>
+        <div class="flow-arrow">➔</div>
+        <div class="flow-step">Wyrzut glukagonu ➔ Wiązanie z receptorem GPCR ($G_s$) na hepatocytach</div>
+        <div class="flow-arrow">➔</div>
+        <div class="flow-step">Wzrost $cAMP$ ➔ Aktywacja Kinazy Białkowej A (PKA)</div>
+        <div class="flow-arrow">➔</div>
+        <div class="flow-step">Fosforylacja enzymów: Glikogenoliza ↑, Glukoneogeneza ↑, Glikoliza ↓</div>
+      </div>
+
+      <div class="callout-warning">
+        <strong>⚠️ Złota reguła i pułapka egzaminacyjna</strong>
+        Częsty błąd: studenci zapominają, że <strong>glukagon nie działa na mięśnie szkieletowe</strong>! Mięśnie nie posiadają receptorów glukagonowych, a ich glikogen służy wyłącznie jako prywatne źródło energii na potrzeby skurczu, a nie do regulacji ogólnoustrojowej glikemii.
+      </div>
+
+      <div class="quiz-container">
+        <details class="quiz-box">
+          <summary class="quiz-question">Pytanie 1: Dlaczego enzymy trawiące białka w cytozolu nie degradują glutationu?</summary>
+          <div class="quiz-answer">
+            <strong>Odpowiedź:</strong> Ponieważ wiązanie między glutaminianem a cysteiną jest wiązaniem nietypowym ($\gamma$-glutamylowym), a nie klasycznym wiązaniem $\alpha$-peptydowym. Jedynym enzymem zdolnym do jego rozszczepienia jest zlokalizowana w błonie komórkowej $\gamma$-glutamylotranspeptydaza (GGTP).
+          </div>
+        </details>
+        <details class="quiz-box">
+          <summary class="quiz-question">Pytanie 2: Niedobór jakiego enzymu erytrocytarnego uniemożliwia regenerację glutationu i prowadzi do ostrej hemolizy po lekach utleniających?</summary>
+          <div class="quiz-answer">
+            <strong>Odpowiedź:</strong> Dehydrogenazy glukozo-6-fosforanowej (G6PD). Brak tego enzymu blokuje powstawanie NADPH w szlaku pentozofosforanowym, uniemożliwiając reduktazie glutationowej odtworzenie aktywnego GSH.
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <!-- 4. DEFINICJA I BUDOWA BIAŁEK -->
+    <section class="card" id="t4">
+      <div class="card-header">
+        <span class="card-badge">04</span>
+        <h2 class="card-title">Białka: Definicja i podstawy architektury molekularnej</h2>
+      </div>
+
+      <div class="callout-analogy">
+        <strong>💡 Intuicyjna analogia</strong>
+        Łańcuch peptydowy to długi sznur koralików, ale samo rozłożenie go na stole nie tworzy jeszcze sprawnego mechanizmu. Dopiero gdy sznur zostanie precyzyjnie spleciony w trójwymiarową figurkę z zapadkami, kieszonkami i magnesami, staje się "maszyną" zdolną do chwytania cząsteczek.
+      </div>
+
+      <h3 class="section-subtitle">📖 Ścisła definicja akademicka</h3>
+      <p><strong>Białka (proteiny)</strong> to heteropolimery wielkocząsteczkowe o masie cząsteczkowej zazwyczaj przekraczającej $10\text{ kDa}$ (zbudowane z ponad 50 reszt aminokwasowych), połączonych liniowo kowalencyjnymi wiązaniami $\alpha$-peptydowymi, przyjmujące w warunkach fizjologicznych unikalną, termodynamicznie uprzywilejowaną strukturę przestrzenną zwaną <em>konformacją natywną</em>.</p>
+
+      <ul>
+        <li><strong>Polarność łańcucha:</strong> Każdy łańcuch polipeptydowy posiada wyraźny kierunek: od N-końca (zawierającego wolną grupę $\alpha$-aminową, $-NH_3^+$) do C-końca (z wolną grupą $\alpha$-karboksylową, $-COO^-$).</li>
+        <li><strong>Koncepcja konformacji natywnej:</strong> Funkcjonalność biologiczna białka nie zależy wyłącznie od jego składu atomowego, ale od precyzyjnego ułożenia przestrzennego podyktowanego prawami termodynamiki (minimum energii swobodnej Gibbsa $\Delta G$).</li>
+      </ul>
+
+      <div class="quiz-container">
+        <details class="quiz-box">
+          <summary class="quiz-question">Pytanie: Czym z definicji różni się peptyd od białka?</summary>
+          <div class="quiz-answer">
+            <strong>Odpowiedź:</strong> Granica ma charakter umowny: peptydy zawierają do 50 aminokwasów (masa $< 10\text{ kDa}$), a białka powyżej 50 reszt i posiadają zdefiniowaną, stabilną strukturę przestrzenną o wyższym rzędzie upakowania.
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <!-- 5. ZASADY NAZEWNICTWA -->
+    <section class="card" id="t5">
+      <div class="card-header">
+        <span class="card-badge">05</span>
+        <h2 class="card-title">Zasady nazewnictwa białek i peptydów</h2>
+      </div>
+
+      <div class="callout-analogy">
+        <strong>💡 Intuicyjna analogia</strong>
+        Nazywanie łańcucha białkowego przypomina czytanie słowa od lewej do prawej litery. Dopóki składasz litery w słowie, dodajesz przyrostek łączący ("-ylo"), a pełną, dumną nazwę otrzymuje dopiero ostatnia, kończąca litera.
+      </div>
+
+      <h3 class="section-subtitle">📖 Reguły IUPAC-IUBMB dla sekwencji polipeptydowych</h3>
+      <ol>
+        <li>Sekwencję zawsze zapisuje się i odczytuje <strong>od końca N-terminalnego do końca C-terminalnego</strong> ($N \rightarrow C$).</li>
+        <li>Wszystkie reszty aminokwasowe tworzące wiązania peptydowe otrzymują końcówkę <strong>-ylo</strong> (np. alanyl, glicyl, seryl).</li>
+        <li>Jedynie ostatnia reszta z wolną grupą C-terminalną zachowuje pełną nazwę macierzystego aminokwasu (np. H-Ala-Gly-Ser-OH to <em>alanyloglicyloseryna</em>).</li>
+        <li>Białka enzymatyczne otrzymują nazwy systemowe oparte na numerze EC (Enzyme Commission) oraz nazwy rekomendowane z końcówką <strong>-aza</strong> (np. kinaza, dehydrogenaza).</li>
+      </ol>
+
+      <div class="callout-warning">
+        <strong>⚠️ Złota reguła i pułapka egzaminacyjna</strong>
+        Zapis tripeptydu $Glu-Cys-Gly$ to zupełnie inny związek chemiczny niż $Gly-Cys-Glu$! Odwrócenie kolejności zmienia położenie grup funkcyjnych w przestrzeni i pozbawia cząsteczkę jej właściwości biologicznych.
+      </div>
+    </section>
+
+    <!-- 6. PODZIAŁ BIAŁEK -->
+    <section class="card" id="t6">
+      <div class="card-header">
+        <span class="card-badge">06</span>
+        <h2 class="card-title">Podział i klasyfikacja białek</h2>
+      </div>
+
+      <div class="comparison-table-wrapper">
+        <table class="comparison-table">
+          <thead>
+            <tr>
+              <th>Kryterium podziału</th>
+              <th>Grupa</th>
+              <th>Charakterystyka i budowa</th>
+              <th>Przykłady medyczne</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td rowspan="2"><strong>Skład chemiczny</strong></td>
+              <td><strong>Białka proste (proteiny)</strong></td>
+              <td>Zbudowane wyłącznie z reszt aminokwasowych połączonych wiązaniami peptydowymi.</td>
+              <td>Albuminy, globuliny, histony, protaminy</td>
+            </tr>
+            <tr>
+              <td><strong>Białka złożone (proteidy)</strong></td>
+              <td>Zawierają część białkową (apobiałko) oraz niebiałkową grupę prostetyczną.</td>
+              <td>
+                • Glikoproteiny (immunoglobuliny, TSH)<br>
+                • Lipoproteiny (chylomikrony, LDL, HDL)<br>
+                • Hemoproteiny (hemoglobina, mioglobina, cytochromy)<br>
+                • Metaloproteiny (ceruloplazmina z $Cu$, ferrytyna z $Fe$)
+              </td>
+            </tr>
+            <tr>
+              <td rowspan="2"><strong>Kształt cząsteczki</strong></td>
+              <td><strong>Globularne (kłębuszkowe)</strong></td>
+              <td>Stosunek osiowy $< 10$. Dobrze rozpuszczalne w wodzie, zwarte, dynamiczne funkcje katalityczne i transportowe.</td>
+              <td>Albumina, enzymy cytozolu, immunoglobuliny</td>
+            </tr>
+            <tr>
+              <td><strong>Fibrylarne (włókienkowe)</strong></td>
+              <td>Stosunek osiowy $> 10$. Nierozpuszczalne w wodzie, odporne na rozciąganie, pełnią funkcje strukturalne.</td>
+              <td>Kolagen, keratyna, elastyna</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="quiz-container">
+        <details class="quiz-box">
+          <summary class="quiz-question">Pytanie: Czym różni się apobiałko od holobiałka?</summary>
+          <div class="quiz-answer">
+            <strong>Odpowiedź:</strong> <strong>Apobiałko</strong> to sam łańcuch polipeptydowy pozbawiony swojej grupy prostetycznej (nieaktywny katalitycznie/funkcjonalnie). <strong>Holobiałko</strong> to kompletny, w pełni funkcjonalny kompleks białka z trwale związaną grupą prostetyczną (np. apohemoglobina + hem = holochemoglobina).
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <!-- 7. WŁAŚCIWOŚCI BIAŁEK -->
+    <section class="card" id="t7">
+      <div class="card-header">
+        <span class="card-badge">07</span>
+        <h2 class="card-title">Fizykochemiczne właściwości białek</h2>
+      </div>
+
+      <div class="callout-analogy">
+        <strong>💡 Intuicyjna analogia: Zjawisko wysalania</strong>
+        Białko w wodzie to człowiek otoczony przez ochroniarzy (płaszcz wodny ze ściśle związanych cząsteczek wody). Sól dodana do roztworu (np. siarczan amonu) to walizka pieniędzy rzucona w tłum – ochroniarze natychmiast porzucają białko, by zbierać jony soli. Pozbawione ochrony cząsteczki białka "zlepiają się" hydrofobowymi plecami i wypadają na dno probówki.
+      </div>
+
+      <h3 class="section-subtitle">🔬 Kluczowe zjawiska roztworów białkowych</h3>
+      <ul>
+        <li><strong>Charakter koloidalny:</strong> Ze względu na masę cząsteczkową od $10^4$ do $10^6\text{ Da}$, cząsteczki białek tworzą zole hydrofilowe. Wykazują <em>efekt Tyndalla</em> (rozpraszanie światła) oraz nie przenikają przez błony półprzepuszczalne (podstawa dializy medycznej w nefrologii).</li>
+        <li><strong>Amfoteryczność i pI białka:</strong> Wartość $pH$, przy której wypadkowy ładunek elektryczny całego białka wynosi dokładnie $0$, to punkt izoelektryczny ($pI$). Przy $pH = pI$ białko wykazuje:
+          <ol>
+            <li>Minimalną rozpuszczalność (najłatwiej ulega wytrąceniu).</li>
+            <li>Minimalną lepkość.</li>
+            <li>Brak ruchliwości w polu elektroforetycznym.</li>
+          </ol>
+        </li>
+        <li><strong>Wsalanie (salting-in) a wysalanie (salting-out):</strong> Niskie stężenia soli zwiększają rozpuszczalność białek przez ekranowanie ładunków (wsalanie). Bardzo wysokie stężenia soli neutralnych (np. $(NH_4)_2SO_4$) odbierają wodę hydratacyjną, prowadząc do odwracalnego wytrącenia białka (wysalanie – metoda preparatywna).</li>
+      </ul>
+
+      <div class="callout-warning">
+        <strong>⚠️ Złota reguła i pułapka egzaminacyjna</strong>
+        Nigdy nie myl <strong>wysalania</strong> z <strong>denaturacją</strong>! Wysalanie jest procesem <strong>odwracalnym</strong> – po rozcieńczeniu soli wodą białko ponownie się rozpuszcza i zachowuje pełną aktywność biologiczną. Denaturacja trwale niszczy strukturę przestrzenną.
+      </div>
+    </section>
+
+    <!-- 8. BIOLOGICZNA ROLA BIAŁEK -->
+    <section class="card" id="t8">
+      <div class="card-header">
+        <span class="card-badge">08</span>
+        <h2 class="card-title">Biologiczna rola białek w ustroju</h2>
+      </div>
+
+      <div class="comparison-table-wrapper">
+        <table class="comparison-table">
+          <thead>
+            <tr>
+              <th>Funkcja biologiczna</th>
+              <th>Mechanizm molekularny</th>
+              <th>Przykłady kliniczne</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Katalityczna</strong></td>
+              <td>Obniżanie energii aktywacji reakcji biochemicznych o rzędy wielkości.</td>
+              <td>Enzymy trawienne, polimerazy DNA, kinazy metaboliczne</td>
+            </tr>
+            <tr>
+              <td><strong>Transportowa</strong></td>
+              <td>Wiązanie ligandów i przenoszenie ich w płynach ustrojowych lub przez błony.</td>
+              <td>Hemoglobina ($O_2$), Albumina (WKT, bilirubina, leki), Transferyna ($Fe^{3+}$)</td>
+            </tr>
+            <tr>
+              <td><strong>Strukturalna</strong></td>
+              <td>Tworzenie rusztowań mechanicznych tkanek i cytoszkieletu komórki.</td>
+              <td>Kolagen (ścięgna, kości), Elastyna (tętnice), Tubulina, Spektryna</td>
+            </tr>
+            <tr>
+              <td><strong>Obronna i immunologiczna</strong></td>
+              <td>Precyzyjne rozpoznawanie antygenów, lizowanie komórek, kaskada krzepnięcia.</td>
+              <td>Przeciwciała (IgG, IgM), białka układu dopełniacza, fibrynogen</td>
+            </tr>
+            <tr>
+              <td><strong>Regulacyjna i hormonalna</strong></td>
+              <td>Wiązanie z receptorami i aktywacja szlaków transdukcji sygnału.</td>
+              <td>Insulina, Glukagon, Hormon wzrostu, Czynniki transkrypcyjne</td>
+            </tr>
+            <tr>
+              <td><strong>Kurczliwa i motoryczna</strong></td>
+              <td>Konwersja energii chemicznej z ATP w ruch mechaniczny.</td>
+              <td>Aktyna, Miozyna (skurcz mięśnia), Kinezyna, Dyneina</td>
+            </tr>
+            <tr>
+              <td><strong>Magazynująca</strong></td>
+              <td>Wiązanie i unieczynnianie toksycznych wolnych pierwiastków.</td>
+              <td>Ferrytyna (magazyn żelaza w wątrobie i śledzionie)</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- 9 i 10. ORGANIZACJA I WIĄZANIA -->
+    <section class="card" id="t9">
+      <div class="card-header">
+        <span class="card-badge">09</span>
+        <h2 class="card-title">Organizacja struktury białek i siły ją stabilizujące</h2>
+      </div>
+
+      <div class="callout-analogy">
+        <strong>💡 Intuicyjna analogia</strong>
+        Wyobraź sobie budowę wielopiętrowego biurowca:
+        <ul>
+          <li><strong>Struktura I-rzędowa:</strong> Kolejność ułożenia cegieł w rzędzie (spiętych cementem kowalencyjnym).</li>
+          <li><strong>Struktura II-rzędowa:</strong> Klatka schodowa w spiralę ($\alpha$-helisa) lub proste korytarze ($\beta$-kartka).</li>
+          <li><strong>Struktura III-rzędowa:</strong> Kompletny, wykończony budynek ze wszystkimi pokojami spiętymi instalacjami.</li>
+          <li><strong>Struktura IV-rzędowa:</strong> Cały kompleks połączonych wieżowców (np. kampus korporacyjny).</li>
+        </ul>
+      </div>
+
+      <div class="comparison-table-wrapper">
+        <table class="comparison-table">
+          <thead>
+            <tr>
+              <th>Rodzaj oddziaływania</th>
+              <th>Natura chemiczna</th>
+              <th>Energia wiązania</th>
+              <th>Rola w architekturze białka</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Wiązanie peptydowe</strong></td>
+              <td>Kowalencyjne amidowe</td>
+              <td>Bardzo wysoka (~$400\text{ kJ/mol}$)</td>
+              <td>Jedyny fundament struktury I-rzędowej</td>
+            </tr>
+            <tr>
+              <td><strong>Mostki disiarczkowe ($-S-S-$)</strong></td>
+              <td>Kowalencyjne (utlenienie dwóch grup $-SH$ cysteiny)</td>
+              <td>Wysoka (~$250\text{ kJ/mol}$)</td>
+              <td>Stabilizacja struktury III i IV-rzędowej (zwłaszcza białek zewnątrzkomórkowych)</td>
+            </tr>
+            <tr>
+              <td><strong>Wiązania wodorowe</strong></td>
+              <td>Elektrostatyczne ($H$ związany z $N/O$ przyciągany przez inny $O/N$)</td>
+              <td>Niska (~$10-30\text{ kJ/mol}$)</td>
+              <td>Stabilizacja struktur II-rzędowych ($\alpha$-helisa, $\beta$-kartka) oraz III-rzędowej</td>
+            </tr>
+            <tr>
+              <td><strong>Oddziaływania hydrofobowe</strong></td>
+              <td>Entropowe (wypychanie niepolarnych grup z wody)</td>
+              <td>Niska (~$4-12\text{ kJ/mol}$)</td>
+              <td><strong>Główna siła napędowa fałdowania</strong>; zamyka hydrofobowe reszty w rdzeniu</td>
+            </tr>
+            <tr>
+              <td><strong>Mostki solne (wiązania jonowe)</strong></td>
+              <td>Przyciąganie przeciwnych ładunków ($-COO^-$ i $-NH_3^+$)</td>
+              <td>Średnia (~$20-40\text{ kJ/mol}$)</td>
+              <td>Stabilizacja struktury III i IV-rzędowej (np. stan T hemoglobiny)</td>
+            </tr>
+            <tr>
+              <td><strong>Siły van der Waalsa</strong></td>
+              <td>Nieswoiste oddziaływania dipolowe przy bliskim kontakcie</td>
+              <td>Bardzo niska (~$2-4\text{ kJ/mol}$)</td>
+              <td>Ścisłe upakowanie atomów wewnątrz rdzenia białkowego</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="callout-warning">
+        <strong>⚠️ Złota reguła i pułapka egzaminacyjna</strong>
+        Jaka siła jest <em>termodynamicznym motorem</em> zwijania białek? Prawidłowa odpowiedź: <strong>efekt hydrofobowy</strong> napędzany wzrostem entropii otaczających cząsteczek wody ($\Delta S > 0$), a nie wiązania wodorowe! Wiązania wodorowe zapewniają precyzję ułożenia, ale to ucieczka hydrofobowych łańcuchów przed wodą zmusza białko do przyjęcia zwartej kuli.
+      </div>
+    </section>
+
+    <!-- 11. STRUKTURA I-RZĘDOWA -->
+    <section class="card" id="t11">
+      <div class="card-header">
+        <span class="card-badge">10</span>
+        <h2 class="card-title">I-rzędowa struktura białek: Nazewnictwo i polarność</h2>
+      </div>
+
+      <h3 class="section-subtitle">📖 Ścisła definicja akademicka</h3>
+      <p><strong>Struktura pierwszorzędowa</strong> to liniowa sekwencja reszt aminokwasowych w łańcuchu polipeptydowym, determinowana bezpośrednio przez informację genetyczną zawartą w sekwencji nukleotydów mRNA, połączonych kowalencyjnymi wiązaniami peptydowymi.</p>
+
+      <ul>
+        <li><strong>Polarność strukturalna:</strong> Łańcuch posiada dwa odmienne chemicznie końce:
+          <ul>
+            <li><strong>N-koniec (amino-terminalny):</strong> Zawiera aminokwas z wolną grupą $\alpha$-aminową ($-NH_3^+$), syntetyzowany jako pierwszy na rybosomie.</li>
+            <li><strong>C-koniec (karboksy-terminalny):</strong> Zawiera ostatni aminokwas z wolną grupą $\alpha$-karboksylową ($-COO^-$).</li>
+          </ul>
+        </li>
+        <li><strong>Dogmat Anfinsena:</strong> Struktura pierwszorzędowa zawiera w sobie <em>kompletną informację</em> niezbędną do bezbłędnego sfałdowania białka do jego natywnej konformacji przestrzennej (wykazane doświadczalnie na rybonukleazie A).</li>
+      </ul>
+
+      <div class="quiz-container">
+        <details class="quiz-box">
+          <summary class="quiz-question">Pytanie: Co wykazało klasyczne doświadczenie Christiana Anfinsena z denaturacją rybonukleazy A?</summary>
+          <div class="quiz-answer">
+            <strong>Odpowiedź:</strong> Wykazało, że po całkowitej denaturacji mocznikiem i redukcji mostków disiarczkowych $\beta$-merkaptoetanolem, usunięcie tych reagentów pozwala rybonukleazie na samorzutne, w 100% poprawne odzyskanie struktury III-rzędowej i pełnej aktywności enzymatycznej. Dowodzi to, że struktura I-rzędowa w pełni determinuje strukturę przestrzenną.
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <!-- 12. STRUKTURA II-RZĘDOWA -->
+    <section class="card" id="t12">
+      <div class="card-header">
+        <span class="card-badge">11</span>
+        <h2 class="card-title">Typy struktury II-rzędowej: $\alpha$-helisa, $\beta$-kartka, zakręt $\beta$</h2>
+      </div>
+
+      <div class="callout-analogy">
+        <strong>💡 Intuicyjna analogia</strong>
+        <strong>$\alpha$-helisa</strong> to idealna sprężyna tapicerska – zwarta, wewnątrz pusta, a jej zwoje są pospinane pionowymi drucikami (wiązania wodorowe biegnące wzdłuż osi).<br>
+        <strong>$\beta$-kartka</strong> to plisowana spódnica lub dach z blachy falistej – arkusze ułożone obok siebie, spięte poprzecznymi nitami.
+      </div>
+
+      <div class="comparison-table-wrapper">
+        <table class="comparison-table">
+          <thead>
+            <tr>
+              <th>Cecha</th>
+              <th>$\alpha$-Helisa</th>
+              <th>Pofałdowana kartka $\beta$ ($\beta$-sheet)</th>
+              <th>Zakręt $\beta$ ($\beta$-turn)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Geometria</strong></td>
+              <td>Prawoskrętny zwój, 3,6 reszty na obrót; skok helisy $0,54\text{ nm}$ ($5,4\text{ Å}$)</td>
+              <td>Pofałdowane pasma polipeptydowe; łańcuchy niemal całkowicie rozciągnięte</td>
+              <td>Ciasny zwrot łańcucha o 180° złożony z 4 reszt aminokwasowych</td>
+            </tr>
+            <tr>
+              <td><strong>Wiązania wodorowe</strong></td>
+              <td><strong>Równoległe do osi helisy</strong>; między grupą $C=O$ reszty $n$ a $N-H$ reszty $n+4$</td>
+              <td><strong>Prostopadłe do osi łańcuchów</strong>; między sąsiednimi pasmami polipeptydu</td>
+              <td>Pomiędzy grupą $C=O$ reszty $i$ oraz $N-H$ reszty $i+3$</td>
+            </tr>
+            <tr>
+              <td><strong>Układ łańcuchów</strong></td>
+              <td>Pojedynczy łańcuch</td>
+              <td><strong>Równoległy</strong> (mniej trwały) lub <strong>antyrównoległy</strong> (trwalszy, liniowe wiązania H)</td>
+              <td>Łączy sąsiadujące pasma antyrównoległe</td>
+            </tr>
+            <tr>
+              <td><strong>Łańcuchy boczne (-R)</strong></td>
+              <td>Wystają <strong>na zewnątrz cylindra</strong> helisy</td>
+              <td>Wystają <strong>naprzemiennie powyżej i poniżej</strong> płaszczyzny kartki</td>
+              <td>Skierowane na zewnątrz zwrotu; dominują Prolina (forma cis) i Glicyna</td>
+            </tr>
+            <tr>
+              <td><strong>Czynniki zaburzające</strong></td>
+              <td>Prolina ("łamacz helisy" – brak $H$ na azocie), sąsiadujące jednakowe ładunki (Glu, Lys)</td>
+              <td>Rozbudowane, sterycznie zawadzające reszty w sąsiedztwie</td>
+              <td>Większe reszty aminokwasowe</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 class="section-subtitle">🔬 Profile II-rzędowe kluczowych białek</h3>
+      <ul>
+        <li><strong>$\alpha$-Keratyna:</strong> Niemal wyłącznie prawoskrętne $\alpha$-helisy skręcone w lewoskrętny "super-sznur" (coiled-coil), stabilizowany gęstą siecią mostków disiarczkowych.</li>
+        <li><strong>Kolagen:</strong> Unikalna, lewoskrętna helisa kolagenowa (brak wiązań wodorowych wewnątrz pojedynczej helisy!), spleciona w prawoskrętną potrójną superhelisę tropokolagenu.</li>
+        <li><strong>Elastyna:</strong> Brak regularnej struktury drugorzędowej; losowo zwinięte pętle z bogatą zawartością desmozyny, umożliwiające powrót do pierwotnego kształtu po rozciągnięciu.</li>
+        <li><strong>Mioglobina:</strong> W 75% zbudowana z 8 odcinków $\alpha$-helikalnych (nazwanych literami od A do H); brak struktur $\beta$.</li>
+        <li><strong>Lizozym:</strong> Klasyczne białko o budowie mieszanej $\alpha/\beta$ (zawiera zarówno helisy, jak i arkusze pofałdowane).</li>
+      </ul>
+
+      <div class="callout-warning">
+        <strong>⚠️ Złota reguła i pułapka egzaminacyjna</strong>
+        Dlaczego <strong>prolina</strong> jest bezwzględnym "łamaczem $\alpha$-helisy"?
+        1. Jej atom azotu wchodzi w skład sztywnego pierścienia pirolidynowego, co uniemożliwia swobodny obrót wokół wiązania $N-C_\alpha$ (brak możliwości przyjęcia kąta $\phi = -57^\circ$).
+        2. Po utworzeniu wiązania peptydowego atom azotu proliny <strong>nie posiada atomu wodoru</strong>, więc nie może być donorem wiązania wodorowego stabilizującego helisę!
+      </div>
+    </section>
+
+    <!-- 13. STRUKTURA III-RZĘDOWA -->
+    <section class="card" id="t13">
+      <div class="card-header">
+        <span class="card-badge">12</span>
+        <h2 class="card-title">Struktura III-rzędowa: Domeny i upakowanie przestrzenne</h2>
+      </div>
+
+      <div class="callout-analogy">
+        <strong>💡 Intuicyjna analogia</strong>
+        Białko wielodomenowe przypomina szwajcarski scyzoryk. W jednym narzędziu masz niezależne elementy: nóż, nożyczki i korkociąg. Każde z nich jest osobnym modułem (domeną), który zachowuje swój kształt i funkcję nawet wtedy, gdy pozostałe zostaną odcięte.
+      </div>
+
+      <h3 class="section-subtitle">📖 Ścisła definicja akademicka</h3>
+      <p><strong>Struktura trzeciorzędowa</strong> to całkowite, trójwymiarowe ułożenie wszystkich atomów pojedynczego łańcucha polipeptydowego w przestrzeni, wynikające z oddziaływań pomiędzy łańcuchami bocznymi (grupami $-R$) oddalonymi od siebie w sekwencji pierwszorzędowej.</p>
+
+      <h3 class="section-subtitle">🧱 Pojęcie Domeny Białkowej</h3>
+      <p><strong>Domena białkowa</strong> to zwarta, autonomiczna jednostka strukturalno-funkcjonalna białka, zdolna do samodzielnego fałdowania się oraz zachowania stabilnej konformacji niezależnie od reszty łańcucha polipeptydowego. Domeny liczą zazwyczaj od 40 do 300 aminokwasów i często odpowiadają za konkretną funkcję kliniczną (np. domena wiążąca ATP, domena transbłonowa, domena katalityczna kinazy).</p>
+
+      <div class="quiz-container">
+        <details class="quiz-box">
+          <summary class="quiz-question">Pytanie: Jakie oddziaływanie jako jedyne tworzy kowalencyjną stabilizację struktury III-rzędowej?</summary>
+          <div class="quiz-answer">
+            <strong>Odpowiedź:</strong> Mostek disiarczkowy (wiązanie dwusiarczkowe, $-S-S-$), powstający w wyniku utlenienia grup tiolowych dwóch reszt cysteiny. Wszystkie pozostałe oddziaływania stabilizujące strukturę III-rzędową (hydrofobowe, wodorowe, jonowe, van der Waalsa) są niekowalencyjne.
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <!-- 14. STRUKTURA IV-RZĘDOWA -->
+    <section class="card" id="t14">
+      <div class="card-header">
+        <span class="card-badge">13</span>
+        <h2 class="card-title">Struktura IV-rzędowa białek i rola jonów metali</h2>
+      </div>
+
+      <h3 class="section-subtitle">📖 Ścisła definicja akademicka</h3>
+      <p><strong>Struktura czwartorzędowa</strong> dotyczy białek zbudowanych z co najmniej dwóch łańcuchów polipeptydowych (zwanych <em>podjednostkami</em> lub <em>protomerami</em>). Określa ich wzajemne ułożenie przestrzenne oraz charakter oddziaływań łączących je w jeden funkcjonalny oligomer.</p>
+
+      <ul>
+        <li><strong>Podjednostki:</strong> Mogą być identyczne (homooligomery, np. homodimer reduktazy HMG-CoA) lub różne (heterooligomery, np. tetramer hemoglobiny $\alpha_2\beta_2$).</li>
+        <li><strong>Siły wiążące:</strong> Są to niemal wyłącznie <strong>oddziaływania niekowalencyjne</strong> (oddziaływania hydrofobowe na powierzchniach kontaktu, mostki solne, wiązania wodorowe). Wyjątkiem są np. immunoglobuliny, gdzie podjednostki są dodatkowo spięte mostkami disiarczkowymi.</li>
+        <li><strong>Rola jonów metali:</strong>
+          <ul>
+            <li><strong>Stabilizująca:</strong> Jon cynku ($Zn^{2+}$) stabilizuje motyw palca cynkowego w czynnikach transkrypcyjnych; $Ca^{2+}$ stabilizuje konformację kalmoduliny.</li>
+            <li><strong>Katalityczna:</strong> Jon $Zn^{2+}$ w anhydrazie węglanowej polaryzuje cząsteczkę wody; jony $Mg^{2+}$ koordynują grupy fosforanowe w polimerazach DNA/RNA.</li>
+            <li><strong>Wiążąca ligandy:</strong> Jon żelaza ($Fe^{2+}$) w pierścieniu hemu umożliwia odwracalne przyłączanie cząsteczki tlenu $O_2$.</li>
+          </ul>
+        </li>
+      </ul>
+    </section>
+
+    <!-- 15 i 16. HEMOGLOBINA I HEMOGLOBINOPATIE -->
+    <section class="card" id="t15">
+      <div class="card-header">
+        <span class="card-badge">14-15</span>
+        <h2 class="card-title">Hemoglobina: Struktura IV-rzędowa, allosteria i patologie (HbS, MetHb, Talasemie)</h2>
+      </div>
+
+      <div class="callout-analogy">
+        <strong>💡 Intuicyjna analogia: Kooperatywność i stany T / R</strong>
+        Wyobraź sobie 4-osobowy przedział w pociągu (tetramer hemoglobiny). Drzwi są zablokowane zardzewiałym zamkiem (stan T – napięty, niska chęć na tlen). Pierwszy podróżny z wielkim trudem wciska się do środka. Jego wejście automatycznie luzuje rygle w drzwiach – drugi i trzeci pasażer wchodzą bez wysiłku, a czwarty wpada niemal z biegu do idealnie otwartego przedziału (stan R – rozluźniony, wysokie powinowactwo).
+      </div>
+
+      <h3 class="section-subtitle">🔬 Architektura i mechanizm działania</h3>
+      <p>Hemoglobina dorosłych ($HbA_1$) jest heterotetramerem o składzie $\alpha_2\beta_2$. Każda podjednostka zawiera hydrofobową kieszeń z niekowalencyjnie związaną grupą prostetyczną – <strong>hemem</strong> (protoporfiryna IX + jon $Fe^{2+}$ związany koordynacyjnie z histydyną proksymalną His F8).</p>
+
+      <div class="process-flow">
+        <div class="flow-step">Stan T (Tense – napięty)<br>Deoksyhemoglobina<br>Liczne mostki solne, niskie powinowactwo do $O_2$</div>
+        <div class="flow-arrow">➔ Przyłączenie $O_2$ do hemu ➔ Wciągnięcie $Fe^{2+}$ w płaszczyznę porfiryny ➔ Ruch His F8 ➔ Pęknięcie mostków solnych ➔</div>
+        <div class="flow-step">Stan R (Relaxed – rozluźniony)<br>Oksyhemoglobina<br>Wysokie powinowactwo do $O_2$ (wzrost 300-krotny!)</div>
+      </div>
+
+      <h3 class="section-subtitle">📊 Efektory Allosteryczne i Efekt Bohra</h3>
+      <p>Wszystkie poniższe czynniki to <strong>allosteryczne efektory ujemne</strong> – stabilizują stan T, obniżają powinowactwo hemoglobiny do tlenu i przesuwają krzywą dysocjacji w prawo (ułatwiają oddawanie $O_2$ w tkankach):</p>
+      <ul>
+        <li><strong>Spadek pH / Wzrost stężenia jonów $H^+$ (Efekt Bohra):</strong> Protony protonują m.in. histydynę $\beta 146$, tworząc mostek solny stabilizujący formę T.</li>
+        <li><strong>Wzrost prężności $CO_2$:</strong> $CO_2$ wiąże się bezpośrednio z N-końcowymi grupami aminowymi łańcuchów globiny, tworząc ujemnie naładowane <em>karbaminiany</em> (karbaminohemoglobina), stabilizujące stan T.</li>
+        <li><strong>Wzrost stężenia 2,3-bisfosfoglicerynianu (2,3-BPG):</strong> Cząsteczka silnie anionowa, wiąże się dokładnie w centralnej jamie tetrameru w stanie T (pomiędzy łańcuchami $\beta$), blokując przejście w stan R. <em>Uwaga: hemoglobina płodowa ($HbF$, $\alpha_2\gamma_2$) ma resztę seryny zamiast histydyny w łańcuchu $\gamma$, słabiej wiąże 2,3-BPG, co daje jej wyższe powinowactwo do tlenu niż krew matki i umożliwia pobór $O_2$ przez łożysko!</em></li>
+      </ul>
+
+      <h3 class="section-subtitle">🩺 Hemoglobiny patologiczne (Klinika)</h3>
+      <div class="comparison-table-wrapper">
+        <table class="comparison-table">
+          <thead>
+            <tr>
+              <th>Jednostka chorobowa</th>
+              <th>Defekt molekularny</th>
+              <th>Patomechanizm</th>
+              <th>Objawy i skutki kliniczne</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Niedokrwistość sierpowatokrwinkowa ($HbS$)</strong></td>
+              <td>Mutacja punktowa w genie łańcucha $\beta$: substytucja <strong>Glu6Val</strong> (kwas glutaminowy $\rightarrow$ walina w pozycji 6).</td>
+              <td>W stanie odtlenowanym (T) hydrofobowa reszta Val6 tworzy "lepką łatę", która wnika w hydrofobową kieszeń sąsiedniej cząsteczki deoksy-HbS. Dochodzi do <strong>polimeryzacji w sztywne, nierozpuszczalne włókna</strong>.</td>
+              <td>Deformacja krwinek w kształt sierpowaty, zatykanie naczyń włosowatych (kryzy wazo-okluzyjne, silny ból), przedwczesna hemoliza (ciężka niedokrwistość hemolityczna).</td>
+            </tr>
+            <tr>
+              <td><strong>Methemoglobinemia ($MetHb$)</strong></td>
+              <td>Utlenienie jonu żelaza z formy żelazawej $Fe^{2+}$ do trójwartościowej żelazowej <strong>$Fe^{3+}$</strong>.</td>
+              <td>$Fe^{3+}$ nie jest w stanie odwracalnie wiązać $O_2$. Dodatkowo wymusza w pozostałych podjednostkach tetrameru stan R, blokując oddawanie tlenu w tkankach (przesunięcie krzywej w lewo!).</td>
+              <td>Kliniczna sinica niereagująca na tlenoterapię, czekoladowobrunatna krew, duszność. Leczenie: <strong>błękit metylenowy</strong> (donor elektronów dla enzymu reduktazy methemoglobinowej).</td>
+            </tr>
+            <tr>
+              <td><strong>Talasemie ($\alpha$ i $\beta$)</strong></td>
+              <td><strong>Ilościowy</strong> defekt syntezy prawidłowych łańcuchów globiny (zwykle delecje genów globiny $\alpha$ na chr. 16 lub mutacje w genie globiny $\beta$ na chr. 11).</td>
+              <td>Brak równowagi w produkcji podjednostek. Wolne, niesparowane łańcuchy drugiego typu (np. wolne łańcuchy $\alpha$ w $\beta$-talasemii) wytrącają się w erytroblastach, niszcząc błony komórkowe.</td>
+              <td>Nieefektywna erytropoeza w szpiku, ciężka niedokrwistość mikrocytarna, deformacje kości czaszki, hemosyderoza narządowa.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="quiz-container">
+        <details class="quiz-box">
+          <summary class="quiz-question">Pytanie 1: Dlaczego u pacjenta z anemią sierpowatą objawy zablokowania naczyń nasilają się w warunkach kwasicy i hipoksji?</summary>
+          <div class="quiz-answer">
+            <strong>Odpowiedź:</strong> Kwasica (spadek pH) oraz hipoksja stabilizują deoksyhemoglobinę (stan T). Jedynie deoksy-HbS posiada odsłoniętą kieszeń hydrofobową zdolną do wiązania zmutowanej waliny Val6. Wzrost odsetka formy deoksy-HbS gwałtownie przyspiesza polimeryzację włókien i sierpowacenie krwinek.
+          </div>
+        </details>
+        <details class="quiz-box">
+          <summary class="quiz-question">Pytanie 2: Czym różni się defekt w hemoglobinopatii typu HbS od defektu w talasemii?</summary>
+          <div class="quiz-answer">
+            <strong>Odpowiedź:</strong> W HbS mamy defekt <strong>jakościowy</strong> (powstaje nieprawidłowy łańcuch o zmienionej sekwencji aminokwasów), natomiast w talasemiach defekt jest <strong>ilościowy</strong> (łańcuchy mają całkowicie prawidłową strukturę, ale są syntetyzowane w drastycznie zmniejszonej ilości lub wcale).
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <!-- 17 i 18. KOLAGENY -->
+    <section class="card" id="t17">
+      <div class="card-header">
+        <span class="card-badge">16-17</span>
+        <h2 class="card-title">Kolageny: Synteza, architektura potrójnej helisy i typy</h2>
+      </div>
+
+      <div class="callout-analogy">
+        <strong>💡 Intuicyjna analogia</strong>
+        Tropokolagen to lina stalowa stosowana w mostach wiszących. Składa się z trzech cienkich splotów skręconych razem. W każdym splocie co trzeci element to maleńka złączka (glicyna) – gdyby w jej miejsce wstawić choćby odrobinę większą śrubę, trzy sploty rozepchnęłyby się i lina pękłaby przy pierwszym podmuchu wiatru.
+      </div>
+
+      <h3 class="section-subtitle">⚙️ Kaskada biosyntezy kolagenu krok po kroku</h3>
+      <div class="process-flow">
+        <div class="flow-step">1. RER: Translacja pre-prokolagenu ➔ Odcięcie sekwencji sygnałowej</div>
+        <div class="flow-arrow">➔</div>
+        <div class="flow-step">2. RER: <strong>Hydroksylacja Pro i Lys</strong> (wymaga Wit. C, $Fe^{2+}$, $\alpha$-KG, $O_2$)</div>
+        <div class="flow-arrow">➔</div>
+        <div class="flow-step">3. RER/Golgi: Glikozylacja Hyl ➔ Spięcie mostkami $-S-S-$ na C-końcach ➔ <strong>Tworzenie potrójnej helisy prokolagenu</strong></div>
+        <div class="flow-arrow">➔</div>
+        <div class="flow-step">4. Egzocytoza do macierzy ➔ Odcięcie propeptydów przez <strong>peptydazy prokolagenowe</strong> ➔ Powstanie <strong>tropokolagenu</strong></div>
+        <div class="flow-arrow">➔</div>
+        <div class="flow-step">5. Oksydaza lizylowa (zależna od $Cu^{2+}$) utlenia Lys do allizyny ➔ Kowalencyjne wiązania poprzeczne (cross-links) ➔ Dojrzałe włókno</div>
+      </div>
+
+      <h3 class="section-subtitle">📖 Kluczowe cechy strukturalne</h3>
+      <ul>
+        <li>Powtarzający się motyw sekwencji: <strong>$(Gly-X-Y)_n$</strong>, gdzie $X$ to najczęściej prolina, a $Y$ to hydroksyprolina (Hyp) lub hydroksylizyna (Hyl).</li>
+        <li><strong>Dlaczego glicyna co 3 aminokwasy?</strong> Wnętrze potrójnej helisy jest tak ciasno upakowane, że może się tam zmieścić wyłącznie najmniejszy atom wodoru grupy bocznej glicyny. Wprowadzenie jakiegokolwiek innego aminokwasu niszczy helisę.</li>
+        <li><strong>Hydroksyprolina:</strong> Tworzy międzyłańcuchowe wiązania wodorowe stabilizujące potrójną helisę w temperaturze ciała ($37^\circ\text{C}$). Bez witaminy C proces nie zachodzi $\rightarrow$ <strong>szkorbut</strong> (rozpad naczyń krwionośnych, utrata zębów, krwotoki).</li>
+      </ul>
+
+      <h3 class="section-subtitle">🏛️ Klasyfikacja i występowanie kolagenu</h3>
+      <div class="comparison-table-wrapper">
+        <table class="comparison-table">
+          <thead>
+            <tr>
+              <th>Typ kolagenu</th>
+              <th>Główna lokalizacja tkankowa</th>
+              <th>Cechy mechaniczne</th>
+              <th>Kojarzona patologia kliniczna</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Typ I</strong></td>
+              <td>Skóra, kości, ścięgna, powięzie, twardówka oka, zębina</td>
+              <td>Ogromna odporność na rozciąganie (włókna grube)</td>
+              <td><em>Osteogenesis imperfecta</em> (wrodzona łamliwość kości – błękitne twardówki, częste złamania)</td>
+            </tr>
+            <tr>
+              <td><strong>Typ II</strong></td>
+              <td>Chrząstka szklista i sprężysta, krążki międzykręgowe, ciało szkliste oka</td>
+              <td>Odporność na siły ściskające</td>
+              <td>Chondrodysplazje, choroba zwyrodnieniowa stawów</td>
+            </tr>
+            <tr>
+              <td><strong>Typ III</strong></td>
+              <td>Naczynia krwionośne, skóra płodowa, zrąb narządów limfatycznych (włókna siateczkowate)</td>
+              <td>Elastyczność i podatność ścian narządów rozciągliwych</td>
+              <td>Naczyniowy zespół Ehlersa-Danlosa (ryzyko pęknięcia aorty i jelit)</td>
+            </tr>
+            <tr>
+              <td><strong>Typ IV</strong></td>
+              <td>Błony podstawne (tworzy sieć siatkową, brak typowych włókien)</td>
+              <td>Filtracja mechaniczna i podpora dla nabłonków</td>
+              <td>Zespół Alporta (nefropatia z głuchotą), zespół Goodpasture'a (autoprzeciwciała)</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="callout-warning">
+        <strong>⚠️ Złota reguła i pułapka egzaminacyjna</strong>
+        Egzaminatorzy uwielbiają pytać o enzymy zależne od kofaktorów:
+        1. <strong>Hydroksylaza prolilowa</strong> wymaga <strong>witaminy C i żelaza $Fe^{2+}$</strong> (działa wewnątrzkomórkowo w ER).
+        2. <strong>Oksydaza lizylowa</strong> wymaga <strong>miedzi $Cu^{2+}$</strong> (działa zewnątrzkomórkowo w ECM). Niedobór miedzi (np. w chorobie Menkesa) upośledza sieciowanie włókien kolagenu i elastyny!
+      </div>
+    </section>
+
+    <!-- 19. INSULINA -->
+    <section class="card" id="t19">
+      <div class="card-header">
+        <span class="card-badge">18</span>
+        <h2 class="card-title">Insulina: Biosynteza, dojrzała budowa i funkcja</h2>
+      </div>
+
+      <div class="callout-analogy">
+        <strong>💡 Intuicyjna analogia: Rola peptydu C</strong>
+        Wyobraź sobie szycie dwuczęściowego garnituru z jednego kawałka materiału. Aby rękawy idealnie pasowały do kamizelki, krawiec łączy je roboczym paskiem tkaniny (peptyd C), zszywa docelowe guziki (mostki disiarczkowe), a na końcu wycina zbędny pasek i wyrzuca go do kosza. W koszu (we krwi) pasek ten leży znacznie dłużej niż sam garnitur i mówi lekarzowi dokładnie, ile garniturów uszył krawiec.
+      </div>
+
+      <h3 class="section-subtitle">⚙️ Kaskada dojrzewania insuliny</h3>
+      <div class="process-flow">
+        <div class="flow-step">Preproinsulina (RER)<br>Łańcuchy: Sygnał-B-C-A</div>
+        <div class="flow-arrow">➔ Kotranslacyjne odcięcie peptydu sygnałowego ➔</div>
+        <div class="flow-step">Proinsulina (RER)<br>Fałdowanie i wytworzenie 3 mostków disiarczkowych</div>
+        <div class="flow-arrow">➔ Transport do aparatu Golgiego i pęcherzyków ➔</div>
+        <div class="flow-step">Egzoproteoliza (PC1/3, PC2, CPE)<br>Wycięcie Peptydu C (31 aa)</div>
+        <div class="flow-arrow">➔ Egzocytoza w stosunku 1:1 ➔</div>
+        <div class="flow-step">Dojrzała Insulina (51 aa)<br>+ Peptyd C</div>
+      </div>
+
+      <h3 class="section-subtitle">📖 Architektura i działanie dojrzałego hormonu</h3>
+      <ul>
+        <li><strong>Struktura dojrzałej cząsteczki:</strong> Łącznie <strong>51 aminokwasów</strong> zorganizowanych w dwa łańcuchy:
+          <ul>
+            <li><strong>Łańcuch A (21 aa)</strong></li>
+            <li><strong>Łańcuch B (30 aa)</strong></li>
+          </ul>
+          Łańcuchy spięte są <strong>dwoma mostkami disiarczkowymi międzyłańcuchowymi</strong> ($A7-B7$ oraz $A20-B19$). Dodatkowo łańcuch A posiada <strong>jeden mostek wewnątrzłańcuchowy</strong> ($A6-A11$).
+        </li>
+        <li><strong>Znaczenie kliniczne peptydu C:</strong> Nie wykazuje aktywności hormonalnej insuliny, ale jest wydzielany do krwi w stosunku równomolowym ($1:1$) z insuliną. Ponieważ nie podlega wychwytowi wątrobowemu w pierwszym przejściu (ma znacznie dłuższy okres półtrwania niż insulina: ok. 30 min vs 4 min), stanowi <strong>złoty standard oceny endogennej rezerwy wydzielniczej komórek $\beta$</strong> trzustki (pozwala odróżnić cukrzycę typu 1 od typu 2 oraz wykryć hipoglikemię wywołaną egzogennym wstrzyknięciem insuliny).</li>
+      </ul>
+    </section>
+
+    <!-- 20. MIOGLOBINA -->
+    <section class="card" id="t20">
+      <div class="card-header">
+        <span class="card-badge">19</span>
+        <h2 class="card-title">Mioglobina: Architektura monomeru i magazynowanie tlenu</h2>
+      </div>
+
+      <div class="callout-analogy">
+        <strong>💡 Intuicyjna analogia: Skąpiec vs Kurier</strong>
+        <strong>Hemoglobina</strong> to sprawny kurier: w płucach odbiera paczki z tlenem, a w pracujących tkankach bez wahania oddaje je komórkom.<br>
+        <strong>Mioglobina</strong> to skrajny skąpiec: kurczowo trzyma tlen dla siebie. Nie odda ani jednej cząsteczki przy normalnym ciśnieniu. Otwiera swój skarbiec dopiero wtedy, gdy w mięśniu wybucha absolutna klęska głodowa (ekstremalny wysiłek, krytyczne niedotlenienie).
+      </div>
+
+      <h3 class="section-subtitle">📖 Ścisłe porównanie fizjologiczne: Hemoglobina vs Mioglobina</h3>
+      <div class="comparison-table-wrapper">
+        <table class="comparison-table">
+          <thead>
+            <tr>
+              <th>Cecha</th>
+              <th>Mioglobina (Mb)</th>
+              <th>Hemoglobina ($HbA_1$)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Struktura rzędowa</strong></td>
+              <td>Wyłącznie <strong>I, II i III-rzędowa</strong> (brak struktury IV-rzędowej! Pojedynczy łańcuch 153 aa)</td>
+              <td><strong>Struktura IV-rzędowa</strong> (tetramer $\alpha_2\beta_2$, 4 łańcuchy, 4 hemy)</td>
+            </tr>
+            <tr>
+              <td><strong>Krzywa wysycenia tlenem</strong></td>
+              <td><strong>Hiperboliczna</strong> (brak kooperatywności)</td>
+              <td><strong>Sigmoidalna (esowata)</strong> (dodatnia kooperatywność allosteryczna)</td>
+            </tr>
+            <tr>
+              <td><strong>Powinowactwo do tlenu ($p_{50}$)</strong></td>
+              <td>Bardzo wysokie ($p_{50} \approx 1-2\text{ mmHg}$)</td>
+              <td>Umiarkowane, fizjologiczne ($p_{50} \approx 26\text{ mmHg}$)</td>
+            </tr>
+            <tr>
+              <td><strong>Wrażliwość na pH, $CO_2$, 2,3-BPG</strong></td>
+              <td><strong>Brak efektu Bohra</strong>, nie wiąże 2,3-BPG</td>
+              <td>Podlega ścisłej regulacji przez $H^+$, $CO_2$ i 2,3-BPG</td>
+            </tr>
+            <tr>
+              <td><strong>Funkcja ustrojowa</strong></td>
+              <td><strong>Magazyn tlenu</strong> w mięśniach poprzecznie prążkowanych i ułatwianie dyfuzji wewnątrzkomórkowej</td>
+              <td><strong>Transport tlenu</strong> z płuc do tkanek obwodowych</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="callout-warning">
+        <strong>⚠️ Złota reguła i pułapka egzaminacyjna</strong>
+        Czy mioglobina wykazuje kooperatywność lub efekt Bohra? <strong>ABSOLUTNIE NIE!</strong> Kooperatywność i regulacja allosteryczna wymagają obecności struktury czwartorzędowej (komunikacji między podjednostkami w oligomerze). Jako pojedynczy monomer, mioglobina po prostu wiąże tlen zgodnie z prostą kinetyką wysycenia jedno-miejscowego.
+      </div>
+    </section>
+
+    <!-- 21. CHAPERONY -->
+    <section class="card" id="t21">
+      <div class="card-header">
+        <span class="card-badge">20</span>
+        <h2 class="card-title">Białka opiekuńcze (Chaperony): Kontrola fałdowania w ER i mitochondriach</h2>
+      </div>
+
+      <div class="callout-analogy">
+        <strong>💡 Intuicyjna analogia</strong>
+        Świeżo zsyntetyzowany łańcuch białkowy z odsłoniętymi lepkimi fragmentami hydrofobowymi to nastolatek w tłumie, który łatwo może wpaść w złe towarzystwo i ulec patologicznej agregacji. Chaperon to mądry opiekun, który izoluje go w cichym pokoju (klatka chaperoniny), pozwala mu w spokoju dojrzeć i prawidłowo ułożyć swoje sprawy (sfałdować się), po czym wypuszcza go bezpiecznie w świat.
+      </div>
+
+      <h3 class="section-subtitle">🔬 Kluczowe systemy opiekuńcze komórki</h3>
+      <ul>
+        <li><strong>Siateczka śródplazmatyczna (ER):</strong>
+          <ul>
+            <li><strong>BiP (GRP78):</strong> Chaperon z rodziny Hsp70 zlokalizowany w świetle ER. Wiąże się z hydrofobowymi regionami nowo syntetyzowanych peptydów, zapobiegając ich przedwczesnej agregacji. Jest głównym sensorem stresu ER (inicjuje <em>odpowiedź na niesfałdowane białka – UPR</em>).</li>
+            <li><strong>Kalneksyna i Kalretikulina:</strong> Chaperony lektynowe. Rozpoznają specyficzne reszty glukozy na rdzeniowych N-glikanach glikoprotein i uczestniczą w tzw. <em>cyklu kalneksynowym</em> kontroli jakości.</li>
+            <li><strong>Izomeraza mostków disiarczkowych (PDI):</strong> Katalizuje pękanie i ponowne, poprawne tworzenie wiązań $-S-S-$.</li>
+            <li><strong>Szlak ERAD:</strong> Białka trwale zdefektowane są retro-transportowane z ER do cytozolu, znakowane ubikwityną i niszczone w proteasomie 26S.</li>
+          </ul>
+        </li>
+        <li><strong>Mitochondria:</strong>
+          <ul>
+            <li>Białka kodowane w jądrze przeznaczone do matriks mitochondrium muszą być utrzymywane w stanie <em>całkowicie rozwiniętym</em> w cytozolu przez cytozolowe Hsp70.</li>
+            <li>Przechodzą przez kompleksy translokacyjne TOM (błona zewnętrzna) i TIM (błona wewnętrzna).</li>
+            <li>W matriks <strong>mitochondrialne Hsp70 (mtHsp70)</strong> działa jak silnik molekularny (ratchet mechanism), który wciąga łańcuch do wnętrza kosztem hydrolizy ATP.</li>
+            <li>Następnie kompleks <strong>Hsp60/Hsp10</strong> (mitochondrialna chaperonina) zamyka białko w cylindrycznej komorze i umożliwia jego ostateczne sfałdowanie.</li>
+          </ul>
+        </li>
+      </ul>
+    </section>
+
+    <!-- 22. METODY IZOLOWANIA BIAŁEK -->
+    <section class="card" id="t22">
+      <div class="card-header">
+        <span class="card-badge">21</span>
+        <h2 class="card-title">Metody izolowania i rozdzielania białek z materiału biologicznego</h2>
+      </div>
+
+      <div class="callout-analogy">
+        <strong>💡 Intuicyjna analogia: Sączenie molekularne (Filtracja żelowa)</strong>
+        Wyobraź sobie wyścig w gęstym lesie pełnym małych jaskiń. Duża ciężarówka (wielkie białko) nie mieści się w żadnej jaskini, więc mknie prosto główną drogą i wyjeżdża z lasu jako pierwsza. Mały zwinny biegacz (małe białko) zagląda z ciekawości do każdej jaskini i szczeliny, błądząc po drodze i wybiegając z lasu na samym końcu.
+      </div>
+
+      <div class="comparison-table-wrapper">
+        <table class="comparison-table">
+          <thead>
+            <tr>
+              <th>Metoda rozdzielania</th>
+              <th>Kryterium rozdziału</th>
+              <th>Zasada działania</th>
+              <th>Praktyczna kolejność elucji / Wynik</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Wysalanie siarczanem amonu</strong></td>
+              <td>Rozpuszczalność</td>
+              <td>Konkurencja jonów soli o cząsteczki wody płaszcza hydratacyjnego.</td>
+              <td>Odwracalne wytrącanie poszczególnych frakcji (np. globuliny wypadają przy 50% nasyceniu, albuminy dopiero przy 100%).</td>
+            </tr>
+            <tr>
+              <td><strong>Sączenie molekularne (filtracja żelowa, SEC)</strong></td>
+              <td><strong>Masa i wielkość cząsteczki</strong></td>
+              <td>Złoże porowatych kulek (np. Sephadex). Cząsteczki mniejsze wnikają w pory złoża i przebywają dłuższą drogę.</td>
+              <td><strong>Największe cząsteczki eluują jako pierwsze</strong>, najmniejsze opuszczają kolumnę na samym końcu!</td>
+            </tr>
+            <tr>
+              <td><strong>Chromatografia jonowymienna (IEC)</strong></td>
+              <td><strong>Ładunek elektryczny netto</strong></td>
+              <td>Wiązanie z naładowanym złożem: kationit (złoże ujemne) wiąże kationy; anionit (złoże dodatnie) wiąże aniony.</td>
+              <td>Elucja następuje przez zmianę $pH$ buforu lub wzrost stężenia jonów soli (gradient $NaCl$).</td>
+            </tr>
+            <tr>
+              <td><strong>Chromatografia powinowactwa</strong></td>
+              <td><strong>Swoistość biologiczna</strong></td>
+              <td>Najbardziej precyzyjna metoda. Złoże zawiera unikalny ligand (np. przeciwciało, substrat, jon $Ni^{2+}$ dla białek z His-tagiem).</td>
+              <td>Wiąże się wyłącznie poszukiwane białko; elucja wolnym ligandem lub zmianą $pH$.</td>
+            </tr>
+            <tr>
+              <td><strong>SDS-PAGE</strong></td>
+              <td>Masa cząsteczkowa łańcucha zdenaturowanego</td>
+              <td>Detergent SDS denaturuje białko, nadaje mu stały ujemny ładunek na jednostkę masy. Dodatek $\beta$-merkaptoetanolu redukuje mostki $-S-S-$.</td>
+              <td>Migracja w żelu poliakrylamidowym w stronę anody ($+$). <strong>Najmniejsze białka migrują najszybciej</strong>.</td>
+            </tr>
+            <tr>
+              <td><strong>Ogniskowanie izoelektryczne (IEF)</strong></td>
+              <td><strong>Punkt izoelektryczny (pI)</strong></td>
+              <td>Elektroforeza w gradiencie $pH$. Białko migruje tak długo, aż znajdzie się w miejscu, gdzie $pH = pI$.</td>
+              <td>W punkcie $pI$ ładunek wypada na $0$ i ruch ustaje.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="callout-warning">
+        <strong>⚠️ Złota reguła i pułapka egzaminacyjna</strong>
+        To absolutny klasyk każdego egzaminu z biochemii:
+        1. W <strong>filtracji żelowej (SEC)</strong>: <em>WIELKIE BIAŁKA WYCHODZĄ PIERWSZE</em> (nie mieszczą się w porach złoża).
+        2. W <strong>elektroforezie SDS-PAGE</strong>: <em>MAŁE BIAŁKA WĘDRUJĄ NAJSZYBCIEJ</em> (łatwiej przeciskają się przez oczka żelu). Pomylenie tych dwóch zjawisk to natychmiastowa utrata punktów!
+      </div>
+    </section>
+
+    <!-- 23. DENATURACJA BIAŁEK -->
+    <section class="card" id="t23">
+      <div class="card-header">
+        <span class="card-badge">22</span>
+        <h2 class="card-title">Denaturacja białek: Czynniki fizyczne i chemiczne</h2>
+      </div>
+
+      <div class="callout-analogy">
+        <strong>💡 Intuicyjna analogia</strong>
+        Smażenie jajka na patelni. Płynne, przezroczyste białko jaja kurzego (roztwór natywnej owoalbuminy) pod wpływem temperatury staje się białą, sztywną masą. Wiązania peptydowe nie zostały przerwane – aminokwasy nadal wiszą w tej samej sekwencji, ale misterne kłębki rozprostowały się, posklejały przypadkowo i utraciły możliwość powrotu do życia.
+      </div>
+
+      <h3 class="section-subtitle">📖 Ścisła definicja akademicka</h3>
+      <p><strong>Denaturacja</strong> to proces zniszczenia unikalnej, natywnej struktury II, III i IV-rzędowej białka na skutek rozerwania stabilizujących je oddziaływań niekowalencyjnych (oraz ewentualnie mostków disiarczkowych), przebiegający <strong>BEZ rozerwania kowalencyjnych wiązań peptydowych</strong> tworzących strukturę pierwszorzędową.</p>
+
+      <div class="process-flow">
+        <div class="flow-step">Białko w konformacji natywnej<br>Hydrofobowy rdzeń ukryty wewnątrz, białko rozpuszczalne, aktywne</div>
+        <div class="flow-arrow">➔ Czynnik denaturujący ➔</div>
+        <div class="flow-step">Rozwinięcie łańcucha polipeptydowego<br>Odsłonięcie niepolarnych grup bocznych na zewnątrz</div>
+        <div class="flow-arrow">➔</div>
+        <div class="flow-step">Agregacja i koagulacja<br>Nieodwracalna utrata rozpuszczalności i aktywności biologicznej</div>
+      </div>
+
+      <h3 class="section-subtitle">🧪 Czynniki denaturujące i ich mechanizm molekularny</h3>
+      <div class="comparison-table-wrapper">
+        <table class="comparison-table">
+          <thead>
+            <tr>
+              <th>Kategoria</th>
+              <th>Czynnik denaturujący</th>
+              <th>Precyzyjny mechanizm molekularny działania</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td rowspan="3"><strong>Czynniki fizyczne</strong></td>
+              <td><strong>Wysoka temperatura ($> 55-60^\circ\text{C}$)</strong></td>
+              <td>Zwiększa energię kinetyczną atomów cząsteczki, wywołując gwałtowne wibracje, które rozrywają słabe wiązania wodorowe i oddziaływania dipolowe.</td>
+            </tr>
+            <tr>
+              <td><strong>Ultradźwięki (sonikacja) i wytrząsanie</strong></td>
+              <td>Zjawisko kawitacji oraz siły ścinające rozciągają łańcuchy i mechanicznie niszczą subtelne upakowanie cząsteczki.</td>
+            </tr>
+            <tr>
+              <td><strong>Promieniowanie jonizujące (RTG, $\gamma$) i UV</strong></td>
+              <td>Dostarcza potężnej energii prowadzącej do powstawania rodników tlenowych, utleniania grup tiolowych ($-SH$) i fotolizy wiązań.</td>
+            </tr>
+            <tr>
+              <td rowspan="5"><strong>Czynniki chemiczne</strong></td>
+              <td><strong>Mocznik ($6-8\text{ M}$) i chlorowodorek guanidyny</strong></td>
+              <td>Związki chaotropowe – konkurują o wiązania wodorowe ze szkieletem polipeptydowym, niszczą uporządkowaną strukturę wody klatkowej i osłabiają oddziaływania hydrofobowe.</td>
+            </tr>
+            <tr>
+              <td><strong>Detergenty (np. anionowy SDS)</strong></td>
+              <td>Swoimi niepolarnymi łańcuchami węglowodorowymi wnikają do hydrofobowego rdzenia białka, rozpychają go i otaczają hydrofobowe reszty ujemnym ładunkiem.</td>
+            </tr>
+            <tr>
+              <td><strong>Stężone kwasy i zasady (ekstremalne pH)</strong></td>
+              <td>Zmieniają stan protonacji grup bocznych (kwas protonuje $-COO^-$ do obojętnego $-COOH$, zasada deprotonuje $-NH_3^+$ do obojętnego $-NH_2$). Prowadzi to do natychmiastowego <strong>rozerwania mostków solnych</strong> i odpychania elektrostatycznego.</td>
+            </tr>
+            <tr>
+              <td><strong>Rozpuszczalniki organiczne (etanol, aceton)</strong></td>
+              <td>Drastycznie obniżają stałą dielektryczną środowiska, niszcząc hydrofobowy rdzeń białka i zaburzając natywne wiązania wodorowe.</td>
+            </tr>
+            <tr>
+              <td><strong>Związki kompleksujące metale (chelatory: EDTA, EGTA)</strong></td>
+              <td>Wypłukują strukturalne jony metali ($Zn^{2+}, Ca^{2+}, Mg^{2+}$) niezbędne do utrzymania stabilności metaloprotein.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="callout-warning">
+        <strong>⚠️ Złota reguła i pułapka egzaminacyjna</strong>
+        Czy podczas denaturacji pękają wiązania peptydowe? <strong>NIGDY!</strong> Wiązania peptydowe ulegają rozerwaniu wyłącznie podczas <strong>hydrolizy</strong> (enzymatycznej przez proteazy lub chemicznej w $6\text{ M } HCl$ w temp. $110^\circ\text{C}$). Denaturacja narusza jedynie wyższe rzędy struktury (II, III, IV), pozostawiając strukturę I-rzędową nienaruszoną.
+      </div>
+
+      <div class="quiz-container">
+        <details class="quiz-box">
+          <summary class="quiz-question">Pytanie 1: Dlaczego zdenaturowane białko traci rozpuszczalność w wodzie i wypada w postaci osadu?</summary>
+          <div class="quiz-answer">
+            <strong>Odpowiedź:</strong> Ponieważ w procesie denaturacji dochodzi do "odwinięcia" łańcucha i wyeksponowania na zewnątrz hydrofobowych reszt aminokwasowych, które w stanie natywnym były szczelnie schowane w rdzeniu cząsteczki. Stykając się ze środowiskiem wodnym, hydrofobowe powierzchnie sąsiednich cząsteczek samorzutnie łączą się ze sobą, tworząc nierozpuszczalne agregaty.
+          </div>
+        </details>
+        <details class="quiz-box">
+          <summary class="quiz-question">Pytanie 2: Jaka jest różnica między działaniem mocznika a działaniem $\beta$-merkaptoetanolu na białko?</summary>
+          <div class="quiz-answer">
+            <strong>Odpowiedź:</strong> Mocznik niszczy <strong>wiązania niekowalencyjne</strong> (głównie wiązania wodorowe i oddziaływania hydrofobowe), natomiast $\beta$-merkaptoetanol jest reduktorem rozrywającym kowalencyjne <strong>mostki disiarczkowe</strong> ($-S-S-$), redukując je do wolnych grup sulfhydrylowych ($-SH$).
+          </div>
+        </details>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+</body>
+</html>
