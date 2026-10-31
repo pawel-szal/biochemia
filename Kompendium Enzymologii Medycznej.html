@@ -1,0 +1,1998 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Enzymologia Lekarska – Repetytorium Akademickie</title>
+  <!-- Skrypt MathJax do renderowania wzorów w notacji LaTeX -->
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      }
+    };
+  </script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <style>
+    :root {
+      --primary: #1e3a8a;
+      --primary-light: #3b82f6;
+      --primary-subtle: #eff6ff;
+      --accent: #0d9488;
+      --accent-subtle: #f0fdfa;
+      --text-main: #0f172a;
+      --text-muted: #475569;
+      --bg-body: #f8fafc;
+      --bg-card: #ffffff;
+      --border-color: #e2e8f0;
+      --warning-bg: #fff7ed;
+      --warning-border: #f97316;
+      --warning-text: #9a3412;
+      --analogy-bg: #fefce8;
+      --analogy-border: #eab308;
+      --analogy-text: #713f12;
+      --success-bg: #f0fdf4;
+      --success-border: #22c55e;
+      --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.07), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+      --shadow-hover: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.05);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background-color: var(--bg-body);
+      color: var(--text-main);
+      line-height: 1.65;
+      padding: 24px;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    /* Nagłówek główny */
+    header.main-header {
+      background: linear-gradient(135deg, #1e3a8a 0%, #0f172a 100%);
+      color: #ffffff;
+      padding: 40px 32px;
+      border-radius: 16px;
+      box-shadow: 0 10px 25px -5px rgba(30, 58, 138, 0.25);
+      margin-bottom: 36px;
+    }
+
+    header.main-header h1 {
+      font-size: 2.2rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: 10px;
+    }
+
+    header.main-header p.subtitle {
+      font-size: 1.1rem;
+      color: #93c5fd;
+      max-width: 850px;
+    }
+
+    .badge-bar {
+      display: flex;
+      gap: 10px;
+      margin-top: 16px;
+      flex-wrap: wrap;
+    }
+
+    .badge {
+      background: rgba(255, 255, 255, 0.15);
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      backdrop-filter: blur(4px);
+    }
+
+    /* Nawigacja spisu treści */
+    .toc-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 14px;
+      padding: 24px;
+      margin-bottom: 36px;
+      box-shadow: var(--shadow);
+    }
+
+    .toc-card h2 {
+      font-size: 1.25rem;
+      color: var(--primary);
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .toc-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 10px;
+      font-size: 0.9rem;
+    }
+
+    .toc-grid a {
+      color: var(--text-muted);
+      text-decoration: none;
+      padding: 6px 10px;
+      border-radius: 6px;
+      transition: all 0.15s ease;
+      display: block;
+      border-left: 3px solid transparent;
+    }
+
+    .toc-grid a:hover {
+      background: var(--primary-subtle);
+      color: var(--primary);
+      border-left-color: var(--primary-light);
+      transform: translateX(4px);
+    }
+
+    /* Karty zagadnień */
+    .card {
+      background-color: var(--bg-card);
+      border-radius: 14px;
+      border: 1px solid var(--border-color);
+      box-shadow: var(--shadow);
+      padding: 32px;
+      margin-bottom: 36px;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .card:hover {
+      box-shadow: var(--shadow-hover);
+    }
+
+    .card-header {
+      border-bottom: 2px solid var(--border-color);
+      padding-bottom: 16px;
+      margin-bottom: 24px;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .card-number {
+      background: var(--primary-subtle);
+      color: var(--primary);
+      font-weight: 800;
+      font-size: 1rem;
+      padding: 6px 14px;
+      border-radius: 8px;
+      white-space: nowrap;
+    }
+
+    .card-title {
+      font-size: 1.45rem;
+      color: var(--text-main);
+      font-weight: 700;
+      flex: 1;
+    }
+
+    .question-box {
+      background: #f1f5f9;
+      border-left: 4px solid var(--primary);
+      padding: 14px 18px;
+      border-radius: 0 8px 8px 0;
+      margin-bottom: 22px;
+      font-weight: 600;
+      font-size: 1.05rem;
+      color: var(--text-main);
+    }
+
+    /* Ramki analogii */
+    .callout-analogy {
+      background-color: var(--analogy-bg);
+      border: 1px solid var(--analogy-border);
+      border-left: 5px solid var(--analogy-border);
+      color: var(--analogy-text);
+      padding: 18px 20px;
+      border-radius: 8px;
+      margin: 18px 0;
+    }
+
+    .callout-analogy .callout-title {
+      font-weight: 700;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.98rem;
+    }
+
+    /* Schematy procesów */
+    .process-flow {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin: 20px 0;
+      flex-wrap: wrap;
+      background: var(--bg-body);
+      padding: 16px;
+      border-radius: 10px;
+      border: 1px dashed var(--border-color);
+    }
+
+    .flow-step {
+      background: #ffffff;
+      border: 1px solid #cbd5e1;
+      padding: 10px 14px;
+      border-radius: 8px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--text-main);
+      box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+      flex: 1;
+      min-width: 130px;
+      text-align: center;
+    }
+
+    .flow-arrow {
+      color: var(--primary-light);
+      font-weight: 800;
+      font-size: 1.2rem;
+    }
+
+    /* Ramki ostrzegawcze */
+    .callout-warning {
+      background-color: var(--warning-bg);
+      border: 1px solid var(--warning-border);
+      border-left: 5px solid var(--warning-border);
+      color: var(--warning-text);
+      padding: 18px 20px;
+      border-radius: 8px;
+      margin: 18px 0;
+    }
+
+    .callout-warning .warning-title {
+      font-weight: 800;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.98rem;
+    }
+
+    /* Ścisła definicja akademicka */
+    .definition-box {
+      background: #f8fafc;
+      border-left: 4px solid var(--accent);
+      padding: 14px 18px;
+      border-radius: 0 8px 8px 0;
+      margin: 18px 0;
+    }
+
+    .definition-box strong.label {
+      color: var(--accent);
+      text-transform: uppercase;
+      font-size: 0.8rem;
+      letter-spacing: 0.05em;
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    /* Tabele syntetyczne */
+    .table-container {
+      overflow-x: auto;
+      margin: 20px 0;
+      border-radius: 10px;
+      border: 1px solid var(--border-color);
+    }
+
+    .comparison-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.9rem;
+      text-align: left;
+    }
+
+    .comparison-table th {
+      background: #f1f5f9;
+      color: var(--primary);
+      padding: 12px 14px;
+      font-weight: 700;
+      border-bottom: 2px solid var(--border-color);
+      white-space: nowrap;
+    }
+
+    .comparison-table td {
+      padding: 11px 14px;
+      border-bottom: 1px solid var(--border-color);
+      vertical-align: top;
+    }
+
+    .comparison-table tr:nth-child(even) td {
+      background-color: #f8fafc;
+    }
+
+    .comparison-table tr:hover td {
+      background-color: var(--primary-subtle);
+    }
+
+    /* Interaktywne quizy sprawdzające */
+    .quiz-section {
+      margin-top: 26px;
+      background: #f8fafc;
+      border: 1px solid #cbd5e1;
+      border-radius: 10px;
+      padding: 18px;
+    }
+
+    .quiz-section-title {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    details.quiz-item {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      margin-bottom: 10px;
+      overflow: hidden;
+      transition: all 0.2s ease;
+    }
+
+    details.quiz-item[open] {
+      border-color: var(--accent);
+      box-shadow: 0 2px 4px rgba(0,0,0,0.04);
+    }
+
+    summary.quiz-question {
+      padding: 12px 16px;
+      font-weight: 600;
+      cursor: pointer;
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      user-select: none;
+      font-size: 0.92rem;
+    }
+
+    summary.quiz-question::-webkit-details-marker {
+      display: none;
+    }
+
+    summary.quiz-question::after {
+      content: "Rozwiń odpowiedź ▾";
+      font-size: 0.8rem;
+      color: var(--primary-light);
+      font-weight: normal;
+    }
+
+    details[open] summary.quiz-question::after {
+      content: "Zwiń ▴";
+      color: var(--accent);
+    }
+
+    .quiz-answer {
+      padding: 14px 16px;
+      background: var(--accent-subtle);
+      border-top: 1px solid #ccfbf1;
+      font-size: 0.9rem;
+      color: #134e4a;
+    }
+
+    .quiz-answer strong {
+      color: #0f766e;
+    }
+
+    /* Responsywność */
+    @media (max-width: 768px) {
+      body {
+        padding: 12px;
+      }
+      .card {
+        padding: 20px;
+      }
+      .process-flow {
+        flex-direction: column;
+      }
+      .flow-arrow {
+        transform: rotate(90deg);
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- NAGŁÓWEK GŁÓWNY -->
+  <header class="main-header">
+    <h1>Enzymologia Lekarska – Repetytorium Kliniczne</h1>
+    <p class="subtitle">Kompleksowe, dydaktyczne opracowanie 20 zagadnień egzaminacyjnych oparte na podręcznikach prof. Bańkowskiego, Harpera, Stryera i Konturka. Zbudowane metodą Feynmana: intuicyjna analogia, łańcuch przyczynowo-skutkowy, ścisła wiedza i pułapki testowe.</p>
+    <div class="badge-bar">
+      <span class="badge">📘 Biochemia z elementami chemii</span>
+      <span class="badge">⚙️ 20 Zagadnień Egzaminacyjnych</span>
+      <span class="badge">💡 Metoda Feynmana</span>
+      <span class="badge">⚠️ Haczyki Egzaminacyjne</span>
+      <span class="badge">🩺 Kontekst Medyczny</span>
+    </div>
+  </header>
+
+  <!-- SPIS TREŚCI -->
+  <nav class="toc-card">
+    <h2>📑 Spis Zagadnień Repetytorium</h2>
+    <div class="toc-grid">
+      <a href="#z1">1. Klasyfikacja i nazewnictwo enzymów (IUBMB)</a>
+      <a href="#z2">2. Składowe enzymów i centra aktywne</a>
+      <a href="#z3">3. Izoenzymy i metody ich rozdziału</a>
+      <a href="#z4">4. Klasa 1: Oksydoreduktazy</a>
+      <a href="#z5">5. Klasa 2: Transferazy</a>
+      <a href="#z6">6. Klasa 3: Hydrolazy</a>
+      <a href="#z7">7. Klasa 4: Liazy</a>
+      <a href="#z8">8. Klasa 5: Izomerazy</a>
+      <a href="#z9">9. Klasa 6: Ligazy</a>
+      <a href="#z10">10. Rybozymy i świat RNA</a>
+      <a href="#z11">11. Mechanizm działania enzymów i energia aktywacji</a>
+      <a href="#z12">12. Kinetyka Michaelisa-Menten i stała $K_m$</a>
+      <a href="#z13">13. Specyficzność enzymatyczna</a>
+      <a href="#z14">14. Czynniki wpływające na szybkość reakcji</a>
+      <a href="#z15">15. Izoenzymy w diagnostyce klinicznej</a>
+      <a href="#z16">16. Inhibicja enzymatyczna i analiza kinetyczna</a>
+      <a href="#z17">17. Zastosowanie inhibitorów w farmakoterapii</a>
+      <a href="#z18">18. Poziomy regulacji aktywności enzymów</a>
+      <a href="#z19">19. Oznaczanie aktywności enzymatycznej i jednostki</a>
+      <a href="#z20">20. Budowa i funkcja koenzymów nukleotydowych</a>
+    </div>
+  </nav>
+
+  <!-- ==================== ZAGADNIENIE 1 ==================== -->
+  <article class="card" id="z1">
+    <div class="card-header">
+      <span class="card-number">Zagadnienie 1</span>
+      <h2 class="card-title">Klasyfikacja i nazewnictwo enzymów wg Międzynarodowej Unii Biochemicznej (IUBMB)</h2>
+    </div>
+
+    <div class="question-box">
+      Pytanie: Jak zorganizowany jest międzynarodowy system klasyfikacji enzymów (EC), jakie wyróżniamy główne klasy i jak tworzy się ich nazwy systematyczne?
+    </div>
+
+    <div class="callout-analogy">
+      <div class="callout-title">💡 Analogia z życia codziennego</div>
+      Pomyśl o systemie EC jak o numerze PESEL lub kodzie pocztowym w sortowni paczek. Pierwsza cyfra informuje, do jakiego kraju leci paczka (główny rodzaj chemicznej roboty: utlenianie, cięcie nożyczkami czy klejenie). Druga cyfra to województwo (jakie dokładnie wiązanie lub grupa jest ruszana), trzecia to miasto (kto jest biorcą/akceptorem), a czwarta to konkretny numer domu adresata na danej ulicy (konkretny unikalny enzym w bazie).
+    </div>
+
+    <p><strong>Ciąg przyczynowo-skutkowy tworzenia numeru EC:</strong></p>
+    <div class="process-flow">
+      <div class="flow-step">1. Cyfra główna (Klasa 1–7)<br><small>Identyfikacja typu transformacji</small></div>
+      <div class="flow-arrow">➔</div>
+      <div class="flow-step">2. Podklasa<br><small>Rodzaj grupy/wiązania donorowego</small></div>
+      <div class="flow-arrow">➔</div>
+      <div class="flow-step">3. Podpodklasa<br><small>Precyzyjny akceptor lub kofaktor</small></div>
+      <div class="flow-arrow">➔</div>
+      <div class="flow-step">4. Numer seryjny<br><small>Konkretny enzym (np. EC 1.1.1.27)</small></div>
+    </div>
+
+    <div class="definition-box">
+      <strong class="label">Ścisła definicja akademicka</strong>
+      Klasyfikacja IUBMB przypisuje każdemu enzymowi unikalny kod <strong>EC (Enzyme Commission)</strong> składający się z czterech liczb oddzielonych kropkami. Nazwa systematyczna składa się z dwóch członów: pierwszy określa substrat(y), drugi typ katalizowanej reakcji z końcówką <em>-aza</em>. Klasycznie wyróżnia się 6 klas głównych, a od 2018 roku oficjalnie funkcjonuje 7 klas:
+      <ol style="margin-left: 20px; margin-top: 6px;">
+        <li><strong>EC 1 – Oksydoreduktazy:</strong> przenoszenie elektronów lub atomów wodoru.</li>
+        <li><strong>EC 2 – Transferazy:</strong> przenoszenie grup funkcyjnych (np. acylowych, aminowych, fosforanowych).</li>
+        <li><strong>EC 3 – Hydrolazy:</strong> rozszczepianie wiązań z udziałem cząsteczki wody.</li>
+        <li><strong>EC 4 – Liazy:</strong> rozszczepianie wiązań (C-C, C-O, C-N) bez udziału wody i bez nakładu ATP lub tworzenie wiązań podwójnych.</li>
+        <li><strong>EC 5 – Izomerazy:</strong> wewnątrzcząsteczkowe przegrupowania geometryczne lub strukturalne.</li>
+        <li><strong>EC 6 – Ligazy (Syntetazy):</strong> łączenie dwóch cząsteczek sprzężone z hydrolizą ATP.</li>
+        <li><strong>EC 7 – Translokazy:</strong> kataliza przemieszczania jonów lub cząsteczek przez błony biologiczne powiązana z reakcją chemiczną.</li>
+      </ol>
+    </div>
+
+    <div class="callout-warning">
+      <div class="warning-title">⚠️ Złota reguła i pułapka egzaminacyjna!</div>
+      <strong>SYNTAZA $\neq$ SYNTETAZA!</strong> To jeden z najczęstszych powodów utraty punktów na kolokwium:
+      <br>• <strong>Syntetaza</strong> to klasa 6 (Ligaza) – <em>zawsze bezwzględnie wymaga energii z ATP</em> (np. syntetaza glutaminowa, syntetaza aminoacylo-tRNA).
+      <br>• <strong>Syntaza</strong> to najczęściej klasa 4 (Liaza) lub transferaza – <em>nie zużywa ATP</em> do utworzenia wiązania (np. syntaza cytrynianowa, syntaza tlenku azotu).
+    </div>
+
+    <div class="quiz-section">
+      <div class="quiz-section-title">✍️ Szybki test sprawdzający:</div>
+      <details class="quiz-item">
+        <summary class="quiz-question">Do której klasy EC należy enzym przekształcający fruktozo-1,6-bisfosforan w aldehyd 3-fosfoglicerynowy i fosfodihydroksyaceton bez udziału ATP i wody?</summary>
+        <div class="quiz-answer">
+          <strong>Odpowiedź:</strong> Do klasy <strong>EC 4 (Liazy)</strong>. Jest to aldolaza (dokładniej aldolaza fruktozo-1,6-bisfosforanowa). Rozrywa wiązanie węgiel-węgiel bez hydrolizy (nie jest hydrolazą) i bez zużycia nukleotydotrifosforanów.
+        </div>
+      </details>
+      <details class="quiz-item">
+        <summary class="quiz-question">Co oznacza trzecia cyfra w zapisie EC 2.7.1.1 (heksokinaza)?</summary>
+        <div class="quiz-answer">
+          <strong>Odpowiedź:</strong> Podpodklasę. Oznacza, że akceptorem przenoszonej grupy fosforanowej jest grupa hydroksylowa ($-OH$) alkoholu (cukru).
+        </div>
+      </details>
+    </div>
+  </article>
+
+  <!-- ==================== ZAGADNIENIE 2 ==================== -->
+  <article class="card" id="z2">
+    <div class="card-header">
+      <span class="card-number">Zagadnienie 2</span>
+      <h2 class="card-title">Apoenzym, holoenzym, koenzym, grupa prostetyczna, centrum aktywne, miejsce allosteryczne, kofaktory</h2>
+    </div>
+
+    <div class="question-box">
+      Pytanie: Z jakich elementów funkcjonalnych składa się cząsteczka enzymu i czym różnią się poszczególne rodzaje kofaktorów oraz miejsc wiążących?
+    </div>
+
+    <div class="callout-analogy">
+      <div class="callout-title">💡 Analogia z życia codziennego</div>
+      Wyobraź sobie nowoczesną wkrętarkę akumulatorową. Sam plastikowo-metalowy korpus z silnikiem to <strong>apoenzym</strong> – ładny, ale bez baterii i bitu nic nie zrobi. Bateria lub bit to <strong>kofaktor</strong>. Jeśli bit można swobodnie wyjmować i przekładać do innej wkrętarki, jest to <strong>koenzym</strong> (luźny wspólnik). Jeśli uchwyt jest zaspawany na stałe, to <strong>grupa prostetyczna</strong>. Cała wkrętarka z włożoną baterią i bitem gotowa do pracy to <strong>holoenzym</strong>. Głowica, która bezpośrednio styka się ze śrubą, to <strong>centrum aktywne</strong>, a przełącznik obrotów lewo/prawo na rękojeści, który zmienia jej bieg, to <strong>miejsce allosteryczne</strong>.
+    </div>
+
+    <div class="table-container">
+      <table class="comparison-table">
+        <thead>
+          <tr>
+            <th>Pojęcie</th>
+            <th>Natura chemiczna</th>
+            <th>Sposób wiązania z białkiem</th>
+            <th>Główna rola fizjologiczna</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Apoenzym</strong></td>
+            <td>Białko (łańcuch polipeptydowy)</td>
+            <td>Część składowa</td>
+            <td>Zapewnia specyficzność substratową, tworzy szkielet centrum aktywnego; sam jest katalitycznie nieaktywny.</td>
+          </tr>
+          <tr>
+            <td><strong>Kofaktor</strong></td>
+            <td>Cząstka niebiałkowa: jony metali ($Mg^{2+}, Zn^{2+}, Fe^{2+}$) lub związki organiczne</td>
+            <td>Zróżnicowany</td>
+            <td>Umożliwia przebieg reakcji poprzez transfer elektronów, stabilizację ładunków lub orientację substratu.</td>
+          </tr>
+          <tr>
+            <td><strong>Holoenzym</strong></td>
+            <td>Kompleks białko + kofaktor</td>
+            <td>Złożona całość</td>
+            <td>Pełna, katalitycznie aktywna forma enzymu: $\text{Apoenzym} + \text{Kofaktor} = \text{Holoenzym}$.</td>
+          </tr>
+          <tr>
+            <td><strong>Koenzym</strong></td>
+            <td>Drobnocząsteczkowy związek organiczny (często pochodna witamin z grupy B)</td>
+            <td>Nietrwale, odwracalnie, siłami niekowalencyjnymi (działa jak kosubstrat)</td>
+            <td>Przenosi grupy chemiczne lub elektrony pomiędzy różnymi enzymami (np. $NAD^+$, CoA-SH).</td>
+          </tr>
+          <tr>
+            <td><strong>Grupa prostetyczna</strong></td>
+            <td>Cząsteczka organiczna lub kompleks metaloorganiczny</td>
+            <td>Trwale, często kowalencyjnie lub skrajnie silnie niekowalencyjnie</td>
+            <td>Pozostaje związana z enzymem przez cały cykl katalityczny (np. FAD, biotyna, hem).</td>
+          </tr>
+          <tr>
+            <td><strong>Centrum aktywne</strong></td>
+            <td>Trójwymiarowa szczelina z reszt aminokwasowych</td>
+            <td>Wnętrze cząsteczki enzymu</td>
+            <td>Wiąże specyficznie substrat (miejsce wiążące) i bezpośrednio przeprowadza reakcję (miejsce katalityczne).</td>
+          </tr>
+          <tr>
+            <td><strong>Miejsce allosteryczne</strong></td>
+            <td>Kieszeń regulatorowa z dala od centrum aktywnego</td>
+            <td>Inna domena lub podjednostka białka</td>
+            <td>Wiąże efektory allosteryczne; wywołuje zmianę konformacji wpływającą na powinowactwo centrum aktywnego.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout-warning">
+      <div class="warning-title">⚠️ Złota reguła i pułapka egzaminacyjna!</div>
+      Egzaminatorzy uwielbiają pytać o status <strong>FAD</strong> vs <strong>$NAD^+$</strong>. Zapamiętaj:
+      <br>• $NAD^+$ jest <strong>koenzymem rozpuszczalnym (kosubstratem)</strong> – po zredukowaniu do $NADH$ odłącza się od enzymu i wędruje do innego białka.
+      <br>• FAD jest <strong>grupą prostetyczną</strong> – jest trwale połączony z apoenzymem (np. w dehydrogenazie bursztynianowej) i nie może od niego samowolnie odpłynąć!
+    </div>
+
+    <div class="quiz-section">
+      <div class="quiz-section-title">✍️ Szybki test sprawdzający:</div>
+      <details class="quiz-item">
+        <summary class="quiz-question">Czy sam apoenzym dodany do probówki z optymalnym stężeniem substratu wytworzy produkt reakcji?</summary>
+        <div class="quiz-answer">
+          <strong>Odpowiedź:</strong> Nie. Apoenzym jest pozbawiony niezbędnego kofaktora, przez co nie posiada pełnej maszynerii katalitycznej i jest katalitycznie martwy.
+        </div>
+      </details>
+      <details class="quiz-item">
+        <summary class="quiz-question">Jakie dwie strefy funkcjonalne wyróżniamy w obrębie centrum aktywnego enzymu?</summary>
+        <div class="quiz-answer">
+          <strong>Odpowiedź:</strong> Miejsce wiążące substrat (odpowiada za swoistość i ułożenie cząsteczki) oraz miejsce katalityczne (zawiera reszty aminokwasowe z grupami kwasowo-zasadowymi lub nukleofilowymi przeprowadzające właściwą przemianę chemiczną).
+        </div>
+      </details>
+    </div>
+  </article>
+
+  <!-- ==================== ZAGADNIENIE 3 i 15 ==================== -->
+  <article class="card" id="z3">
+    <div class="card-header">
+      <span class="card-number">Zagadnienia 3 &amp; 15</span>
+      <h2 class="card-title">Izoenzymy – definicja, metody rozdziału i znaczenie w diagnostyce lekarskiej</h2>
+    </div>
+
+    <div class="question-box">
+      Pytanie: Czym są izoenzymy, dlaczego komórki produkują różne formy tego samego enzymu, jak rozdzielamy je w laboratorium klinicznym i jakie mają znaczenie w zawale serca oraz chorobach wątroby?
+    </div>
+
+    <div class="callout-analogy">
+      <div class="callout-title">💡 Analogia z życia codziennego</div>
+      Izoenzymy to jak ten sam model samochodu wyprodukowany w różnych wersjach: miejskiej (mały silnik, mało pali w korku) i terenowej 4x4 (duża moc, napęd na błoto). Obydwa przewożą pasażera z punktu A do punktu B (katalizują tę samą reakcję), ale wersja terenowa radzi sobie w trudnych warunkach beztlenowych mięśnia, a miejska dba o ekonomię w sercu. Jeśli na ulicy znajdziesz części od specyficznej wersji terenowej, wiesz dokładnie, że wypadek wydarzył się w rejonie górzystym.
+    </div>
+
+    <div class="definition-box">
+      <strong class="label">Ścisła definicja akademicka</strong>
+      <strong>Izoenzymy (izozymy)</strong> to wielorakie formy molekularne danego enzymu, które katalizują dokładnie tę samą reakcję chemiczną, lecz różnią się strukturą pierwszorzędową (sekwencją aminokwasów), właściwościami fizykochemicznymi (punktem izoelektrycznym $pI$, masą cząsteczkową, ruchliwością elektroforetyczną), parametrami kinetycznymi ($K_m$, $V_{max}$), wrażliwością na regulatory oraz swoistością tkankową.
+    </div>
+
+    <p><strong>Dwa sztandarowe modele medyczne:</strong></p>
+    <div class="table-container">
+      <table class="comparison-table">
+        <thead>
+          <tr>
+            <th>Izoenzym</th>
+            <th>Budowa podjednostkowa</th>
+            <th>Główna lokalizacja tkankowa</th>
+            <th>Rola diagnostyczna / Zastosowanie kliniczne</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>LDH-1</strong></td>
+            <td>$H_4$ (cztery podjednostki sercowe Heart)</td>
+            <td>Mięsień sercowy, erytrocyty</td>
+            <td>Zawał serca, anemia hemolityczna (wzrost poziomu, odwrócenie wskaźnika LDH-1/LDH-2).</td>
+          </tr>
+          <tr>
+            <td><strong>LDH-2</strong></td>
+            <td>$H_3M_1$</td>
+            <td>Układ siateczkowo-śródbłonkowy, nerki</td>
+            <td>W warunkach fizjologicznych dominuje w surowicy krwi ($LDH_2 > LDH_1$).</td>
+          </tr>
+          <tr>
+            <td><strong>LDH-3</strong></td>
+            <td>$H_2M_2$</td>
+            <td>Płuca, śledziona, trzustka</td>
+            <td>Zatorowość płucna, ostre zapalenie płuc, białaczki.</td>
+          </tr>
+          <tr>
+            <td><strong>LDH-4</strong></td>
+            <td>$HM_3$</td>
+            <td>Nerki, łożysko</td>
+            <td>Uszkodzenia nerek, powikłania ciąży.</td>
+          </tr>
+          <tr>
+            <td><strong>LDH-5</strong></td>
+            <td>$M_4$ (cztery podjednostki mięśniowe Muscle)</td>
+            <td>Wątroba, mięśnie szkieletowe</td>
+            <td>Wirusowe zapalenie wątroby, toksyczne uszkodzenie hepatocytów, dystrofie mięśniowe.</td>
+          </tr>
+          <tr>
+            <td><strong>CK-BB (CK-1)</strong></td>
+            <td>Dimer $BB$ (Brain-Brain)</td>
+            <td>Tkanka mózgowa, jelita</td>
+            <td>Udar mózgu, urazy czaszkowo-mózgowe (rzadko oznaczany rutynowo w krwi z powodu bariery krew-mózg).</td>
+          </tr>
+          <tr>
+            <td><strong>CK-MB (CK-2)</strong></td>
+            <td>Dimer $MB$ (Muscle-Brain)</td>
+            <td>Mięsień sercowy (ok. 20–30% CK w sercu)</td>
+            <td>Klasyczny marker martwicy mięśnia sercowego (zawał mięśnia sercowego); powraca do normy po 48–72h.</td>
+          </tr>
+          <tr>
+            <td><strong>CK-MM (CK-3)</strong></td>
+            <td>Dimer $MM$ (Muscle-Muscle)</td>
+            <td>Mięśnie szkieletowe (98% CK w mięśniach)</td>
+            <td>Rabdomioliza, zmiażdżenia mięśni, zapalenie wielomięśniowe, ciężki wysiłek fizyczny.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p><strong>Metody laboratoryjnego rozdziału izoenzymów:</strong></p>
+    <div class="process-flow">
+      <div class="flow-step">1. Elektroforeza białek<br><small>Rozdział w polu elektrycznym wg ładunku ($pI$)</small></div>
+      <div class="flow-arrow">➔</div>
+      <div class="flow-step">2. Chromatografia jonowymienna<br><small>Frakcjonowanie na kolumnach z żywicą DEAE</small></div>
+      <div class="flow-arrow">➔</div>
+      <div class="flow-step">3. Testy immunochemiczne<br><small>Specyficzne przeciwciała monoklonalne (np. anty-CK-M)</small></div>
+      <div class="flow-arrow">➔</div>
+      <div class="flow-step">4. Inaktywacja termiczna/chemiczna<br><small>Np. frakcje kostna vs wątrobowa ALP</small></div>
+    </div>
+
+    <div class="callout-warning">
+      <div class="warning-title">⚠️ Złota reguła i pułapka egzaminacyjna!</div>
+      <strong>Zjawisko odwrócenia LDH (LDH Flip):</strong> W osoczu zdrowego człowieka stężenie LDH-2 jest zawsze wyższe niż LDH-1 ($LDH_2 > LDH_1$). W zawale mięśnia sercowego lub w ostrej hemolizie z uszkodzonych kardiomiocytów/erytrocytów uwalnia się olbrzymia masa LDH-1, co skutkuje odwróceniem proporcji: $LDH_1 > LDH_2$. Jest to klasyczny „haczyk” w zadaniach klinicznych z enzymologii.
+    </div>
+
+    <div class="quiz-section">
+      <div class="quiz-section-title">✍️ Szybki test sprawdzający:</div>
+      <details class="quiz-item">
+        <summary class="quiz-question">Dlaczego podjednostki H i M dehydrogenazy mleczanowej mają inną ruchliwość w elektroforezie?</summary>
+        <div class="quiz-answer">
+          <strong>Odpowiedź:</strong> Ponieważ różnią się składem aminokwasowym. Podjednostka H posiada więcej aminokwasów o charakterze kwaśnym (np. asparaginian, glutaminian), co w pH buforu elektroforetycznego (~8,6) nadaje jej większy ładunek ujemny i sprawia, że wędruje najszybciej w stronę anody (+).
+        </div>
+      </details>
+      <details class="quiz-item">
+        <summary class="quiz-question">U pacjenta z podejrzeniem zawału serca CK-MB wzrasta, ale po 4 dniach jest w normie, podczas gdy aktywność całkowitej LDH nadal jest podwyższona. Czy to błąd laboratoryjny?</summary>
+        <div class="quiz-answer">
+          <strong>Odpowiedź:</strong> Nie, to prawidłowa kinetyka markerów. CK-MB ma krótki okres półtrwania (szczyt 18–24 h, normalizacja w 48–72 h), natomiast izoenzymy LDH ulegają powolnemu usuwaniu z krążenia i ich podwyższony poziom utrzymuje się nawet przez 10–14 dni od epizodu niedokrwiennego.
+        </div>
+      </details>
+    </div>
+  </article>
+
+  <!-- ==================== ZAGADNIENIE 4 ==================== -->
+  <article class="card" id="z4">
+    <div class="card-header">
+      <span class="card-number">Zagadnienie 4</span>
+      <h2 class="card-title">Klasa 1: Oksydoreduktazy – charakterystyka, koenzymy, reakcje i diagnostyka</h2>
+    </div>
+
+    <div class="question-box">
+      Pytanie: Na czym polega mechanizm działania oksydoreduktaz, jakie koenzymy obsługują tę klasę i które enzymy z tej grupy ratują życie pacjentów na ostrym dyżurze?
+    </div>
+
+    <div class="callout-analogy">
+      <div class="callout-title">💡 Analogia z życia codziennego</div>
+      Oksydoreduktazy to monterzy instalacji elektrycznej. Ich praca polega wyłącznie na przepinaniu kabli z prądem (elektronów) lub przenoszeniu gorących baterii (atomów wodoru) z jednego urządzenia na drugie. Nigdy nie robią tego gołymi rękami – używają izolowanych rękawic roboczych i wózków transportowych, którymi są koenzymy ($NAD^+$, FAD).
+    </div>
+
+    <div class="definition-box">
+      <strong class="label">Ścisła definicja akademicka</strong>
+      <strong>Oksydoreduktazy (EC 1)</strong> katalizują reakcje utleniania i redukcji poprzez przenoszenie elektronów, jonów wodorkowych ($H^-$) lub całych atomów wodoru między donorem (reduktorem) a akceptorem (utleniaczem):
+      $$AH_2 + B \rightleftharpoons A + BH_2$$
+    </div>
+
+    <p><strong>Główne podgrupy oksydoreduktaz:</strong></p>
+    <ul style="margin-left: 20px; margin-bottom: 16px;">
+      <li><strong>Dehydrogenazy:</strong> odrywają atomy wodoru od substratu i przenoszą je na koenzymy ($NAD^+$, $NADP^+$, FAD, FMN). Nie używają tlenu jako bezpośredniego biorcy wodoru (np. dehydrogenaza mleczanowa, jabłczanowa, alkoholowa).</li>
+      <li><strong>Oksydazy:</strong> przenoszą elektrony lub atomy wodoru bezpośrednio na tlen cząsteczkowy ($O_2$), redukując go do wody ($H_2O$) lub nadtlenku wodoru ($H_2O_2$) (np. oksydaza cytochromowa, oksydaza ksantynowa).</li>
+      <li><strong>Oksygenazy:</strong> wbudowują atomy tlenu cząsteczkowego do cząsteczki substratu:
+        <br>– <em>Monooksygenazy (hydroksylazy):</em> wbudowują 1 atom tlenu do substratu, a drugi redukują do $H_2O$ (układ cytochromu P450).
+        <br>– <em>Dioksygenazy:</em> wbudowują oba atomy tlenu do substratu.</li>
+      <li><strong>Hydroperoksydazy (peroksydazy i katalaza):</strong> usuwają toksyczny $H_2O_2$. Katalaza rozkłada go na wodę i tlen: $2 H_2O_2 \rightarrow 2 H_2O + O_2$.</li>
+    </ul>
+
+    <div class="callout-warning">
+      <div class="warning-title">⚠️ Złota reguła i pułapka egzaminacyjna!</div>
+      <strong>Dehydrogenaza glukozo-6-fosforanowa (G6PD):</strong> Kluczowy enzym szlaku pentozofosforanowego. Jej defekt genetyczny wywołuje <em>fawizm</em> (ostrą niedokrwistość hemolityczną po spożyciu bobu lub zażyciu leków przeciwmalarycznych/sulfonamidów). Brak G6PD $\rightarrow$ brak NADPH $\rightarrow$ brak zredukowanego glutationu $\rightarrow$ liza erytrocytów pod wpływem stresu oksydacyjnego!
+    </div>
+
+    <div class="quiz-section">
+      <div class="quiz-section-title">✍️ Szybki test sprawdzający:</div>
+      <details class="quiz-item">
+        <summary class="quiz-question">Jaka jest fundamentalna różnica w działaniu dehydrogenazy a oksydazy?</summary>
+        <div class="quiz-answer">
+          <strong>Odpowiedź:</strong> Dehydrogenaza przenosi elektrony/wodór na koenzymy nukleotydowe ($NAD^+$, FAD) bez udziału tlenu jako bezpośredniego akceptora, podczas gdy oksydaza oddaje elektrony/wodór bezpośrednio cząsteczce tlenu ($O_2$).
+        </div>
+      </details>
+      <details class="quiz-item">
+        <summary class="quiz-question">Do jakiej podklasy oksydoreduktaz należy enzym cytochrom P450 biorący udział w metabolizmie leków w wątrobie?</summary>
+        <div class="quiz-answer">
+          <strong>Odpowiedź:</strong> Do monooksygenaz (hydroksylaz). Wprowadza jedną grupę $-OH$ do ksenobiotyku, zwiększając jego polarność i ułatwiając wydalenie przez nerki.
+        </div>
+      </details>
+    </div>
+  </article>
+
+  <!-- ==================== ZAGADNIENIE 5 ==================== -->
+  <article class="card" id="z5">
+    <div class="card-header">
+      <span class="card-number">Zagadnienie 5</span>
+      <h2 class="card-title">Klasa 2: Transferazy – charakterystyka, koenzymy, reakcje i diagnostyka</h2>
+    </div>
+
+    <div class="question-box">
+      Pytanie: Czym zajmują się transferazy, jakich kofaktorów wymagają i dlaczego aminotransferazy (AST i ALT) są najważniejszymi enzymami w profilu wątrobowym?
+    </div>
+
+    <div class="callout-analogy">
+      <div class="callout-title">💡 Analogia z życia codziennego</div>
+      Transferazy to kurierzy przeprowadzkowi. Biorą mebel (grupę chemiczną – np. grupę aminową, acetylową czy fosforanową) z jednego mieszkania (dawcy) i montują go bezpośrednio w drugim mieszkaniu (biorcy). W trakcie transportu kurier trzyma ten mebel na specjalnym wózku transportowym – wózkiem dla grupy aminowej jest witamina $B_6$ (PLP).
+    </div>
+
+    <div class="definition-box">
+      <strong class="label">Ścisła definicja akademicka</strong>
+      <strong>Transferazy (EC 2)</strong> katalizują reakcje przeniesienia grupy funkcyjnej (innej niż wodór) z jednej cząsteczki (donora) na drugą (akceptora):
+      $$A-X + B \rightleftharpoons A + B-X$$
+    </div>
+
+    <p><strong>Kluczowe grupy transferaz i ich koenzymy:</strong></p>
+    <div class="table-container">
+      <table class="comparison-table">
+        <thead>
+          <tr>
+            <th>Podklasa transferaz</th>
+            <th>Przenoszona grupa</th>
+            <th>Wymagany koenzym / kofaktor</th>
+            <th>Przykłady medyczne / Diagnostyka</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Aminotransferazy</strong></td>
+            <td>Grupa aminowa ($-NH_2$)</td>
+            <td>Fosforan pirydoksalu (PLP, wit. $B_6$)</td>
+            <td>ALT (GPT), AST (GOT) – diagnostyka miąższu wątroby i mięśnia sercowego.</td>
+          </tr>
+          <tr>
+            <td><strong>Kinazy (fosfotransferazy)</strong></td>
+            <td>Grupa fosforanowa z ATP</td>
+            <td>ATP, kationy $Mg^{2+}$ lub $Mn^{2+}$</td>
+            <td>Heksokinaza, kinaza kreatynowa (CK), kinaza białkowa A (PKA).</td>
+          </tr>
+          <tr>
+            <td><strong>Acylotransferazy</strong></td>
+            <td>Grupy acylowe (np. acetylowa)</td>
+            <td>Koenzym A (CoA-SH)</td>
+            <td>Karnitynopalmitoilotransferaza I i II (transport kwasów tłuszczowych do mitochondrium).</td>
+          </tr>
+          <tr>
+            <td><strong>Metylotransferazy</strong></td>
+            <td>Grupa metylowa ($-CH_3$)</td>
+            <td>S-adenozylometionina (SAM)</td>
+            <td>Synteza adrenaliny, fosfatydylocholiny, metylacja DNA.</td>
+          </tr>
+          <tr>
+            <td><strong>Transketolazy</strong></td>
+            <td>Grupa dwuwęglowa (glikoaldehydowa)</td>
+            <td>Difosforan tiaminy (TPP, wit. $B_1$)</td>
+            <td>Szlak pentozofosforanowy; oznaczanie aktywności w erytrocytach wykrywa niedobór witaminy $B_1$ (Wernicke-Korsakow).</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout-warning">
+      <div class="warning-title">⚠️ Złota reguła i pułapka egzaminacyjna!</div>
+      <strong>Wskaźnik de Ritisa (iloraz AST / ALT):</strong>
+      <br>• Wskaźnik $< 1$ (przewaga ALT nad AST): wskazuje na <em>łagodne lub zapalne uszkodzenie hepatocytów</em> (ALT jest enzymem czysto cytozolowym, łatwo „wycieka” przy obrzęku komórki – np. w ostrym WZW).
+      <br>• Wskaźnik $> 1$, a zwłaszcza $> 2$ (drastyczna przewaga AST nad ALT): wskazuje na <em>głęboką martwicę komórkową</em> (ponieważ AST znajduje się w 70% w mitochondriach, jego uwolnienie świadczy o zniszczeniu organelli – typowe dla alkoholowego zapalenia wątroby lub zawału serca).
+    </div>
+
+    <div class="quiz-section">
+      <div class="quiz-section-title">✍️ Szybki test sprawdzający:</div>
+      <details class="quiz-item">
+        <summary class="quiz-question">Dlaczego w badaniu kinaz zawsze konieczna jest obecność jonów magnezu ($Mg^{2+}$)?</summary>
+        <div class="quiz-answer">
+          <strong>Odpowiedź:</strong> Ponieważ rzeczywistym substratem dla kinaz nie jest sam wolny ATP, lecz kompleks chelatowy $Mg^{2+}-ATP$. Magnez neutralizuje ujemne ładunki reszt fosforanowych i umożliwia atak nukleofilowy na końcowe wiązanie bezwodnikowe.
+        </div>
+      </details>
+      <details class="quiz-item">
+        <summary class="quiz-question">Jaka witamina jest niezbędna do prawidłowego funkcjonowania transaminaz ALT i AST?</summary>
+        <div class="quiz-answer">
+          <strong>Odpowiedź:</strong> Witamina $B_6$ (pirydoksyna), z której syntetyzowany jest koenzym: fosforan pirydoksalu (PLP).
+        </div>
+      </details>
+    </div>
+  </article>
+
+  <!-- ==================== ZAGADNIENIE 6 ==================== -->
+  <article class="card" id="z6">
+    <div class="card-header">
+      <span class="card-number">Zagadnienie 6</span>
+      <h2 class="card-title">Klasa 3: Hydrolazy – charakterystyka, reakcje i wykorzystanie w diagnostyce</h2>
+    </div>
+
+    <div class="question-box">
+      Pytanie: W jaki sposób działają hydrolazy, dlaczego większość z nich nie potrzebuje koenzymów i które enzymy tej klasy diagnozują ostre zapalenie trzustki lub schorzenia kośćca?
+    </div>
+
+    <div class="callout-analogy">
+      <div class="callout-title">💡 Analogia z życia codziennego</div>
+      Hydrolazy to precyzyjne nożyczki hydrauliczne. Do przecięcia sznura (wiązania peptydowego, estrowego czy glikozydowego) bezwzględnie zużywają jedną cząsteczkę wody – jeden koniec rozciętego sznura dostaje fragment $-H$, a drugi fragment $-OH$. Bez wody te nożyczki są całkowicie zablokowane.
+    </div>
+
+    <div class="definition-box">
+      <strong class="label">Ścisła definicja akademicka</strong>
+      <strong>Hydrolazy (EC 3)</strong> katalizują nieodwracalny w warunkach fizjologicznych rozpad wiązań kowalencyjnych (estrowych, eterowych, peptydowych, glikozydowych, bezwodnikowych) z jednoczesnym wbudowaniem elementów cząsteczki wody:
+      $$A-B + H_2O \rightarrow A-H + B-OH$$
+    </div>
+
+    <p><strong>Reprezentanci kliniczni hydrolaz w diagnostyce laboratoryjnej:</strong></p>
+    <div class="table-container">
+      <table class="comparison-table">
+        <thead>
+          <tr>
+            <th>Enzym</th>
+            <th>Typ hydrolizowanego wiązania</th>
+            <th>Fizjologiczne źródło</th>
+            <th>Zastosowanie w diagnostyce medycznej</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>$\alpha$-Amylaza</strong></td>
+            <td>Wiązania $\alpha-1,4$-glikozydowe w polisacharydach</td>
+            <td>Trzustka, ślinianki</td>
+            <td>Ostre zapalenie trzustki (OZT) – gwałtowny wzrost w surowicy i w moczu (diastaza).</td>
+          </tr>
+          <tr>
+            <td><strong>Lipaza trzustkowa</strong></td>
+            <td>Wiązania estrowe w triacyloglicerolach</td>
+            <td>Pęcherzyki trzustki</td>
+            <td>Ostre zapalenie trzustki – marker znacznie bardziej swoisty niż amylaza (utrzymuje się dłużej podwyższona).</td>
+          </tr>
+          <tr>
+            <td><strong>Fosfataza alkaliczna (ALP)</strong></td>
+            <td>Estry monofosforanowe (optimum pH ~9–10)</td>
+            <td>Osteoblasty (kości), kanalik żółciowy (wątroba), łożysko</td>
+            <td>Cholestaza wątrobowa (zastój żółci), choroby kości z przebudową (krzywica, choroba Pageta, przerzuty nowotworowe do kości).</td>
+          </tr>
+          <tr>
+            <td><strong>Fosfataza kwaśna (ACP)</strong></td>
+            <td>Estry monofosforanowe (optimum pH ~4,5–5,5)</td>
+            <td>Gruczoł krokowy (prostata), erytrocyty, płytki krwi</td>
+            <td>Frakcja sterczowa hamowana winianem – dawny marker zaawansowanego raka stercza (obecnie zastąpiony PSA).</td>
+          </tr>
+          <tr>
+            <td><strong>Acetylocholinoesteraza</strong></td>
+            <td>Wiązanie estrowe w acetylocholinie</td>
+            <td>Błony erytrocytów, synapsy nerwowe</td>
+            <td>Spadek aktywności we krwi jest czułym wskaźnikiem zatrucia pestycydami fosforoorganicznymi lub gazami bojowymi.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout-warning">
+      <div class="warning-title">⚠️ Złota reguła i pułapka egzaminacyjna!</div>
+      <strong>Hydrolazy NIE wymagają organicznych koenzymów!</strong> W przeciwieństwie do oksydoreduktaz czy transferaz, hydrolazy nie potrzebują witaminowych koenzymów do przenoszenia fragmentów, ponieważ drugim substratem jest wszechobecna woda ($H_2O$). Mogą jednak wymagać jonów metali jako kofaktorów stabilizujących (np. $Zn^{2+}$ w karboksypeptydazie A czy $Ca^{2+}$ w amylazie).
+    </div>
+
+    <div class="quiz-section">
+      <div class="quiz-section-title">✍️ Szybki test sprawdzający:</div>
+      <details class="quiz-item">
+        <summary class="quiz-question">Dlaczego w diagnostyce ostrego zapalenia trzustki lipaza jest uważana za parametr lepszy niż amylaza?</summary>
+        <div class="quiz-answer">
+          <strong>Odpowiedź:</strong> Lipaza jest niemal wyłącznie produkowana przez miąższ trzustki (wysoka narządowa swoistość), podczas gdy amylaza pochodzi również ze ślinianek (wzrost m.in. w śwince), a ponadto lipaza pozostaje podwyższona w surowicy znacznie dłużej niż amylaza.
+        </div>
+      </details>
+      <details class="quiz-item">
+        <summary class="quiz-question">Jak zróżnicować, czy podwyższona fosfataza alkaliczna (ALP) pochodzi z wątroby czy z kości?</summary>
+        <div class="quiz-answer">
+          <strong>Odpowiedź:</strong> Oznaczając równolegle GGTP (gamma-glutamylotranspeptydazę). Jeśli GGTP jest podwyższone, źródłem ALP jest wątroba/drogi żółciowe. Jeśli GGTP jest w normie, wysokie ALP wynika z aktywności osteoblastów w kościach.
+        </div>
+      </details>
+    </div>
+  </article>
+
+  <!-- ==================== ZAGADNIENIE 7 ==================== -->
+  <article class="card" id="z7">
+    <div class="card-header">
+      <span class="card-number">Zagadnienie 7</span>
+      <h2 class="card-title">Klasa 4: Liazy – charakterystyka, koenzymy, reakcje i znaczenie</h2>
+    </div>
+
+    <div class="question-box">
+      Pytanie: Czym charakteryzują się liazy, w jaki sposób rozrywają wiązania bez udziału cząsteczki wody i jakie enzymy tej klasy decydują o równowadze kwasowo-zasadowej w ustroju?
+    </div>
+
+    <div class="callout-analogy">
+      <div class="callout-title">💡 Analogia z życia codziennego</div>
+      Liazy to mechanicy, którzy odłamują gałąź jednym szarpnięciem bez używania piłki wodnej ani kleju. Przez to gwałtowne odłamanie na pniu drzewa powstaje zadzior – wiązanie podwójne ($C=C$ lub $C=O$). Mogą też działać w drugą stronę: wcisnąć mały element w to pęknięcie, likwidując podwójne wiązanie.
+    </div>
+
+    <div class="definition-box">
+      <strong class="label">Ścisła definicja akademicka</strong>
+      <strong>Liazy (EC 4)</strong> to enzymy katalizujące rozszczepienie wiązań $C-C, C-O, C-N, C-S$ i innych poprzez mechanizm eliminacji (niehydrolitycznie i bez nakładu nukleotydotrifosforanów), co prowadzi do utworzenia wiązania podwójnego, LUB katalizujące przyłączenie grupy do wiązania podwójnego:
+      $$A=B + X-Y \rightleftharpoons A(X)-B(Y)$$
+    </div>
+
+    <p><strong>Typowe reakcje i koenzymy liaz:</strong></p>
+    <ul style="margin-left: 20px; margin-bottom: 16px;">
+      <li><strong>Dekarboksylazy aminokwasów:</strong> odszczepiają grupę karboksylową w postaci wolnego $CO_2$. Wymagają <strong>fosforanu pirydoksalu (PLP)</strong>. Przykład: dekarboksylaza histydynowa (tworzy histaminę), dekarboksylaza glutaminianowa (GAD – tworzy neuroprzekaźnik GABA).</li>
+      <li><strong>Dekarboksylazy $\alpha$-ketokwasów:</strong> odszczepiają $CO_2$ od ketokwasu. Wymagają <strong>difosforanu tiaminy (TPP)</strong>. Przykład: dekarboksylaza pirogronianowa.</li>
+      <li><strong>Aldolazy:</strong> rozszczepiają wiązania węgiel-węgiel w cząsteczkach cukrów bez użycia wody (np. aldolaza fruktozo-1,6-bisfosforanowa w glikolizie).</li>
+      <li><strong>Dehydratazy:</strong> odszczepiają cząsteczkę wody z wytworzeniem wiązania podwójnego (np. enolaza przekształcająca 2-fosfoglicerynian w fosfoenolopirogronian PEP).</li>
+      <li><strong>Anhydraza węglanowa:</strong> (EC 4.2.1.1, enzym zawierający $Zn^{2+}$) katalizuje odwracalną hydratację dwutlenku węgla: $CO_2 + H_2O \rightleftharpoons H_2CO_3$.</li>
+    </ul>
+
+    <div class="callout-warning">
+      <div class="warning-title">⚠️ Złota reguła i pułapka egzaminacyjna!</div>
+      <strong>Liaza czy Hydrolaza?</strong> Zwróć uwagę na enzym dehydratazę (np. enolazę). Mimo że w reakcji pojawia się woda (zostaje odszczepiona), enzym ten jest <em>liazą</em>, ponieważ tworzy wiązanie podwójne ($C=C$). Hydrolaza działa odwrotnie: zużywa wodę do <em>rozerwania</em> pojedynczego wiązania na dwa osobne związki!
+    </div>
+
+    <div class="quiz-section">
+      <div class="quiz-section-title">✍️ Szybki test sprawdzający:</div>
+      <details class="quiz-item">
+        <summary class="quiz-question">Jaki kofaktor metaliczny jest niezbędny w centrum aktywnym anhydrazy węglanowej?</summary>
+        <div class="quiz-answer">
+          <strong>Odpowiedź:</strong> Jon cynku ($Zn^{2+}$). Polaryzuje on cząsteczkę wody, ułatwiając generowanie grupy nukleofilowej $-OH$ atakującej dwutlenek węgla.
+        </div>
+      </details>
+      <details class="quiz-item">
+        <summary class="quiz-question">Obecność przeciwciał przeciwko jakiemu enzymowi z klasy liaz (GAD) jest kluczowym markerem w diagnostyce cukrzycy typu 1?</summary>
+        <div class="quiz-answer">
+          <strong>Odpowiedź:</strong> Przeciwciała przeciwko dekarboksylazie kwasu glutaminowego (anty-GAD). Enzym ten przekształca glutaminian w kwas $\gamma$-aminomasłowy (GABA) w komórkach $\beta$ wysp trzustkowych.
+        </div>
+      </details>
+    </div>
+  </article>
+
+  <!-- ==================== ZAGADNIENIE 8 ==================== -->
+  <article class="card" id="z8">
+    <div class="card-header">
+      <span class="card-number">Zagadnienie 8</span>
+      <h2 class="card-title">Klasa 5: Izomerazy – charakterystyka, koenzymy, reakcje i znaczenie</h2>
+    </div>
+
+    <div class="question-box">
+      Pytanie: Jakie rodzaje przekształceń wewnątrz cząsteczki wykonują izomerazy, jakie są ich podklasy i jak witamina $B_{12}$ asystuje w pracy mutazom?
+    </div>
+
+    <div class="callout-analogy">
+      <div class="callout-title">💡 Analogia z życia codziennego</div>
+      Izomeraza to człowiek układający kostkę Rubika lub przestawiający meble w tym samym pokoju. Do pokoju nic nie wnosimy ani nic z niego nie wyrzucamy (wzór sumaryczny związku pozostaje identyczny). Zmienia się wyłącznie układ przestrzenny – sofa wędruje pod okno, a szafa pod ścianę.
+    </div>
+
+    <div class="definition-box">
+      <strong class="label">Ścisła definicja akademicka</strong>
+      <strong>Izomerazy (EC 5)</strong> katalizują zmiany strukturalne, optyczne lub geometryczne w obrębie pojedynczej cząsteczki. Przekształcają jeden izomer w drugi bez zmiany sumarycznego składu pierwiastkowego substratu:
+      $$A \rightleftharpoons \text{Izomer } A$$
+    </div>
+
+    <p><strong>Główne podklasy izomeraz w metabolizmie:</strong></p>
+    <div class="table-container">
+      <table class="comparison-table">
+        <thead>
+          <tr>
+            <th>Podklasa</th>
+            <th>Mechanizm przekształcenia</th>
+            <th>Typowy kofaktor</th>
+            <th>Przykład metaboliczny</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Racemazy i epimerazy</strong></td>
+            <td>Inwersja konfiguracji wokół asymetrycznego atomu węgla (D/L lub epimery)</td>
+            <td>Fosforan pirydoksalu (PLP)</td>
+            <td>Epimeraza UDP-glukozy (metabolizm galaktozy), racemazy aminokwasowe.</td>
+          </tr>
+          <tr>
+            <td><strong>Izomerazy aldozowo-ketozowe</strong></td>
+            <td>Wzajemne przekształcanie grupy aldozowej ($-CHO$) i ketonowej ($C=O$)</td>
+            <td>Często brak kofaktora</td>
+            <td>Izomeraza triozofosforanowa (TPI: aldehyd 3-P-glicerynowy $\rightleftharpoons$ DHAP), fosfoglukoizomeraza.</td>
+          </tr>
+          <tr>
+            <td><strong>Mutazy</strong></td>
+            <td>Przeniesienie grupy chemicznej w inne położenie wewnątrz tej samej cząsteczki</td>
+            <td>Kobalamina (koenzym $B_{12}$) lub bisfosforany cukrów</td>
+            <td>Mutaza fosfoglicerynianowa (glikoliza), mutaza metylomalonylo-CoA (zależna od witaminy $B_{12}$).</td>
+          </tr>
+          <tr>
+            <td><strong>Izomerazy cis-trans</strong></td>
+            <td>Przegrupowanie geometrii wokół wiązania podwójnego</td>
+            <td>Grupowanie tiolowe</td>
+            <td>Izomeraza maleinianowa, izomeraza peptydylo-prolinowa (zwijanie białek).</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout-warning">
+      <div class="warning-title">⚠️ Złota reguła i pułapka egzaminacyjna!</div>
+      <strong>Mutaza metylomalonylo-CoA a diagnostyka neurologiczna:</strong> Enzym ten przekształca L-metylomalonylo-CoA w bursztynylo-CoA i bezwzględnie wymaga <em>adenozylokobalaminy (witaminy $B_{12}$)</em>. W niedoborze $B_{12}$ dochodzi do nagromadzenia kwasu metylomalonowego (MMA) w osoczu i moczu. Prowadzi to do wbudowywania nieprawidłowych kwasów tłuszczowych w osłonki mielinowe i rozwoju podostrego złożonego zwyrodnienia rdzenia kręgowego!
+    </div>
+
+    <div class="quiz-section">
+      <div class="quiz-section-title">✍️ Szybki test sprawdzający:</div>
+      <details class="quiz-item">
+        <summary class="quiz-question">Do jakiej nadrzędnej klasy enzymów należy mutaza fosfoglicerynianowa, mimo że „przenosi” grupę fosforanową?</summary>
+        <div class="quiz-answer">
+          <strong>Odpowiedź:</strong> Należy do <strong>Izomeraz (EC 5)</strong>, ponieważ przenosi grupę wewnątrz <em>tej samej</em> cząsteczki (z węgla C-3 na C-2 glicerynianu), a nie na inny związek (nie jest transferazą).
+        </div>
+      </details>
+      <details class="quiz-item">
+        <summary class="quiz-question">Jaka izomeraza w 5. etapie glikolizy jest uważana za enzym „kinetycznie doskonały”?</summary>
+        <div class="quiz-answer">
+          <strong>Odpowiedź:</strong> Izomeraza triozofosforanowa (TPI). Szybkość jej reakcji jest ograniczona wyłącznie prędkością dyfuzji substratu w roztworze.
+        </div>
+      </details>
+    </div>
+  </article>
+
+  <!-- ==================== ZAGADNIENIE 9 ==================== -->
+  <article class="card" id="z9">
+    <div class="card-header">
+      <span class="card-number">Zagadnienie 9</span>
+      <h2 class="card-title">Klasa 6: Ligazy – charakterystyka, koenzymy, reakcje i medycyna molekularna</h2>
+    </div>
+
+    <div class="question-box">
+      Pytanie: W jaki sposób ligazy (syntetazy) łączą cząsteczki kosztem energii ATP, jaką rolę pełni biotyna w karboksylacji i jak ligazy wykorzystuje się w inżynierii genetycznej?
+    </div>
+
+    <div class="callout-analogy">
+      <div class="callout-title">💡 Analogia z życia codziennego</div>
+      Ligaza to pistolet do klejenia na gorąco. Żeby połączyć dwa kawałki drewna, nie wystarczy ich do siebie przyłożyć – musisz podłączyć pistolet do gniazdka z prądem (dostarczyć energię z rozpadu ATP). Dopiero wysoka energia pozwala stopić wkład klejowy i trwale zespolić obie części.
+    </div>
+
+    <div class="definition-box">
+      <strong class="label">Ścisła definicja akademicka</strong>
+      <strong>Ligazy (EC 6)</strong>, zwane historycznie syntetazami, katalizują reakcje łączenia dwóch odrębnych cząsteczek poprzez wytworzenie wiązań $C-O, C-S, C-N$ lub $C-C$, sprzężone z jednoczesną hydrolizą wiązania wysokoenergetycznego w ATP (lub innym nukleozydotrifosforanie NTP):
+      $$A + B + ATP \rightarrow A-B + ADP + P_i \quad \text{lub} \quad A-B + AMP + PP_i$$
+    </div>
+
+    <p><strong>Kluczowe ligazy w medycynie i biochemii:</strong></p>
+    <ul style="margin-left: 20px; margin-bottom: 16px;">
+      <li><strong>Karboksylazy zależne od biotyny:</strong> wbudowują $CO_2$ kosztem ATP z udziałem <strong>witaminy $B_7$ (biotyny)</strong>:
+        <br>– <em>Karboksylaza pirogronianowa:</em> kluczowy enzym anaplerotyczny i glukoneogenezy (tworzy szczawiooctan).
+        <br>– <em>Karboksylaza acetylo-CoA (ACC):</em> etap limitujący biosyntezę kwasów tłuszczowych (tworzy malonylo-CoA).</li>
+      <li><strong>Syntetazy aminoacylo-tRNA:</strong> przyłączają aminokwas do właściwego tRNA kosztem ATP (tworząc wysokoenergetyczny kompleks $AMP-\text{aminokwas}$); gwarantują wierność translacji.</li>
+      <li><strong>Syntetaza glutaminowa:</strong> asymiluje toksyczny amoniak w mózgu i wątrobie: $\text{Glutaminian} + NH_3 + ATP \rightarrow \text{Glutamina} + ADP + P_i$.</li>
+      <li><strong>Ligaza DNA:</strong> scala fragmenty Okazaki w procesie replikacji oraz łączy lepkie/tępe końce DNA w biologii molekularnej i klonowaniu genów.</li>
+    </ul>
+
+    <div class="callout-warning">
+      <div class="warning-title">⚠️ Złota reguła i pułapka egzaminacyjna!</div>
+      <strong>Spożywanie surowych jaj a karboksylazy:</strong> Białko surowego jaja kurzego zawiera <strong>awidynę</strong> – glikoproteinę, która wiąże biotynę z astronomicznym powinowactwem ($K_d \approx 10^{-15}\text{ M}$), uniemożliwiając jej wchłanianie w jelicie. Prowadzi to do nabytego wielonarządowego niedoboru ligaz karboksylujących (kwasica mleczanowa, wypadanie włosów, zapalenie skóry). Gotowanie denaturuje awidynę!
+    </div>
+
+    <div class="quiz-section">
+      <div class="quiz-section-title">✍️ Szybki test sprawdzający:</div>
+      <details class="quiz-item">
+        <summary class="quiz-question">Jakie wiązanie fosforanowe ulega rozerwaniu w reakcji katalizowanej przez syntetazy aminoacylo-tRNA?</summary>
+        <div class="quiz-answer">
+          <strong>Odpowiedź:</strong> Wiązanie między fosforanem $\alpha$ i $\beta$ w ATP, co prowadzi do uwolnienia nieorganicznego pirofosforanu ($PP_i$) oraz powstania aminoacylo-AMP. Hydroliza $PP_i$ przez pirofosfatazę napędza reakcję nieodwracalnie do przodu.
+        </div>
+      </details>
+      <details class="quiz-item">
+        <summary class="quiz-question">W jakiej technice laboratoryjnej wykorzystuje się termostabilną ligazę DNA do detekcji mutacji punktowych?</summary>
+        <div class="quiz-answer">
+          <strong>Odpowiedź:</strong> W reakcji łańcuchowej ligazy (LCR – Ligase Chain Reaction). Ligaza łączy sondy tylko wtedy, gdy na matrycy występuje idealna komplementarność bez niedopasowania zasad.
+        </div>
+      </details>
+    </div>
+  </article>
+
+  <!-- ==================== ZAGADNIENIE 10 ==================== -->
+  <article class="card" id="z10">
+    <div class="card-header">
+      <span class="card-number">Zagadnienie 10</span>
+      <h2 class="card-title">Rybozymy i koncepcja ewolucyjna „Świata RNA”</h2>
+    </div>
+
+    <div class="question-box">
+      Pytanie: Czym są rybozymy, jak cząsteczka kwasu rybonukleinowego może działać jako enzym i dlaczego odkrycie to zmieniło nasze rozumienie początków życia na Ziemi?
+    </div>
+
+    <div class="callout-analogy">
+      <div class="callout-title">💡 Analogia z życia codziennego</div>
+      Tradycyjnie uważano, że RNA to tylko kartka papieru z przepisem architektonicznym (nośnik informacji), a białka to ekipa budowlana z betoniarką (katalizatory). Odkrycie rybozymów pokazało, że ten papier z przepisem potrafi sam złożyć się w japońskie origami o twardych, ostrych krawędziach i samodzielnie ciąć deski na budowie bez udziału żadnego robotnika!
+    </div>
+
+    <div class="definition-box">
+      <strong class="label">Ścisła definicja akademicka</strong>
+      <strong>Rybozymy</strong> to katalitycznie aktywne cząsteczki RNA zdolne do specyficznego rozrywania, ligacji lub tworzenia wiązań kowalencyjnych w cząsteczkach kwasów nukleinowych oraz białek bez udziału białkowej frakcji katalitycznej. Za ich odkrycie Thomas Cech i Sidney Altman otrzymali Nagrodę Nobla w 1989 roku.
+    </div>
+
+    <p><strong>Najważniejsze przykłady rybozymów w organizmie człowieka:</strong></p>
+    <div class="table-container">
+      <table class="comparison-table">
+        <thead>
+          <tr>
+            <th>Rybozym</th>
+            <th>Lokalizacja komórkowa</th>
+            <th>Katalizowana reakcja</th>
+            <th>Rola biologiczna</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Peptydylotransferaza</strong></td>
+            <td>Duża podjednostka rybosomu (28S rRNA u człowieka, 23S rRNA u bakterii)</td>
+            <td>Synteza wiązania peptydowego między grupą aminową aminoacylo-tRNA a grupą karbonylową peptydu</td>
+            <td>Rybosom jest de facto olbrzymim rybozymem! Białka rybosomalne stanowią jedynie rusztowanie strukturalne.</td>
+          </tr>
+          <tr>
+            <td><strong>Spliceosom (snRNA)</strong></td>
+            <td>Jądro komórkowe</td>
+            <td>Transestryfikacja, wycinanie intronów i łączenie eksonów</td>
+            <td>Dojrzewanie pierwotnych transkryptów pre-mRNA do dojrzałego mRNA.</td>
+          </tr>
+          <tr>
+            <td><strong>Rybonukleaza P (RNaza P)</strong></td>
+            <td>Jądro / Mitochondria</td>
+            <td>Endonukleolityczne cięcie końca 5' prekursorów tRNA</td>
+            <td>Wytwarzanie funkcjonalnych, dojrzałych cząsteczek tRNA.</td>
+          </tr>
+          <tr>
+            <td><strong>Samowycinające się introny (Self-splicing)</strong></td>
+            <td>Mitochondria, pierwotniaki, bakterie</td>
+            <td>Autokatalityczne wycinanie własnej sekwencji z pierwotnego transkryptu</td>
+            <td>Reakcja nie wymaga żadnych zewnętrznych enzymów ani energii z ATP (introny grupy I i II).</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout-warning">
+      <div class="warning-title">⚠️ Złota reguła i pułapka egzaminacyjna!</div>
+      <strong>Hipoteza „Świata RNA” (RNA World):</strong> Odpowiada na odwieczny paradoks biologii: „Co było pierwsze: kwas nukleinowy (który potrzebuje enzymów do powielenia) czy enzym białkowy (który potrzebuje matrycy DNA do powstania)?”. Odpowiedź brzmi: <strong>RNA</strong>, ponieważ jest jedyną biocząsteczką zdolną <em>zarówno do przechowywania informacji genetycznej, jak i do samodzielnej katalizy biochemicznej</em>.
+    </div>
+
+    <div class="quiz-section">
+      <div class="quiz-section-title">✍️ Szybki test sprawdzający:</div>
+      <details class="quiz-item">
+        <summary class="quiz-question">Jaki jon dwuwartościowy jest najczęściej niezbędny do stabilizacji trójwymiarowej struktury i funkcji katalitycznej rybozymów?</summary>
+        <div class="quiz-answer">
+          <strong>Odpowiedź:</strong> Jon magnezu ($Mg^{2+}$). Neutralizuje silnie ujemny ładunek polianionowego szkieletu fosfodiestrowego RNA i uczestniczy w aktywacji cząsteczek wody biorących udział w transestryfikacji.
+        </div>
+      </details>
+      <details class="quiz-item">
+        <summary class="quiz-question">Jakie potencjalne zastosowanie medyczne posiadają syntetyczne rybozymy projektowane w terapii celowanej?</summary>
+        <div class="quiz-answer">
+          <strong>Odpowiedź:</strong> Mogą działać jako precyzyjne nożyce molekularne niszczące swoiste mRNA onkogenów (np. w nowotworach) lub wirusowy RNA genomowy (np. w terapii zakażeń HIV lub wirusami grypy).
+        </div>
+      </details>
+    </div>
+  </article>
+
+  <!-- ==================== ZAGADNIENIE 11 ==================== -->
+  <article class="card" id="z11">
+    <div class="card-header">
+      <span class="card-number">Zagadnienie 11</span>
+      <h2 class="card-title">Mechanizm działania enzymów – obniżenie energii aktywacji, tworzenie kompleksu ES, odwracalność reakcji</h2>
+    </div>
+
+    <div class="question-box">
+      Pytanie: W jaki sposób biokatalizatory obniżają barierę energii aktywacji, jak tworzy się kompleks enzym-substrat (ES) i co determinuje odwracalność reakcji?
+    </div>
+
+    <div class="callout-analogy">
+      <div class="callout-title">💡 Analogia z życia codziennego</div>
+      Chcesz przedostać się na drugą stronę wysokiej góry. Samorzutna reakcja bez katalizatora to wspinaczka przez najwyższy, stromy szczyt (wysoka bariera energii aktywacji) – wymaga olbrzymiego wysiłku i uda się nielicznym cząsteczkom. Enzym to firma inżynieryjna, która drąży w tej górze tunel na poziomie doliny. Początek i koniec trasy leżą dokładnie na tych samych wysokościach ($\Delta G$ nie ulega zmianie!), ale przejście przez tunel zajmuje ułamek sekundy i wymaga minimalnego wysiłku.
+    </div>
+
+    <p><strong>Ciąg przyczynowo-skutkowy katalizy enzymatycznej:</strong></p>
+    <div class="process-flow">
+      <div class="flow-step">1. Wolny enzym i substrat<br><small>$E + S$ (dyfuzja)</small></div>
+      <div class="flow-arrow">➔</div>
+      <div class="flow-step">2. Indukowane dopasowanie<br><small>Zmiana konformacji białka</small></div>
+      <div class="flow-arrow">➔</div>
+      <div class="flow-step">3. Kompleks ES<br><small>Stabilizacja stanu przejściowego</small></div>
+      <div class="flow-arrow">➔</div>
+      <div class="flow-step">4. Kompleks EP<br><small>Przekształcenie chemiczne</small></div>
+      <div class="flow-arrow">➔</div>
+      <div class="flow-step">5. Uwolnienie produktu<br><small>$E + P$ (enzym odzyskany)</small></div>
+    </div>
+
+    <div class="definition-box">
+      <strong class="label">Ścisła definicja akademicka</strong>
+      Enzymy przyspieszają reakcje chemiczne o $10^6$ do $10^{14}$ razy poprzez <strong>obniżenie energii aktywacji ($\Delta G^\ddagger$)</strong>, czyli różnicy energii swobodnej między stanem wyjściowym reagentów a wysokoenergetycznym <em>stanem przejściowym</em>. Enzymy stabilizują stan przejściowy poprzez sieć oddziaływań niekowalencyjnych (wiązania wodorowe, mostki solne, oddziaływania hydrofobowe).
+      <br><br>
+      <strong>Główne strategie katalityczne:</strong>
+      <ol style="margin-left: 20px;">
+        <li><strong>Kataliza przez zbliżenie i orientację:</strong> unieruchomienie reagentów w optymalnej geometrii przestrzennej (eliminacja straty entropii).</li>
+        <li><strong>Kataliza kwasowo-zasadowa:</strong> oddawanie lub pobieranie protonów przez reszty His, Glu, Asp, Lys, Cys w centrum aktywnym.</li>
+        <li><strong>Kataliza kowalencyjna:</strong> utworzenie przejściowego, nietrwałego wiązania kowalencyjnego między enzymem a substratem (np. triada katalityczna Ser-His-Asp w chymotrypsynie).</li>
+        <li><strong>Kataliza z udziałem jonów metali:</strong> polaryzacja wiązań, stabilizacja ładunków ujemnych lub transfer elektronów.</li>
+      </ol>
+    </div>
+
+    <div class="callout-warning">
+      <div class="warning-title">⚠️ Złota reguła i pułapka egzaminacyjna!</div>
+      <strong>Czego enzym NIGDY nie zmienia?</strong>
+      <br>1. Enzym <strong>NIE zmienia entalpii swobodnej reakcji ($\Delta G$)</strong> – nie czyni reakcji termodynamicznie niemożliwej reakcją samorzutną!
+      <br>2. Enzym <strong>NIE zmienia stałej równowagi reakcji ($K_{eq}$)</strong> – przyspiesza w dokładnie takim samym stopniu reakcję wprost ($k_1$), jak i reakcję powrotną ($k_{-1}$):
+      $$K_{eq} = \frac{k_1}{k_{-1}} = \text{const}$$
+    </div>
+
+    <div class="quiz-section">
+      <div class="quiz-section-title">✍️ Szybki test sprawdzający:</div>
+      <details class="quiz-item">
+        <summary class="quiz-question">Czym różni się model „indukowanego dopasowania” Koshlanda od historycznego modelu „klucza i zamka” Fischera?</summary>
+        <div class="quiz-answer">
+          <strong>Odpowiedź:</strong> Model Fischera zakładał sztywne dopasowanie centrum aktywnego do substratu. Model Koshlanda słusznie dowodzi, że centrum aktywne jest elastyczne, a wiązanie substratu indukuje zmianę konformacji enzymu, która idealnie komplementarnie dopasowuje się nie tyle do samego substratu, co do <em>stanu przejściowego</em>.
+        </div>
+      </details>
+      <details class="quiz-item">
+        <summary class="quiz-question">Jeśli $\Delta G$ reakcji wynosi $+15\text{ kJ/mol}$, czy dodanie dużej ilości enzymu spowoduje spontaniczną syntezę produktu?</summary>
+        <div class="quiz-answer">
+          <strong>Odpowiedź:</strong> Nie. Reakcja o dodatnim $\Delta G$ jest endoergiczna i termodynamicznie niemożliwa bez sprzężenia ze źródłem energii (np. hydrolizą ATP). Enzym nie przesuwa równowagi termodynamicznej.
+        </div>
+      </details>
+    </div>
+  </article>
+
+  <!-- ==================== ZAGADNIENIE 12 ==================== -->
+  <article class="card" id="z12">
+    <div class="card-header">
+      <span class="card-number">Zagadnienie 12</span>
+      <h2 class="card-title">Kinetyka reakcji enzymatycznej – stężenie enzymu, substratu oraz stała Michaelisa ($K_m$)</h2>
+    </div>
+
+    <div class="question-box">
+      Pytanie: Jak matematycznie opisujemy szybkość reakcji enzymatycznej za pomocą modelu Michaelisa-Menten i jakie fundamentalne znaczenie fizjologiczne ma stała $K_m$?
+    </div>
+
+    <div class="callout-analogy">
+      <div class="callout-title">💡 Analogia z życia codziennego</div>
+      Wyobraź sobie 10 kasjerek w supermarkecie (stężenie enzymu $[E]$) i kolejkę klientów (stężenie substratu $[S]$). Gdy w sklepie jest tylko 2 klientów ($[S] \ll K_m$), szybkość obsługi zależy wyłącznie od tego, ilu klientów podejdzie do kas (kinetyka I rzędu). Gdy do sklepu wejdzie 5000 ludzi ($[S] \gg K_m$), wszystkie 10 kas pracuje na 100% swoich możliwości i więcej klientów na minutę nie da się obsłużyć – osiągnięto prędkość maksymalną $V_{max}$ (kinetyka zerowego rzędu). Jeśli podwoimy liczbę kasjerek do 20, $V_{max}$ natychmiast wzrośnie dwukrotnie.
+    </div>
+
+    <div class="definition-box">
+      <strong class="label">Ścisła definicja akademicka</strong>
+      Równanie Michaelisa-Menten opisuje zależność początkowej szybkości reakcji ($v_0$) od stężenia substratu $[S]$ dla enzymów nieallosterycznych:
+      $$v_0 = \frac{V_{max} \cdot [S]}{K_m + [S]}$$
+      Gdzie:
+      <br>• $V_{max}$ – szybkość maksymalna, osiągana przy całkowitym wysyceniu miejsc aktywnych substratem ($[ES] = [E]_t$).
+      <br>• $K_m$ – <strong>stała Michaelisa</strong>, definiowana jako takie stężenie substratu, przy którym szybkość reakcji osiąga dokładnie połowę szybkości maksymalnej:
+      $$v_0 = \frac{1}{2} V_{max} \implies [S] = K_m$$
+      Mierzy się ją w jednostkach stężenia ($\text{mol/l}, \text{mmol/l}$).
+    </div>
+
+    <p><strong>Fizjologiczny model kliniczny: Heksokinaza vs Glukokinaza:</strong></p>
+    <div class="table-container">
+      <table class="comparison-table">
+        <thead>
+          <tr>
+            <th>Cecha</th>
+            <th>Heksokinaza (Mózg, mięśnie, większość tkanek)</th>
+            <th>Glukokinaza / Heksokinaza IV (Wątroba, komórki $\beta$ trzustki)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Wartość $K_m$</strong></td>
+            <td>Bardzo niska ($K_m \approx 0{,}05\text{ mmol/l}$)</td>
+            <td>Bardzo wysoka ($K_m \approx 10\text{ mmol/l}$)</td>
+          </tr>
+          <tr>
+            <td><strong>Powinowactwo do glukozy</strong></td>
+            <td><strong>Bardzo wysokie</strong> (odwrotność $K_m$)</td>
+            <td><strong>Niskie</strong></td>
+          </tr>
+          <tr>
+            <td><strong>Stan przy glikemii na czczo (~5 mmol/l)</strong></td>
+            <td>Pracuje z prędkością bliską $V_{max}$; stale zaopatruje mózg w energię.</td>
+            <td>Niemal nieaktywna; pozwala glukozie ominąć wątrobę i trafić do mózgu.</td>
+          </tr>
+          <tr>
+            <td><strong>Stan po obfitym posiłku</strong></td>
+            <td>Szybko ulega hamowaniu przez swój produkt (glukozo-6-fosforan).</td>
+            <td>Aktywuje się gwałtownie, wychwytuje nadmiar glukozy i magazynuje ją jako glikogen. Działa jako sensor glukozy!</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout-warning">
+      <div class="warning-title">⚠️ Złota reguła i pułapka egzaminacyjna!</div>
+      <strong>Zależność między $K_m$ a powinowactwem:</strong>
+      <br>Pamiętaj: <strong>Im NIŻSZA wartość $K_m$, tym WIĘKSZE powinowactwo enzymu do substratu!</strong> Niska $K_m$ oznacza, że wystarczy znikoma ilość substratu, aby w 50% wysycić enzym. Nigdy nie powiedz na egzaminie, że duża stała $K_m$ oznacza silne wiązanie substratu!
+    </div>
+
+    <div class="quiz-section">
+      <div class="quiz-section-title">✍️ Szybki test sprawdzający:</div>
+      <details class="quiz-item">
+        <summary class="quiz-question">Jak zmieni się szybkość reakcji enzymatycznej, jeśli podwoimy stężenie enzymu przy stałym, nasycającym stężeniu substratu ($[S] \gg K_m$)?</summary>
+        <div class="quiz-answer">
+          <strong>Odpowiedź:</strong> Wzrośnie dokładnie 2-krotnie. Prędkość maksymalna jest wprost proporcjonalna do całkowitego stężenia enzymu: $V_{max} = k_{cat} \cdot [E]_t$.
+        </div>
+      </details>
+      <details class="quiz-item">
+        <summary class="quiz-question">Ile wynosi szybkość reakcji $v_0$, gdy stężenie substratu $[S]$ jest równe $3 \cdot K_m$?</summary>
+        <div class="quiz-answer">
+          <strong>Odpowiedź:</strong> Podstawiając do wzoru: $v_0 = \frac{V_{max} \cdot 3K_m}{K_m + 3K_m} = \frac{3}{4} V_{max} = 75\% V_{max}$.
+        </div>
+      </details>
+    </div>
+  </article>
+
+  <!-- ==================== ZAGADNIENIE 13 ==================== -->
+  <article class="card" id="z13">
+    <div class="card-header">
+      <span class="card-number">Zagadnienie 13</span>
+      <h2 class="card-title">Specyficzność działania enzymów – substratowa i reakcyjna</h2>
+    </div>
+
+    <div class="question-box">
+      Pytanie: Na czym polega niezwykła wybiórczość enzymów i w jaki sposób odróżniamy specyficzność substratową (bezwzględną, względną, stereochemiczną) od specyficzności reakcyjnej?
+    </div>
+
+    <div class="callout-analogy">
+      <div class="callout-title">💡 Analogia z życia codziennego</div>
+      Specyficzność substratowa to dobór klucza do zamka w Twoich drzwiach wejściowych. <strong>Specyficzność bezwzględna</strong> to zamek patentowy – pasuje wyłącznie jeden, unikalny klucz. <strong>Specyficzność grupowa</strong> to pilot do bramy osiedlowej – otwiera bramę dla wszystkich mieszkańców osiedla (grupy podobnych samochodów). <strong>Specyficzność stereochemiczna</strong> to Twoja prawa rękawiczka skórzana – idealnie leży na prawej dłoni (D-enancjomer), ale za nic nie włożysz jej na lewą dłoń (L-enancjomer), mimo że dłonie mają dokładnie taką samą liczbę palców.
+    </div>
+
+    <div class="definition-box">
+      <strong class="label">Ścisła definicja akademicka</strong>
+      Wyróżniamy dwa podstawowe wymiary specyficzności enzymatycznej:
+      <ol style="margin-left: 20px;">
+        <li><strong>Specyficzność substratowa:</strong> zdolność enzymu do selektywnego wybierania tylko jednego związku lub wąskiej grupy związków spośród tysięcy cząsteczek w komórce:
+          <br>– <em>Bezwzględna (absolutna):</em> enzym katalizuje przemianę wyłącznie jednego substratu (np. ureaza hydrolizuje tylko mocznik).
+          <br>– <em>Względna (grupowa):</em> enzym działa na wiązanie chemiczne określonego typu w grupie podobnych cząsteczek (np. pepsyna, chymotrypsyna przecinająca wiązania peptydowe po resztach aromatycznych Trp, Phe, Tyr).
+          <br>– <em>Stereochemiczna (optyczna):</em> enzym rozpoznaje wyłącznie jeden izomer optyczny (np. dehydrogenaza L-mleczanowa działa tylko na L-mleczan, a polimerazy DNA wbudowują wyłącznie D-deoksyrybonukleotydy).
+        </li>
+        <li><strong>Specyficzność reakcyjna (kierunkowa):</strong> dany enzym przeprowadza na związanym substracie tylko jedną, ściśle określoną transformację chemiczną, nie generując żadnych produktów ubocznych.</li>
+      </ol>
+    </div>
+
+    <div class="callout-warning">
+      <div class="warning-title">⚠️ Złota reguła i pułapka egzaminacyjna!</div>
+      <strong>Jeden substrat – wiele enzymów!</strong> Ta sama cząsteczka aminokwasu może ulec w komórce trzem zupełnie różnym reakcjom w zależności od enzymu, który ją przechwyci:
+      <br>1. Pod wpływem <em>aminotransferazy</em> ulega transaminacji do ketokwasu.
+      <br>2. Pod wpływem <em>dekarboksylazy</em> ulega dekarboksylacji do biogennej aminy.
+      <br>3. Pod wpływem <em>oksydazy/dehydrogenazy</em> ulega deaminacji oksydacyjnej.
+      <br>Świadczy to o <strong>specyficzności reakcyjnej</strong> poszczególnych biokatalizatorów!
+    </div>
+
+    <div class="quiz-section">
+      <div class="quiz-section-title">✍️ Szybki test sprawdzający:</div>
+      <details class="quiz-item">
+        <summary class="quiz-question">Który enzym wykazuje specyficzność bezwzględną: glukokinaza czy heksokinaza?</summary>
+        <div class="quiz-answer">
+          <strong>Odpowiedź:</strong> Glukokinaza wykazuje wysoką specyficzność wobec D-glukozy, natomiast heksokinaza ma specyficzność grupową – z różną wydajnością fosforyluje różne heksozy: D-glukozę, D-fruktozę i D-mannozę.
+        </div>
+      </details>
+      <details class="quiz-item">
+        <summary class="quiz-question">Dlaczego enzymy ludzkiego organizmu nie potrafią strawić celulozy, mimo że składa się ona wyłącznie z reszt D-glukozy tak jak skrobia?</summary>
+        <div class="quiz-answer">
+          <strong>Odpowiedź:</strong> Ze względu na stereospecyficzność wiązania glikozydowego. Ludzka $\alpha$-amylaza rozpoznaje wyłącznie wiązania $\alpha-1,4$-glikozydowe (skrobia, glikogen), a nie posiada zdolności rozpoznawania i hydrolizy wiązań $\beta-1,4$-glikozydowych występujących w celulozie.
+        </div>
+      </details>
+    </div>
+  </article>
+
+  <!-- ==================== ZAGADNIENIE 14 ==================== -->
+  <article class="card" id="z14">
+    <div class="card-header">
+      <span class="card-number">Zagadnienie 14</span>
+      <h2 class="card-title">Czynniki wpływające na szybkość reakcji enzymatycznej</h2>
+    </div>
+
+    <div class="question-box">
+      Pytanie: W jaki sposób temperatura, odczyn pH środowiska, siła jonowa i modulatory wpływają na aktywność katalityczną białek enzymatycznych?
+    </div>
+
+    <div class="callout-analogy">
+      <div class="callout-title">💡 Analogia z życia codziennego</div>
+      Białko enzymu jest jak misterna rzeźba z plasteliny w chłodnym pokoju. Gdy lekko podgrzejesz pokój (wzrost temperatury do 37°C), plastelina staje się bardziej elastyczna i łatwiej nią manipulować (wzrost energii kinetycznej i zderzeń). Ale jeśli wstawisz rzeźbę do piekarnika (temperatura powyżej 55°C), plastelina roztopi się w bezkształtną maź – nastąpi nieodwracalna <strong>denaturacja</strong> i rzeźba bezpowrotnie traci swoją funkcję.
+    </div>
+
+    <div class="table-container">
+      <table class="comparison-table">
+        <thead>
+          <tr>
+            <th>Czynnik</th>
+            <th>Przebieg krzywej zależności</th>
+            <th>Mechanizm molekularny</th>
+            <th>Znaczenie fizjologiczne / Medyczne</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Temperatura</strong></td>
+            <td>Dzwonowata, asymetryczna (optimum u człowieka: 37–38°C)</td>
+            <td>Do temperatury optimum szybkość rośnie zgodnie ze współczynnikiem $Q_{10} \approx 2$ (podwojenie szybkości na każde 10°C). Powyżej optimum dochodzi do rozerwania wiązań wodorowych i hydrofobowych $\rightarrow$ denaturacja termiczna.</td>
+            <td>Gorączka przyspiesza metabolizm obronny, ale hipertermia $> 41{,}5^\circ\text{C}$ grozi uszkodzeniem enzymów OUN i śmiercią. W kardiochirurgii stosuje się <em>hipotermię indukowaną</em>, by zwolnić metabolizm mózgu.</td>
+          </tr>
+          <tr>
+            <td><strong>Odczyn pH</strong></td>
+            <td>Dzwonowata, symetryczna wokół pH optimum</td>
+            <td>Wpływa na stopień jonizacji reszt kwasowych ($-COO^-$) i zasadowych ($-NH_3^+$) w centrum aktywnym oraz na ładunek samego substratu.</td>
+            <td>Pepsyna żołądkowa (optimum pH 1,5–2,0), trypsyna dwunastnicza (pH 7,5–8,5), fosfataza kwaśna (pH 5,0), fosfataza zasadowa (pH 9,5). Zaburzenia równowagi kwasowo-zasadowej (kwasica/zasadowica) upośledzają działanie enzymów krwi.</td>
+          </tr>
+          <tr>
+            <td><strong>Stężenie enzymu $[E]$</strong></td>
+            <td>Proporcjonalna, liniowa ($v \propto [E]$)</td>
+            <td>Większa liczba cząsteczek katalitycznych w jednostce objętości przy nadmiarze substratu daje proporcjonalny wzrost tworzenia produktu.</td>
+            <td>Wykorzystywana w analityce: mierząc szybkość reakcji w warunkach nasycenia substratem, wyliczamy stężenie enzymu w osoczu pacjenta.</td>
+          </tr>
+          <tr>
+            <td><strong>Stężenie substratu $[S]$</strong></td>
+            <td>Hiperbola prostokątna (lub sigmoida dla enzymów allosterycznych)</td>
+            <td>Przy niskich $[S]$ – kinetyka I rzędu; przy wysokich $[S]$ – wysycenie miejsc aktywnych i przejście w kinetykę rzędu 0 ($V_{max}$).</td>
+            <td>Homeostaza metaboliczna; utrzymywanie stężeń metabolitów w pobliżu ich wartości $K_m$.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout-warning">
+      <div class="warning-title">⚠️ Złota reguła i pułapka egzaminacyjna!</div>
+      <strong>Dlaczego krzywa temperaturowa gwałtownie spada po prawej stronie optimum?</strong>
+      <br>To nie jest spadek aktywności w wyniku zwolnienia ruchów cząsteczek! Spadek po przekroczeniu optimum wynika z <strong>nieodwracalnej denaturacji termicznej</strong> struktury trzeciorzędowej białka. Ochłodzenie probówki z powrotem do 37°C po jej uprzednim zagotowaniu <em>nie przywróci</em> aktywności enzymu!
+    </div>
+
+    <div class="quiz-section">
+      <div class="quiz-section-title">✍️ Szybki test sprawdzający:</div>
+      <details class="quiz-item">
+        <summary class="quiz-question">Co stanie się z aktywnością pepsyny po jej przejściu z treścią pokarmową do światła dwunastnicy?</summary>
+        <div class="quiz-answer">
+          <strong>Odpowiedź:</strong> Zostanie natychmiast nieodwracalnie zinaktywowana. Sok trzustkowy bogaty w wodorowęglany podnosi pH w dwunastnicy do ~8,0, co powoduje deprotonację kluczowych reszt asparaginianu w centrum aktywnym pepsyny i jej denaturację.
+        </div>
+      </details>
+      <details class="quiz-item">
+        <summary class="quiz-question">Co oznacza współczynnik temperaturowy $Q_{10}$ w odniesieniu do reakcji biochemicznych?</summary>
+        <div class="quiz-answer">
+          <strong>Odpowiedź:</strong> Jest to współczynnik określający, ile razy wzrasta szybkość reakcji po podniesieniu temperatury układu o $10^\circ\text{C}$ (dla większości enzymów w zakresie fizjologicznym $Q_{10} \approx 2$).
+        </div>
+      </details>
+    </div>
+  </article>
+
+  <!-- ==================== ZAGADNIENIE 16 ==================== -->
+  <article class="card" id="z16">
+    <div class="card-header">
+      <span class="card-number">Zagadnienie 16</span>
+      <h2 class="card-title">Inhibitory – hamowanie odwracalne, nieodwracalne, kompetycyjne, niekompetycyjne, mieszane</h2>
+    </div>
+
+    <div class="question-box">
+      Pytanie: Czym różnią się poszczególne typy inhibicji enzymatycznej, jak wpływają na parametry $K_m$ i $V_{max}$ oraz jak wyglądają ich wykresy w układzie podwójnych odwrotności Lineweavera-Burka?
+    </div>
+
+    <div class="callout-analogy">
+      <div class="callout-title">💡 Analogia z życia codziennego</div>
+      • <strong>Inhibicja kompetycyjna (konkurencyjna):</strong> Dwie osoby walczą o to samo pojedyncze krzesło w pokoju (centrum aktywne). Jeśli pojawi się 100 osób z Twojej drużyny (nadmiar substratu), bez problemu przepędzicie jednego rywala i usiądziecie na krześle ($V_{max}$ bez zmian, ale $K_m$ rośnie).
+      <br>• <strong>Inhibicja niekompetycyjna:</strong> Ktoś podchodzi z tyłu i zakłada Ci na ręce kajdanki. Krzesło jest wolne, możesz na nim usiąść, ale ze skrępowanymi rękami nie jesteś w stanie pracować ($V_{max}$ spada, a dosypanie kolejnych osób nic nie daje).
+      <br>• <strong>Inhibicja nieodwracalna:</strong> Ktoś wlewa do zamka w drzwiach szybkoschnący klej „Kropelka”. Zamek jest zniszczony na zawsze – jedyny ratunek to wywalić drzwi i wstawić nowe (komórka musi zsyntetyzować nowe cząsteczki enzymu od zera).
+    </div>
+
+    <div class="table-container">
+      <table class="comparison-table">
+        <thead>
+          <tr>
+            <th>Typ inhibicji</th>
+            <th>Miejsce wiązania inhibitora</th>
+            <th>Wpływ na $K_m$</th>
+            <th>Wpływ na $V_{max}$</th>
+            <th>Wykres Lineweavera-Burka ($1/v$ vs $1/[S]$)</th>
+            <th>Klasyczny przykład medyczny</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Kompetycyjna</strong> (odwracalna)</td>
+            <td><strong>Centrum aktywne</strong> (konkuruje bezpośrednio z substratem)</td>
+            <td><strong>Wzrasta ($\uparrow$)</strong><br><small>(pozorny spadek powinowactwa)</small></td>
+            <td><strong>Bez zmian</strong><br><small>(znoszona przez nadmiar $[S]$)</small></td>
+            <td>Linie przecinają się <strong>na osi Y</strong> w punkcie $1/V_{max}$. Punkt przecięcia z osią X przesuwa się w prawo (bliżej zera).</td>
+            <td><strong>Statyny</strong> (hamują reduktazę HMG-CoA w syntezie cholesterolu); <strong>Metotreksat</strong> (hamuje reduktazę dihydrofolianową).</td>
+          </tr>
+          <tr>
+            <td><strong>Niekompetycyjna</strong> (odwracalna)</td>
+            <td>Miejsce inne niż centrum aktywne; wiąże z równą łatwością wolny enzym ($E$) i kompleks ($ES$)</td>
+            <td><strong>Bez zmian</strong><br><small>(powinowactwo zachowane)</small></td>
+            <td><strong>Maleje ($\downarrow$)</strong><br><small>(zmniejsza liczbę sprawnych cząsteczek)</small></td>
+            <td>Linie przecinają się <strong>na osi X</strong> w punkcie $-1/K_m$. Punkt przecięcia z osią Y wędruje w górę ($1/V_{max} \uparrow$).</td>
+            <td>Metale ciężkie ($Pb^{2+}, Hg^{2+}$) blokujące grupy sulfhydrylowe ($-SH$) poza centrum aktywnym.</td>
+          </tr>
+          <tr>
+            <td><strong>Akompetycyjna (odkompetycyjna)</strong></td>
+            <td>Wiąże się <strong>wyłącznie do kompleksu $ES$</strong> (nie wiąże wolnego enzymu $E$)</td>
+            <td><strong>Maleje ($\downarrow$)</strong></td>
+            <td><strong>Maleje ($\downarrow$)</strong> w tym samym stopniu</td>
+            <td>Proste na wykresie są <strong>ściśle równoległe</strong> do siebie (nie przecinają się w żadnym punkcie!).</td>
+            <td>Rzadka w enzymach jedno-substratowych; występuje w układach wielosubstratowych.</td>
+          </tr>
+          <tr>
+            <td><strong>Nieodwracalna</strong></td>
+            <td>Kowalencyjna modyfikacja kluczowych reszt w centrum aktywnym</td>
+            <td>Bez zmian dla wolnego enzymu</td>
+            <td><strong>Maleje ($\downarrow$) trwale</strong> (nie do odwrócenia dializą)</td>
+            <td>Pozorny spadek puli aktywnego enzymu $[E]_t$ – obniżenie $V_{max}$.</td>
+            <td><strong>Kwas acetylosalicylowy (Aspiryna)</strong> acetylujący serynę w COX; związki fosforoorganiczne blokujące acetylocholinoesterazę.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="definition-box">
+      <strong class="label">Ścisła definicja akademicka</strong>
+      Równanie Lineweavera-Burka (podwójnych odwrotności):
+      $$\frac{1}{v_0} = \left(\frac{K_m}{V_{max}}\right) \cdot \frac{1}{[S]} + \frac{1}{V_{max}}$$
+      Wykres stanowi prostą o równaniu $y = ax + b$:
+      <br>• Punkt przecięcia z osią rzędnych (Y): $\frac{1}{V_{max}}$
+      <br>• Punkt przecięcia z osią odciętych (X): $-\frac{1}{K_m}$
+      <br>• Współczynnik kierunkowy (nachylenie prostej): $\frac{K_m}{V_{max}}$
+    </div>
+
+    <div class="callout-warning">
+      <div class="warning-title">⚠️ Złota reguła i pułapka egzaminacyjna!</div>
+      <strong>Leczenie zatrucia metanolem (kinetyka kompetycyjna w toksykologii):</strong>
+      <br>Dehydrogenaza alkoholowa (ADH) metabolizuje śmiertelnie toksyczny metanol do formaldehydu i kwasu mrówkowego. Etanol jest <em>inhibitorem kompetycyjnym</em> dla tego procesu, ponieważ wykazuje znacznie większe powinowactwo do ADH niż metanol. Podanie pacjentowi wlewu z etanolu całkowicie wypiera metanol z centrum aktywnego enzymu, umożliwiając wydalenie nienaruszonego metanolu przez nerki i płuca!
+    </div>
+
+    <div class="quiz-section">
+      <div class="quiz-section-title">✍️ Szybki test sprawdzający:</div>
+      <details class="quiz-item">
+        <summary class="quiz-question">Jeśli na wykresie Lineweavera-Burka dodanie inhibitora przesunęło punkt przecięcia z osią Y w górę, a punkt na osi X pozostał nienaruszony, jaki to rodzaj hamowania?</summary>
+        <div class="quiz-answer">
+          <strong>Odpowiedź:</strong> Jest to klasyczna <strong>inhibicja niekompetycyjna</strong> ($K_m$ jest stałe, stąd niezmieniony punkt $-1/K_m$, a $V_{max}$ spadło, co skutkuje wzrostem wartości odwrotności $1/V_{max}$).
+        </div>
+      </details>
+      <details class="quiz-item">
+        <summary class="quiz-question">Czy wysokim stężeniem substratu można całkowicie znieść działanie inhibitora nieodwracalnego?</summary>
+        <div class="quiz-answer">
+          <strong>Odpowiedź:</strong> Absolutnie nie. Inhibitor nieodwracalny tworzy trwałe, kowalencyjne wiązanie niszczące cząsteczkę enzymu. Nadmiar substratu nie ma możliwości wyparcia takiego związku.
+        </div>
+      </details>
+    </div>
+  </article>
+
+  <!-- ==================== ZAGADNIENIE 17 ==================== -->
+  <article class="card" id="z17">
+    <div class="card-header">
+      <span class="card-number">Zagadnienie 17</span>
+      <h2 class="card-title">Zastosowanie inhibitorów w farmakoterapii i medycynie</h2>
+    </div>
+
+    <div class="question-box">
+      Pytanie: Jakie najważniejsze grupy leków stosowanych współcześnie w medycynie działają jako inhibitory specyficznych enzymów?
+    </div>
+
+    <div class="callout-analogy">
+      <div class="callout-title">💡 Analogia z życia codziennego</div>
+      Projektowanie leków enzymatycznych to jak sabotowanie fabryki zbrojeniowej wroga. Zamiast bombardować całe miasto i niszczyć domy niewinnych mieszkańców (toksyczność ogólna leku), wysyłasz agenta, który wrzuca precyzyjnie dobrany pręt w jedno kluczowe koło zębate głównej maszyny produkującej pociski. Maszyna staje w miejscu, a reszta miasta funkcjonuje bez przeszkód.
+    </div>
+
+    <div class="table-container">
+      <table class="comparison-table">
+        <thead>
+          <tr>
+            <th>Cel enzymatyczny</th>
+            <th>Lek / Inhibitor</th>
+            <th>Typ hamowania</th>
+            <th>Mechanizm molekularny i efekt kliniczny</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Acetylocholinoesteraza (AChE)</strong></td>
+            <td>• Donepezil, Rywastygmina<br>• Neostygmina, Pirydostygmina</td>
+            <td>Odwracalne (kompetycyjne / pseudonieodwracalne)</td>
+            <td>Hamują rozpad acetylocholiny w szczelinie synaptycznej. Zwiększają stymulację cholinergiczną w chorobie Alzheimera oraz w miastenii (Myasthenia gravis).</td>
+          </tr>
+          <tr>
+            <td><strong>Cyklooksygenaza 1 i 2 (COX-1, COX-2)</strong></td>
+            <td>• Kwas acetylosalicylowy (Aspiryna)<br>• Ibuprofen<br>• Celekoksyb</td>
+            <td>• Aspiryna: <strong>nieodwracalne</strong><br>• Ibuprofen: odwracalne<br>• Celekoksyb: selektywne COX-2</td>
+            <td>Aspiryna kowalencyjnie acetyluje resztę seryny ($Ser_{530}$ w COX-1 i $Ser_{516}$ w COX-2). Blokuje syntezę prostaglandyn (efekt przeciwbólowy, przeciwzapalny) oraz tromboksanu $TXA_2$ w płytkach krwi (trwałe działanie antyagregacyjne przez cały czas życia płytki – 7 do 10 dni).</td>
+          </tr>
+          <tr>
+            <td><strong>5-Lipooksygenaza (5-LOX)</strong></td>
+            <td>Zileuton</td>
+            <td>Odwracalne</td>
+            <td>Blokuje syntezę leukotrienów ($LTB_4, LTC_4, LTD_4$) z kwasu arachidonowego. Zapobiega skurczowi oskrzeli i naciekowi zapalnemu w astmie oskrzelowej.</td>
+          </tr>
+          <tr>
+            <td><strong>Oksydaza ksantynowa</strong></td>
+            <td>Allopurynol, Febuksostat</td>
+            <td>Inhibitor samobójczy (Allopurynol) / Kompetycyjny</td>
+            <td>Allopurynol jest przekształcany przez ten enzym do alloksantyny, która silnie blokuje enzym. Spadek syntezy kwasu moczowego z hipoksantyny i ksantyny $\rightarrow$ leczenie dny moczanowej (podagry) i zespołu lizy guza.</td>
+          </tr>
+          <tr>
+            <td><strong>Fosfodiesteraza typu 5 (PDE-5)</strong></td>
+            <td>Sildenafil, Tadalafil</td>
+            <td>Kompetycyjne</td>
+            <td>Hamuje enzym rozkładający $cGMP$ do $5'-GMP$ w mięśniówce gładkiej naczyń krwionośnych. Podwyższony poziom $cGMP$ wywołuje rozkurcz naczyń, umożliwiając erekcję oraz obniżając ciśnienie w tętnicy płucnej (leczenie nadciśnienia płucnego).</td>
+          </tr>
+          <tr>
+            <td><strong>Anhydraza węglanowa</strong></td>
+            <td>Acetazolamid</td>
+            <td>Kompetycyjne</td>
+            <td>Blokuje enzym w cewkach bliższych nerek (hamuje resorpcję wodorowęglanów $\rightarrow$ diureza alkaliczna) oraz w ciele rzęskowym oka (zmniejsza wytwarzanie cieczy wodnistej $\rightarrow$ leczenie jaskry) i w OUN (leczenie choroby wysokościowej).</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout-warning">
+      <div class="warning-title">⚠️ Złota reguła i pułapka egzaminacyjna!</div>
+      <strong>Dlaczego mała dawka aspiryny (75–100 mg) działa kardioprotekcyjnie, a nie wywołuje krwawień z żołądka?</strong>
+      <br>Płytki krwi nie posiadają jądra komórkowego – nie potrafią zsyntetyzować nowych cząsteczek COX-1 po ich zablokowaniu przez aspirynę (brak syntezy tromboksanu przez 9 dni). Z kolei komórki śródbłonka naczyniowego i błony śluzowej żołądka mają jądro i w ciągu kilku godzin produkują świeżą porcję enzymu, wznawiając syntezę ochronnej prostacykliny ($PGI_2$)!
+    </div>
+
+    <div class="quiz-section">
+      <div class="quiz-section-title">✍️ Szybki test sprawdzający:</div>
+      <details class="quiz-item">
+        <summary class="quiz-question">Czym jest tzw. „inhibitor samobójczy” (suicide inhibitor) na przykładzie allopurynolu?</summary>
+        <div class="quiz-answer">
+          <strong>Odpowiedź:</strong> To związek, który początkowo enzym traktuje jako normalny substrat i rozpoczyna jego obróbkę katalityczną. W trakcie reakcji powstaje jednak reaktywny produkt pośredni (alloksantyna), który nieodwracalnie blokuje centrum aktywne tego enzymu. Enzym popełnia swoiste „samobójstwo”.
+        </div>
+      </details>
+      <details class="quiz-item">
+        <summary class="quiz-question">Jaki lek podasz jako odtrutkę w ostrym zatruciu bojowymi gazami paralitycznymi (sarin) lub insektycydami fosforoorganicznymi?</summary>
+        <div class="quiz-answer">
+          <strong>Odpowiedź:</strong> Atropinę (bloker receptorów muskarynowych) oraz <strong>oksymy</strong> (np. pralidoksym) – reaktywatory acetylocholinoesterazy, które odrywają kowalencyjnie związaną resztę fosforanową od seryny w enzymie zanim dojdzie do tzw. zestarzenia kompleksu.
+        </div>
+      </details>
+    </div>
+  </article>
+
+  <!-- ==================== ZAGADNIENIE 18 ==================== -->
+  <article class="card" id="z18">
+    <div class="card-header">
+      <span class="card-number">Zagadnienie 18</span>
+      <h2 class="card-title">Regulacja aktywności enzymatycznej w metabolizmie</h2>
+    </div>
+
+    <div class="question-box">
+      Pytanie: Na jakich poziomach czasowych i przestrzennych komórka reguluje natężenie przepływu metabolitów przez szlaki biochemiczne?
+    </div>
+
+    <div class="callout-analogy">
+      <div class="callout-title">💡 Analogia z życia codziennego</div>
+      Regulacja enzymów w organizmie działa jak zarządzanie ruchem w nowoczesnym mieście:
+      <br>1. <strong>Regulacja allosteryczna:</strong> Inteligentne światła drogowe – gdy czujnik wykryje korek na bocznej ulicy, natychmiast na ułamek sekundy zmienia cykl świateł (błyskawiczna reakcja w milisekundach).
+      <br>2. <strong>Modyfikacja kowalencyjna:</strong> Policjant przykręcający znak drogowy na skrzyżowaniu (np. nakaz skrętu) – znak wisi i działa tak długo, dopóki inny patrol go nie odkręci (minuty do godzin).
+      <br>3. <strong>Ograniczona proteoliza:</strong> Wyciągnięcie zawleczki z granatu bojowego – proces jednorazowy i nieodwracalny; nie da się włożyć zawleczki z powrotem.
+      <br>4. <strong>Regulacja genowa:</strong> Zbudowanie od zera nowej, trzypasmowej obwodnicy przez fabrykę budowlaną (godziny do dni).
+    </div>
+
+    <p><strong>Hierarchia czasowa mechanizmów regulacyjnych:</strong></p>
+    <div class="process-flow">
+      <div class="flow-step">1. Allosteria &amp; Sprzężenie zwrotne<br><small>Ułamki sekund (natychmiast)</small></div>
+      <div class="flow-arrow">➔</div>
+      <div class="flow-step">2. Modyfikacja kowalencyjna<br><small>Sekundy do minut (np. fosforylacja)</small></div>
+      <div class="flow-arrow">➔</div>
+      <div class="flow-step">3. Ograniczona proteoliza<br><small>Jednorazowa aktywacja zymogenu</small></div>
+      <div class="flow-arrow">➔</div>
+      <div class="flow-step">4. Indukcja/Represja genowa<br><small>Wiele godzin do dni (transkrypcja)</small></div>
+    </div>
+
+    <div class="definition-box">
+      <strong class="label">Ścisła definicja akademicka</strong>
+      Wyróżniamy 5 fundamentalnych mechanizmów regulacji enzymatycznej:
+      <ol style="margin-left: 20px;">
+        <li><strong>Regulacja allosteryczna:</strong> Odwracalne, niekowalencyjne wiązanie efektora w miejscu allosterycznym oligomerycznego białka enzymatycznego. Wywołuje zmianę konformacji przestrzennej (przejście między stanem nieaktywnym T – <em>tense</em> a aktywnym R – <em>relaxed</em>). Krzywa kinetyczna ma charakterystyczny <strong>kształt esowaty (sigmoidalny)</strong>.
+          <br>– <em>Efektory homotropowe:</em> sam substrat jest aktywatorem allosterycznym (zjawisko kooperatywności).
+          <br>– <em>Efektory heterotropowe:</em> cząsteczka regulatorowa inna niż substrat.
+        </li>
+        <li><strong>Kompleksy multienzymatyczne (organizacja przestrzenna):</strong> Zespoły kilku enzymów katalizujących kolejne etapy szlaku, powiązane niekowalencyjnie w jedną makromolekułę. Zapewniają zjawisko <strong>kanałowania substratu (substrate channeling)</strong> – metabolit pośredni natychmiast trafia z jednego centrum aktywnego do drugiego bez dyfuzji do roztworu wodnego (np. dehydrogenaza pirogronianowa PDH, syntaza kwasów tłuszczowych FAS).</li>
+        <li><strong>Ograniczona proteoliza (aktywacja zymogenów):</strong> Nieodwracalne rozszczepienie jednego lub kilku specyficznych wiązań peptydowych w nieaktywnym prekursorze (<strong>proenzymie / zymogenie</strong>). Umożliwia prawidłowe sfałdowanie centrum aktywnego. Chroni narząd produkujący przed samostrawieniem! Przykłady: pepsynogen $\rightarrow$ pepsyna; trypsynogen $\rightarrow$ trypsyna (aktywowana przez enteropeptydazę); kaskada krzepnięcia krwi (protrombina $\rightarrow$ trombina); kaspazy w apoptozie.</li>
+        <li><strong>Odwracalna modyfikacja kowalencyjna:</strong> Najczęściej <strong>fosforylacja / defosforylacja</strong>:
+          <br>– <em>Kinazy białkowe:</em> przenoszą grupę fosforanową z ATP na grupy $-OH$ specyficznych reszt seryny (Ser), treoniny (Thr) lub tyrozyny (Tyr).
+          <br>– <em>Fosfatazy białkowe:</em> odszczepiają grupę fosforanową na drodze hydrolizy.
+          <br>Inne modyfikacje: acetylacja lizyny, metylacja, adenylacja, ADP-rybozylacja.
+        </li>
+        <li><strong>Regulacja na poziomie ekspresji genów:</strong> Wpływ na liczbę cząsteczek enzymu w komórce poprzez indukcję lub represję transkrypcji (np. insulina indukuje syntezę enzymów glikolitycznych, a glukagon enzymów glukoneogenezy; barbiturany indukują enzymy cytochromu P450).</li>
+        <li><strong>Hamowanie zwrotne (Feedback inhibition / retroinhibicja):</strong> Produkt końcowy danego szlaku metabolicznego hamuje allosterycznie enzym katalizujący pierwszy etap limitujący (tzw. <em>commitment step</em>), zapobiegając niepotrzebnemu gromadzeniu metabolitów pośrednich.</li>
+      </ol>
+    </div>
+
+    <div class="callout-warning">
+      <div class="warning-title">⚠️ Złota reguła i pułapka egzaminacyjna!</div>
+      <strong>Fosforylacja NIE ZAWSZE aktywuje enzym!</strong> To sztandarowy błąd studentów. Fosforylacja to po prostu przełącznik molekularny:
+      <br>• Enzymy rozpadu (kataboliczne) – np. <strong>fosforylaza glikogenowa</strong> – są AKTYWNE po ufosforylowaniu!
+      <br>• Enzymy syntezy (anaboliczne) – np. <strong>syntaza glikogenowa</strong> czy <strong>karboksylaza acetylo-CoA</strong> – są NIEAKTYWNE po ufosforylowaniu!
+    </div>
+
+    <div class="quiz-section">
+      <div class="quiz-section-title">✍️ Szybki test sprawdzający:</div>
+      <details class="quiz-item">
+        <summary class="quiz-question">Dlaczego trzustka syntetyzuje enzymy trawienne w postaci proenzymów (zymogenów)?</summary>
+        <div class="quiz-answer">
+          <strong>Odpowiedź:</strong> Jest to zabezpieczenie przed autolizą (samostrawieniem) miąższu trzustki. Ich przedwczesna aktywacja wewnątrz pęcherzyków trzustkowych wywołuje martwicze ostre zapalenie trzustki (OZT).
+        </div>
+      </details>
+      <details class="quiz-item">
+        <summary class="quiz-question">Jaka jest główna zaleta biologiczna „kanałowania substratu” w kompleksie dehydrogenazy pirogronianowej (PDH)?</summary>
+        <div class="quiz-answer">
+          <strong>Odpowiedź:</strong> Zapobiega rozcieńczeniu metabolitów pośrednich w cytozolu, chroni niestabilne rodniki i intermediaty przed reakcjami ubocznymi oraz drastycznie zwiększa wypadkową szybkość szlaku.
+        </div>
+      </details>
+    </div>
+  </article>
+
+  <!-- ==================== ZAGADNIENIE 19 ==================== -->
+  <article class="card" id="z19">
+    <div class="card-header">
+      <span class="card-number">Zagadnienie 19</span>
+      <h2 class="card-title">Oznaczanie aktywności enzymatycznej – jednostki, sposoby wyrażania aktywności enzymów</h2>
+    </div>
+
+    <div class="question-box">
+      Pytanie: Dlaczego stężenia enzymów nie podajemy zazwyczaj w gramach, czym różni się Jednostka Międzynarodowa (U) od Katala (kat) i co to jest liczba obrotów enzymu ($k_{cat}$)?
+    </div>
+
+    <div class="callout-analogy">
+      <div class="callout-title">💡 Analogia z życia codziennego</div>
+      Gdy zatrudniasz pracownika do kopania rowów, nie płacisz mu za to, ile waży jego ciało na wadze łazienkowej (stężenie masowe białka), lecz za to, ile metrów rowu wykopał w ciągu godziny (jego aktywność!). Liczba wykopanych metrów w godzinę to <strong>aktywność katalityczna</strong>. Jeśli dwóch robotników waży po 80 kg, ale jeden wykopie 10 metrów, a drugi 50 metrów, ten drugi ma 5-krotnie wyższą <strong>aktywność właściwą</strong>.
+    </div>
+
+    <div class="table-container">
+      <table class="comparison-table">
+        <thead>
+          <tr>
+            <th>Jednostka / Pojęcie</th>
+            <th>Ścisła definicja matematyczna</th>
+            <th>Jednostka mianowana</th>
+            <th>Komentarz praktyczny</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Jednostka Międzynarodowa (U / IU)</strong></td>
+            <td>Ilość enzymu, która przekształca <strong>$1\ \mu\text{mol}$ substratu w ciągu 1 minuty</strong> w optymalnych warunkach pH i temperatury (zwykle 30°C lub 37°C) przy pełnym wysyceniu substratem.</td>
+            <td>$\text{U} = 1\ \mu\text{mol / min}$</td>
+            <td>Powszechnie stosowana w laboratoriach diagnostycznych szpitali na całym świecie.</td>
+          </tr>
+          <tr>
+            <td><strong>Katal (kat)</strong></td>
+            <td>Jednostka układu SI. Ilość enzymu, która przekształca <strong>$1\ \text{mol}$ substratu w czasie 1 sekundy</strong>.</td>
+            <td>$\text{kat} = 1\ \text{mol / s}$</td>
+            <td>Jednostka bardzo duża. Przelicznik: $1\ \text{kat} = 60 \cdot 10^6\ \text{U}$, stąd $1\ \text{U} \approx 16{,}67\ \text{nkat}$.</td>
+          </tr>
+          <tr>
+            <td><strong>Aktywność właściwa (specyficzna)</strong></td>
+            <td>Liczba jednostek aktywności enzymatycznej przypadająca na jednostkę masy białka w badanym preparacie: $\frac{\text{Aktywność}}{\text{Masa białka}}$.</td>
+            <td>$\text{U / mg białka}$ lub $\mu\text{kat / mg białka}$</td>
+            <td><strong>Miernik czystości enzymu!</strong> Podczas kolejnych etapów oczyszczania białka aktywność właściwa rośnie. Gdy osiągnie stałe plateau, preparat jest czysty homogenny.</td>
+          </tr>
+          <tr>
+            <td><strong>Liczba obrotów ($k_{cat}$, stała katalityczna)</strong></td>
+            <td>Liczba cząsteczek substratu przekształconych w produkt przez pojedyncze centrum aktywne enzymu w jednostce czasu przy pełnym nasyceniu: $k_{cat} = \frac{V_{max}}{[E]_t}$.</td>
+            <td>$\text{s}^{-1}$ ($1/\text{sekundę}$)</td>
+            <td>Mierzy maksymalną sprawność pojedynczej cząsteczki enzymu. Np. anhydraza węglanowa ma $k_{cat} \approx 6 \cdot 10^5\ \text{s}^{-1}$!</td>
+          </tr>
+          <tr>
+            <td><strong>Sprawność katalityczna ($k_{cat} / K_m$)</strong></td>
+            <td>Stała drugiego rzędu uwzględniająca zarówno szybkość obróbki substratu ($k_{cat}$), jak i siłę jego wiązania ($K_m$).</td>
+            <td>$\text{M}^{-1} \cdot \text{s}^{-1}$</td>
+            <td>Górny limit dyfuzyjny to $10^8 - 10^9\ \text{M}^{-1} \text{s}^{-1}$. Enzymy osiągające ten pułap to tzw. „enzymy doskonałe katalitycznie”.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout-warning">
+      <div class="warning-title">⚠️ Złota reguła i pułapka egzaminacyjna!</div>
+      <strong>Spektrofotometryczny test optyczny Warburga (340 nm):</strong>
+      <br>Najczęstsza metoda laboratoryjna oznaczania aktywności enzymów sprzężonych z dehydrogenazami opiera się na unikalnej cesze: <strong>zredukowane dinukleotydy ($NADH$ i $NADPH$) pochłaniają światło przy długości fali $\lambda = 340\text{ nm}$</strong>, podczas gdy formy utlenione ($NAD^+$, $NADP^+$) go nie absorbują. Mierząc przyrost lub ubytek absorbancji przy 340 nm w czasie, obliczamy bezbłędnie aktywność enzymu!
+    </div>
+
+    <div class="quiz-section">
+      <div class="quiz-section-title">✍️ Szybki test sprawdzający:</div>
+      <details class="quiz-item">
+        <summary class="quiz-question">Jeśli w trakcie kolejnych etapów izolacji enzymu aktywność całkowita preparatu spadła z 1000 U do 600 U, ale aktywność właściwa wzrosła z 10 U/mg do 200 U/mg, to czy proces oczyszczania jest skuteczny?</summary>
+        <div class="quiz-answer">
+          <strong>Odpowiedź:</strong> Tak, jest wysoce skuteczny. Choć utracono część enzymu (spadek aktywności całkowitej), to usunięto ogromną masę balastowych białek obcych, dzięki czemu czystość badanego enzymu wzrosła 20-krotnie.
+        </div>
+      </details>
+      <details class="quiz-item">
+        <summary class="quiz-question">Ile nanokatali (nkat) zawiera 1 Jednostka Międzynarodowa (U)?</summary>
+        <div class="quiz-answer">
+          <strong>Odpowiedź:</strong> $1\ \text{U} = \frac{1\ \mu\text{mol}}{60\ \text{s}} = \frac{1000\ \text{nmol}}{60\ \text{s}} \approx 16{,}67\ \text{nmol/s} = 16{,}67\ \text{nkat}$.
+        </div>
+      </details>
+    </div>
+  </article>
+
+  <!-- ==================== ZAGADNIENIE 20 ==================== -->
+  <article class="card" id="z20">
+    <div class="card-header">
+      <span class="card-number">Zagadnienie 20</span>
+      <h2 class="card-title">Budowa koenzymów nukleotydowych (FAD, FMN, NAD, NADP, ATP, GTP, UTP, CTP) – reakcje i metabolizm</h2>
+    </div>
+
+    <div class="question-box">
+      Pytanie: Z jakich elementów chemicznych zbudowane są kluczowe nukleotydowe koenzymy redoks i przenośniki energii oraz w jakich konkretnych szlakach metabolicznych biorą udział?
+    </div>
+
+    <div class="callout-analogy">
+      <div class="callout-title">💡 Analogia z życia codziennego</div>
+      Nukleotydy trifosforanowe to wyspecjalizowane waluty w międzynarodowym handlu komórkowym:
+      <br>• <strong>ATP</strong> to amerykański dolar – płacisz nim w każdym sklepie za wszystko (skurcz mięśnia, pompy jonowe, fosforylacja).
+      <br>• <strong>GTP</strong> to frank szwajcarski – używany na elitarnym rynku produkcji maszyn precyzyjnych (translacja białek i sygnalizacja przez białka G).
+      <br>• <strong>UTP</strong> to waluta cukrowników – niezbędna do zakupu i obróbki węglowodanów (synteza glikogenu).
+      <br>• <strong>CTP</strong> to waluta rafinerii chemicznych – inwestowana wyłącznie w syntezę lipidów błonowych (fosfolipidów).
+    </div>
+
+    <div class="table-container">
+      <table class="comparison-table">
+        <thead>
+          <tr>
+            <th>Koenzym</th>
+            <th>Pochodzenie witaminowe i kluczowe elementy budowy</th>
+            <th>Mechanizm chemiczny działania</th>
+            <th>Główne reakcje metaboliczne</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>$NAD^+$</strong></td>
+            <td>Witamina $B_3$ (niacyna, kwas nikotynowy). Pierścień nikotynamidowy połączony z adenozynodifosforanem.</td>
+            <td>Przenosi <strong>jon wodorkowy ($:H^-$, czyli $1\ H^+ + 2\ e^-$)</strong>. Drugi proton przechodzi do środowiska wodnego jako wolny $H^+$:
+            $$NAD^+ + 2H \rightarrow NADH + H^+$$</td>
+            <td><strong>Katabolizm i generowanie ATP:</strong> glikoliza, dehydrogenaza pirogronianowa, cykl Krebsa, $\beta$-oksydacja kwasów tłuszczowych. Elektrony trafiają na Kompleks I łańcucha oddechowego.</td>
+          </tr>
+          <tr>
+            <td><strong>$NADP^+$</strong></td>
+            <td>Pochodna $NAD^+$ z dodatkową grupą fosforanową przy węglu C-2' rybozy adenozynowej.</td>
+            <td>Taki sam mechanizm transferu jonu wodorkowego jak $NAD^+$. Dodatkowy fosforan stanowi „etykietę” rozpoznawaną przez enzymy anaboliczne.</td>
+            <td><strong>Anabolizm redukcyjny i ochrona antyoksydacyjna:</strong> synteza kwasów tłuszczowych, synteza cholesterolu, regeneracja zredukowanego glutationu przez reduktazę glutationową, wybuch tlenowy w makrofagach (oksydaza NADPH). Głównym źródłem jest szlak pentozofosforanowy!</td>
+          </tr>
+          <tr>
+            <td><strong>FMN</strong></td>
+            <td>Witamina $B_2$ (ryboflawina). Pierścień izoalloksazynowy + alkohol rybitol + reszta fosforanowa.</td>
+            <td>Przenosi <strong>dwa atomy wodoru ($2\ H^+ + 2\ e^-$)</strong> etapowo, tworząc stabilny, wolnorodnikowy produkt pośredni – semichinon:
+            $$FMN + 2H \rightleftharpoons FMNH_2$$</td>
+            <td>Kompleks I łańcucha oddechowego (dehydrogenaza NADH), oksydaza L-aminokwasowa.</td>
+          </tr>
+          <tr>
+            <td><strong>FAD</strong></td>
+            <td>Witamina $B_2$. Składa się z FMN połączonego z resztą AMP wiązaniem pirofosforanowym.</td>
+            <td>Przenosi <strong>dwa atomy wodoru ($2\ H^+ + 2\ e^-$)</strong> ze zmianą konfiguracji wiązań w pierścieniu izoalloksazynowym:
+            $$FAD + 2H \rightleftharpoons FADH_2$$</td>
+            <td>Grupa prostetyczna enzymów redoks: dehydrogenaza bursztynianowa (cykl Krebsa / Kompleks II łańcucha oddechowego), dehydrogenaza acylo-CoA ($\beta$-oksydacja).</td>
+          </tr>
+          <tr>
+            <td><strong>ATP</strong></td>
+            <td>Adenina + ryboza + 3 grupy fosforanowe z dwoma wysokoenergetycznymi wiązaniami bezwodnikowymi ($\Delta G^\circ' \approx -30{,}5\text{ kJ/mol}$).</td>
+            <td>Transfer reszty fosforanowej ($\gamma$) z uwolnieniem energii swobodnej sprzęgającej reakcje endoergiczne.</td>
+            <td>Uniwersalna waluta komórki: praca mechaniczna (miozyna), transport aktywny ($Na^+/K^+$-ATPaza), inicjacja metabolizmu (kinazy).</td>
+          </tr>
+          <tr>
+            <td><strong>GTP</strong></td>
+            <td>Guanina + ryboza + 3 grupy fosforanowe.</td>
+            <td>Hydroliza wiązania bezwodnikowego napędza specyficzne maszynerie białkowe.</td>
+            <td>Translacja (wiązanie aminoacylo-tRNA, translokacja rybosomu), transdukcja sygnałów hormonalnych (białka G i cyklaza guanylowa), glukoneogeneza (karboksykinaza fosfoenolopirogronianowa PEPCK).</td>
+          </tr>
+          <tr>
+            <td><strong>UTP</strong></td>
+            <td>Uracyl + ryboza + 3 grupy fosforanowe.</td>
+            <td>Tworzy wysokoenergetyczne połączenia z cukrami: $\text{Cukier-1-P} + UTP \rightarrow UDP\text{-cukier} + PP_i$.</td>
+            <td>Metabolizm węglowodanów: synteza glikogenu (UDP-glukoza), przemiany galaktozy, sprzęganie bilirubiny w wątrobie (kwas UDP-glukuronowy).</td>
+          </tr>
+          <tr>
+            <td><strong>CTP</strong></td>
+            <td>Cytozyna + ryboza + 3 grupy fosforanowe.</td>
+            <td>Aktywuje alkohole lub diacyloglicerole: tworzy intermediaty CDP-cholinę, CDP-etanoloaminę i CDP-diacyloglicerol.</td>
+            <td>Biosynteza lipidów złożonych: fosfatydylocholiny, fosfatydyloetanoloaminy, fosfatydyloinozytolu i kardiolipiny w błonach komórkowych.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout-warning">
+      <div class="warning-title">⚠️ Złota reguła i pułapka egzaminacyjna!</div>
+      <strong>Dlaczego komórka ściśle separuje pule $NAD^+/NADH$ i $NADP^+/NADPH$?</strong>
+      <br>Mimo niemal identycznej budowy te dwa dinukleotydy pełnią w komórce przeciwstawne funkcje:
+      <br>• W cytozolu stosunek $[NAD^+]/[NADH] \gg 1$ (około 700:1 – środowisko silnie utleniające), co wymusza kierunek <strong>utleniania metabolitów i katabolizmu</strong>.
+      <br>• Z kolei stosunek $[NADP^+]/[NADPH] \ll 1$ (około 0,01 – wysokie stężenie formy zredukowanej), co wymusza kierunek <strong>redukcji w syntezach anabolicznych</strong>!
+    </div>
+
+    <div class="quiz-section">
+      <div class="quiz-section-title">✍️ Szybki test sprawdzający:</div>
+      <details class="quiz-item">
+        <summary class="quiz-question">Jaki nukleotydotrifosforan jest bezpośrednio syntetyzowany na poziomie substratowym w cyklu kwasu cytrynowego (Krebsa) przez syntetazę bursztynylo-CoA?</summary>
+        <div class="quiz-answer">
+          <strong>Odpowiedź:</strong> <strong>GTP</strong> (guanozynotrifosforan), który następnie może przekazać swoją grupę fosforanową na ADP w reakcji katalizowanej przez kinazę difosfonukleozydową: $GTP + ADP \rightleftharpoons GDP + ATP$.
+        </div>
+      </details>
+      <details class="quiz-item">
+        <summary class="quiz-question">Która reszta kwasu nikotynowego w $NAD^+$ ulega bezpośredniej redukcji w trakcie reakcji dehydrogenacji?</summary>
+        <div class="quiz-answer">
+          <strong>Odpowiedź:</strong> Węgiel w pozycji C-4 pierścienia pirydynowego (nikotynamidowego). Przyjmuje on jon wodorkowy ($H^-$), co prowadzi do utraty ładunku dodatniego na atomie azotu pirydynowego i zmiany widma absorpcyjnego (pojawienie się piku przy $\lambda = 340\text{ nm}$).
+        </div>
+      </details>
+    </div>
+  </article>
+
+</div>
+
+</body>
+</html>
